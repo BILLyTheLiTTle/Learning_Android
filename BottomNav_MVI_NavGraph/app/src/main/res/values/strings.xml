@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">BottomNav_MVI_NavGraph</string>
     <string name="activity_main_name" translatable="false">Main Activity</string>
+    <string name="second_page">Second Page</string>
+    <string name="third_page">Third Page</string>
+    <string name="first_page">First Page</string>
 </resources>

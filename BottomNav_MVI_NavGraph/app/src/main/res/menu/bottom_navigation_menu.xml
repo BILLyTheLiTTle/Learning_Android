@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/first_page_menu_item"
+        android:icon="@android:drawable/stat_sys_vp_phone_call"
+        android:title="@string/first_page" />
+    <item
+        android:id="@+id/second_page_menu_item"
+        android:icon="@android:drawable/stat_sys_phone_call_forward"
+        android:title="@string/second_page" />
+    <item
+        android:id="@+id/third_page_menu_item"
+        android:icon="@android:drawable/stat_sys_phone_call_on_hold"
+        android:title="@string/third_page" />
+</menu>
