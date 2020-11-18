@@ -7,6 +7,7 @@ Various Android examples based on what comes to my mind!
 - Use Bottom Navigation Bar
 - Fragments
 - Navigation Graph
+- LiveData
 - Model-View-Intent architecture using [Uniflow](https://github.com/uniflow-kt/uniflow-kt/blob/master/Documentation.md)
 - Unit Testing
 - Instrumented Testing

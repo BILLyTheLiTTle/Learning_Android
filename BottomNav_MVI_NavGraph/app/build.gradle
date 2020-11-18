@@ -46,6 +46,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     // Instatiate ViewModel in a Fragment
     implementation 'androidx.fragment:fragment-ktx:1.2.5'
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
 
     testImplementation 'junit:junit:4.13.1'
 
