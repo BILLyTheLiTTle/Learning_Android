@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">BottomNav_MVI_NavGraph</string>
+    <string name="app_name" translatable="false">BottomNav_MVI_NavGraph</string>
+    <string name="activity_main_name" translatable="false">Main Activity</string>
 </resources>
