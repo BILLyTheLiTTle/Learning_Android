@@ -6,6 +6,7 @@ In this application the target is to:
 
 ## Details
 - A good [article](https://dagger.dev/hilt/gradle-setup.html) to **add Hilt dependencies** and the [answer](https://stackoverflow.com/questions/52580584/could-not-find-method-kapt-for-glide) from Martin Zeitler for the **kapt plugin**.
+- For multi-module project make sure you create the module as described [here](https://stackoverflow.com/questions/32419621/can-we-have-multiple-apps-in-one-android-studio-project) by Stephan Henningsen but not forget to use **Android Library** option instead of **Phone & Table Module**.
 
 ## Issues
 No issues at the moment.
