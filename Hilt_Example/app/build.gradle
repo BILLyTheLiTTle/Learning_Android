@@ -56,6 +56,9 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.35.1'
     kapt 'com.google.dagger:hilt-compiler:2.35.1'
 
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
     // Hilt - For local unit tests
     testImplementation 'com.google.dagger:hilt-android-testing:2.35.1'
     kaptTest 'com.google.dagger:hilt-compiler:2.35.1'
