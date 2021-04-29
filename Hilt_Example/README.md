@@ -26,7 +26,7 @@ In this application the target is to use:
 2. A [guide](https://dagger.dev/hilt/) which shows in detail what the above video speaks about (apart from testing).
 3. A short and informative [article](https://medium.com/androiddevelopers/a-pragmatic-guide-to-hilt-with-kotlin-a76859c324a1) which writes about what the above video speaked (apart from testing)
 4. A short [description](https://developer.android.com/training/dependency-injection/hilt-android) by Google about the modules and injection in Hilt.
-5. [Migrating From Dagger to Hilt](https://www.raywenderlich.com/14212867-migrating-from-dagger-to-hilt)
+5. [Migrating From Dagger to Hilt](https://www.raywenderlich.com/14212867-migrating-from-dagger-to-hilt).
 
 ### Clean Architecture
 #### Theory article
