@@ -8,7 +8,7 @@ In this application the target is to use:
 - Reactive Programming
 - Data Binding
 - MVVM Pattern
-- Variants and Flavours
+- Variants & Flavours
 - Tests (~~I will~~, I should)
 - This app to read the weather you see, out of your window!
 
