@@ -27,6 +27,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+    productFlavors{
+        simple{
+            applicationIdSuffix ".simple"
+            manifestPlaceholders = [ appLabel: "Simple Hilt Example"]
+        }
+
+        advanced{
+            applicationIdSuffix ".advanced"
+            manifestPlaceholders = [ appLabel: "Advanced Hilt Example"]
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

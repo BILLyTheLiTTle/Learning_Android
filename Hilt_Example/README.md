@@ -8,6 +8,7 @@ In this application the target is to use:
 - Reactive Programming
 - Data Binding
 - MVVM Pattern
+- Variants and Flavours
 - Tests (~~I will~~, I should)
 - This app to read the weather you see, out of your window!
 
@@ -33,6 +34,9 @@ In this application the target is to use:
 
 #### Code article
 [Here](https://medium.com/android-dev-hacks/detailed-guide-on-android-clean-architecture-9eab262a9011) you can find a guide and an example of an attempt in applying clean architecture to Android. It contains DI also.
+
+### Variants & Flavors
+- A very descriptive article [here](https://sgkantamani.medium.com/android-product-flavors-eb526e35f9f1). It is more than enough!
 
 ## Issues
 No issues at the moment.

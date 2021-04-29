@@ -47,6 +47,7 @@ Various Android examples based on what comes to my mind!
 - Reactive Programming
 - Data Binding
 - MVVM Pattern
+- Variants & Flavours
 - Unit Testing
 - Instrumented Testing
 
