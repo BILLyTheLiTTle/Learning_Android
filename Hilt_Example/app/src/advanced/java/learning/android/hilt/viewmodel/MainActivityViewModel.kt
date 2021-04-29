@@ -31,7 +31,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     init {
-        spinnerCitySelections.addAll(arrayListOf("Patras", "Athens"))
+        spinnerCitySelections.addAll(arrayListOf("Patras", "Athena", "Thessaloniki"))
         selectedCityPosition.onPropertyChangedCallback {
             city.name = spinnerCitySelections[it ?: 0]
             getTodayWeather(city)

@@ -36,6 +36,7 @@ In this application the target is to use:
 [Here](https://medium.com/android-dev-hacks/detailed-guide-on-android-clean-architecture-9eab262a9011) you can find a guide and an example of an attempt in applying clean architecture to Android. It contains DI also.
 
 ### Variants & Flavors
+- A very simple [article](https://www.journaldev.com/21533/android-build-types-product-flavors).
 - A very descriptive article [here](https://sgkantamani.medium.com/android-product-flavors-eb526e35f9f1). It is more than enough!
 
 ## Issues
