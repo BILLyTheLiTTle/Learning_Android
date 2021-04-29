@@ -1,4 +1,4 @@
-package learning.android.domain.models
+package learning.android.domain.models.response
 
 data class TodayWeatherModel(
     var temperature: String?,

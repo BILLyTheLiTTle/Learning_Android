@@ -1,7 +1,7 @@
 package learning.android.data.mappers
 
 import learning.android.data.models.WeatherModel
-import learning.android.domain.models.TodayWeatherModel
+import learning.android.domain.models.response.TodayWeatherModel
 import javax.inject.Inject
 
 class WeatherMapper @Inject constructor() {

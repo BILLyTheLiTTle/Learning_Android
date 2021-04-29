@@ -40,6 +40,16 @@ Various Android examples based on what comes to my mind!
 - Unit Testing
 - Instrumented Testing
 
+### 5. [Hilt & Reactive & MVVM & Data Binding & Clean Architecture & Reactive](Hilt_Example)
+- Hilt in a simple application
+- A multi-module project
+- Clean Architecture
+- Reactive Programming
+- Data Binding
+- MVVM Pattern
+- Unit Testing
+- Instrumented Testing
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments

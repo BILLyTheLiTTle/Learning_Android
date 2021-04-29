@@ -1,8 +1,9 @@
 package learning.android.domain.repositories
 
 import io.reactivex.rxjava3.core.Single
-import learning.android.domain.models.TodayWeatherModel
+import learning.android.domain.models.request.City
+import learning.android.domain.models.response.TodayWeatherModel
 
 interface RemoteRepo {
-    fun getTodayWeather(city: String): Single<TodayWeatherModel>
+    fun getTodayWeather(city: City): Single<TodayWeatherModel>
 }
