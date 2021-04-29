@@ -37,4 +37,9 @@ Pay attention, that the parameters of provideXXX() should be the same as the con
 //    fun provideRemoteRepo(apiService: ApiService, weatherMapper: dagger.Lazy<WeatherMapper>): RemoteRepo {
 //        return RemoteRepoImpl(apiService, weatherMapper)
 //    }
+//
+// In case you want to inject something as String use this Module Implementation
+//    @Singleton
+//    @Provides
+//    fun provideDefaultCityName() = "Patras"
 //}

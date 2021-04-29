@@ -16,16 +16,16 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModels()
 
     @Inject
-    lateinit var city: City
+    lateinit var city: City // String - In case you want to inject something as String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val layout: ActivityMainBinding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        city.name = "Patras"
+        city.name = "Patras" //city = "Patras" - In case you want to inject something as String
 
         viewModel.getTodayWeatherLiveData().observe(this) {
-            layout.cityTextview.text = city.name
+            layout.cityTextview.text = city.name // city - In case you want to inject something as String
             layout.temperatureValueTextview.text = it.temperature
             layout.windValueTextview.text = it.wind
             layout.descriptionValueTextview.text = it.description

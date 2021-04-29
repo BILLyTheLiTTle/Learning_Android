@@ -16,9 +16,9 @@ import learning.android.domain.repositories.RemoteRepo
 import javax.inject.Inject
 
 class GetTodayWeatherUseCase @Inject constructor(
-    var city: City,
+    var city: City, //String - In case you want to inject something as String
     private val apiRepo: RemoteRepo
-    ): SingleUseCase<TodayWeatherModel> { //@JvmSuppressWildcards
+    ): SingleUseCase<TodayWeatherModel> {
     override fun execute() = apiRepo.getTodayWeather(city)
 
 

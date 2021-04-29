@@ -13,8 +13,8 @@ class RemoteRepoImpl @Inject constructor(
     private val weatherMapper: dagger.Lazy<WeatherMapper>
     ): RemoteRepo {
 
-    override fun getTodayWeather(city: City): Single<TodayWeatherModel> {
-        return apiService.getWeather(city.name)
+    override fun getTodayWeather(city: City): Single<TodayWeatherModel> { // String - In case you want to inject something as String
+        return apiService.getWeather(city.name) //city - In case you want to inject something as String
             .map {
                 weatherMapper.get().toTodayWeather(it)
             }

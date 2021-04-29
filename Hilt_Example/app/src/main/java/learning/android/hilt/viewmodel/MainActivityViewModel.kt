@@ -20,7 +20,7 @@ class MainActivityViewModel @Inject constructor(
         return _todayWeather
     }
 
-    fun getTodayWeather(city: City) {
+    fun getTodayWeather(city: City) { //String - In case you want to inject something as String
         todayWeatherUseCase.city = city
         todayWeatherUseCase.execute()
             .subscribeOn(Schedulers.io())

@@ -5,5 +5,5 @@ import learning.android.domain.models.request.City
 import learning.android.domain.models.response.TodayWeatherModel
 
 interface RemoteRepo {
-    fun getTodayWeather(city: City): Single<TodayWeatherModel>
+    fun getTodayWeather(city: City): Single<TodayWeatherModel> //String - In case you want to inject something as String
 }
