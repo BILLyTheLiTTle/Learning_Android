@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_horizontal_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <TextView
+            android:id="@+id/name_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your name:"
+            app:layout_constraintLeft_toRightOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/start_horizontal_guideline" />
+
+        <EditText
+            android:id="@+id/name_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintLeft_toRightOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/name_textView" />
+
+        <TextView
+            android:id="@+id/age_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Enter your age:"
+            app:layout_constraintLeft_toRightOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/name_editText" />
+
+        <EditText
+            android:id="@+id/age_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintLeft_toRightOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/age_textView" />
+
+        <LinearLayout
+            android:id="@+id/greetings_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toRightOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/age_editText">
+
+            <TextView
+                android:id="@+id/greeting_label_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Greeting:" />
+
+            <TextView
+                android:id="@+id/greeting_output_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                tools:text="Greeting message" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:onClick="showGreeting"
+            android:text="Say Hello"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/greetings_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

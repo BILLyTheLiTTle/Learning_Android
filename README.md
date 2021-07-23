@@ -40,7 +40,7 @@ Various Android examples based on what comes to my mind!
 - Unit Testing
 - Instrumented Testing
 
-### 5. [Hilt & Reactive & MVVM & Data Binding & Clean Architecture & Reactive](Hilt_Example)
+### 5. [Hilt & MVVM & Data Binding & Clean Architecture & Reactive](Hilt_Example)
 - Hilt in a simple application
 - A multi-module project
 - Clean Architecture
@@ -50,6 +50,13 @@ Various Android examples based on what comes to my mind!
 - Variants & Flavours
 - Unit Testing
 - Instrumented Testing
+
+### 6. [Simple Workshop Projects](Simple_Workshop_Projects)
+- Use these projects in a basic level workshop
+- Explain and apply clean code  techniques
+- Simple Unit testing cases
+- Simple instrumented testing cases
+- Test and debug any issues found in this projects
 
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
