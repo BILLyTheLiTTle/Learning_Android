@@ -58,6 +58,10 @@ Various Android examples based on what comes to my mind!
 - Simple instrumented testing cases
 - Test and debug any issues found in this projects
 
+### 7. [MVI With State Pattern](MVI_With_State_Pattern)
+- Very simple UI (no effort to understand)
+- Implement MVI pattern using OO State Design Pattern
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
