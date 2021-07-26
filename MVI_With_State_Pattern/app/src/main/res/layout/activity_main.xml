@@ -5,6 +5,7 @@
     tools:context=".MainActivity">
 
     <data>
+
         <variable
             name="viewModel"
             type="learning.android.mvi.MainActivityViewModel" />
@@ -18,6 +19,7 @@
             android:id="@+id/state_title_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.stateTitle}"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -25,13 +27,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.1"
-            android:text="@{viewModel.stateTitle}"
             tools:text="State Title" />
 
         <TextView
             android:id="@+id/state_desc_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.stateDesc}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +43,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.2"
-            android:text="@{viewModel.stateDesc}"
             tools:text="State Desc" />
 
         <Button
@@ -49,34 +50,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="24dp"
+            android:enabled="@{viewModel.isButtonOneEnabled}"
+            android:onClick="@{() -> viewModel.getFirstDummyData()}"
             android:text="@string/intent_to_state_one"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/state_two_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:enabled="@{viewModel.isButtonOneEnabled}"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/state_two_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="@{viewModel.isButtonTwoEnabled}"
+            android:onClick="@{() -> viewModel.getSecondDummyData()}"
             android:text="@string/intent_to_state_two"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/state_three_button"
             app:layout_constraintStart_toEndOf="@id/state_one_button"
-            app:layout_constraintTop_toTopOf="parent"
-            android:enabled="@{viewModel.isButtonTwoEnabled}"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/state_three_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="@{viewModel.isButtonThreeEnabled}"
+            android:onClick="@{() -> viewModel.getThirdDummyData()}"
             android:text="@string/intent_to_state_three"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/state_two_button"
-            app:layout_constraintTop_toTopOf="parent"
-            android:enabled="@{viewModel.isButtonThreeEnabled}"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
