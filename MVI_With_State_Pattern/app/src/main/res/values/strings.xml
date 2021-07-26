@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="intent_to_state_one">State 1</string>
+    <string name="intent_to_state_two">State 2</string>
+    <string name="intent_to_state_three">State 3</string>
+</resources>
