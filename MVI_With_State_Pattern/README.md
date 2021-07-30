@@ -1,4 +1,4 @@
-# Hilt DI Example
+# MVI with OO State Design Pattern Example
 
 ## Learning Outcomes
 In this application the target is to use:
