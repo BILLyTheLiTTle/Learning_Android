@@ -30,7 +30,7 @@ fun WeatherItem(weatherInfo: WeatherInfo) {
                     .height(100.dp))
             Column(modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(weatherInfo.cityName, style = header, textAlign = TextAlign.Center)
+                Text(weatherInfo.cityName, style = header)
                 Text(weatherInfo.description, style = text)
             }
         }
