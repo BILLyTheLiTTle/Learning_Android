@@ -1,9 +1,12 @@
-package learning.android.compose
+package learning.android.compose.ui.screens
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import learning.android.compose.R
 import learning.android.compose.data.WeatherInfo
 
-class MainActivityViewModel: ViewModel() {
+class WeatherItemsViewModel: ViewModel() {
 
     fun fetchData(): List<WeatherInfo> {
         // These data comes after a network call!
