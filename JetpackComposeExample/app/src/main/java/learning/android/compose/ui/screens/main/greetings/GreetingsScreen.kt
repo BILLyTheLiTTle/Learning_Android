@@ -1,4 +1,4 @@
-package learning.android.compose.ui.screens
+package learning.android.compose.ui.screens.main.greetings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -24,11 +24,12 @@ fun GreetingContent(name: String, onNameChange: (String) -> Unit){
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = "Hello, $name",
-            modifier = Modifier.padding(bottom = 8.dp),
+            modifier = Modifier.padding(8.dp),
             style = MaterialTheme.typography.h5
         )
         TextField(
             value = name,
+            modifier = Modifier.padding(8.dp),
             onValueChange = onNameChange,
             placeholder = { Text("Name")},
             label = { Text("Enter Name")},

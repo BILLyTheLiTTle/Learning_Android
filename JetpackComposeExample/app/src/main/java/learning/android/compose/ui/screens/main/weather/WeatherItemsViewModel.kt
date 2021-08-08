@@ -1,7 +1,5 @@
-package learning.android.compose.ui.screens
+package learning.android.compose.ui.screens.main.weather
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import learning.android.compose.R
 import learning.android.compose.data.WeatherInfo

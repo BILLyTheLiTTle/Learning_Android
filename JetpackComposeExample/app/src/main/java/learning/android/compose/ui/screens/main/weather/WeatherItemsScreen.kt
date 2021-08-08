@@ -1,4 +1,4 @@
-package learning.android.compose.ui
+package learning.android.compose.ui.screens.main.weather
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxHeight

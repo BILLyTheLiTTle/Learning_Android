@@ -1,4 +1,4 @@
-package learning.android.compose.ui.screens
+package learning.android.compose.ui.screens.main.greetings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

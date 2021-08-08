@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackComposeExample">
         <activity
-            android:name=".ui.screens.MainActivity"
+            android:name=".ui.screens.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.JetpackComposeExample.NoActionBar">
