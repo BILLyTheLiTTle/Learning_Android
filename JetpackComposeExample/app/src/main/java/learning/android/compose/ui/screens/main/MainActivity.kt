@@ -47,7 +47,9 @@ class MainActivity : ComponentActivity() {
                                 when (it) {
                                     0 -> WeatherItemsScreen(viewModel = weatherItemsVM)
                                     1 -> GreetingsScreen(viewModel = greetingsVM)
-                                    else -> ResumeScreen(name = greetingsVM.name.value?:"", option = "")
+                                    else -> ResumeScreen(name = greetingsVM.name.value?:"",
+                                        option = if(weatherItemsVM.selectedIndex.value < 0) ""
+                                        else weatherItemsVM.weatherListInfo[weatherItemsVM.selectedIndex.value].cityName)
                                 }
                             }
                         }

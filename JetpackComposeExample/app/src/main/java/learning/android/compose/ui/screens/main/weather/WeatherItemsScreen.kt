@@ -2,8 +2,9 @@ package learning.android.compose.ui.screens.main.weather
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -19,6 +20,8 @@ import learning.android.compose.ui.theme.JetpackComposeExampleTheme
 fun WeatherItemsScreen(viewModel: WeatherItemsViewModel) {
     val state = remember { viewModel.uiState }
     val items = remember { viewModel.fetchData() }
+    val selectedIndex = remember { viewModel.selectedIndex }
+
     Box(Modifier.fillMaxSize()) {
         when (state.value) {
             is LoadedState -> {
@@ -28,19 +31,25 @@ fun WeatherItemsScreen(viewModel: WeatherItemsViewModel) {
                         .fillMaxHeight(1f)
                         .padding(5.dp)
                 ) {
-                    items(items) { info -> WeatherItem(weatherInfo = info) }
+                    itemsIndexed(items) { index, item ->
+                        WeatherItem(weatherInfo = item,
+                            selected = selectedIndex.value == index,
+                        onClick = { selectedIndex.value = index })
+                    }
                 }
             }
             is InitialState -> {
                 Text(text = "Prepare to load data", modifier = Modifier.align(alignment = Alignment.Center))
             }
             is LoadingState -> {
+                selectedIndex.value = -1
                 CircularProgressIndicator(modifier = Modifier.align(alignment = Alignment.Center))
             }
         }
     }
 }
 
+@ExperimentalMaterialApi
 @Preview(showBackground = true)
 @Composable
 fun DummyWeatherItems() {

@@ -20,7 +20,7 @@ fun ResumeScreen(name: String, option: String) {
 fun ResumeContent(name: String, option: String){
     Column(modifier = Modifier.padding(16.dp).fillMaxHeight(1f)) {
         Text(
-            text = "Hello, $name your favorite weather is $option Weather",
+            text = "Hello, $name your favorite city is $option.",
             modifier = Modifier.padding(bottom = 8.dp),
             style = MaterialTheme.typography.h5
         )
