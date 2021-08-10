@@ -16,11 +16,11 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun GreetingsScreen(viewModel: GreetingsScreenViewModel) {
     val name: String by viewModel.name.observeAsState("")
-    GreetingContent(name = name, onNameChange = {viewModel.updateName(it)})
+    GreetingsContent(name = name, onNameChange = {viewModel.updateName(it)})
 }
 
 @Composable
-fun GreetingContent(name: String, onNameChange: (String) -> Unit){
+fun GreetingsContent(name: String, onNameChange: (String) -> Unit){
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = "Hello, $name",

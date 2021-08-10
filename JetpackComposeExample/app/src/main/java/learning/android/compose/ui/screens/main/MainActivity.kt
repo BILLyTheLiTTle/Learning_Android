@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                             }
                             TabsContent(pagerState = pagerState) {
                                 when (it) {
-                                    0 -> WeatherItemsScreen(weatherItemsVM.fetchData())
+                                    0 -> WeatherItemsScreen(viewModel = weatherItemsVM)
                                     1 -> GreetingsScreen(viewModel = greetingsVM)
                                     else -> ResumeScreen(name = greetingsVM.name.value?:"", option = "")
                                 }
@@ -53,7 +53,6 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
-
             }
         }
     }
