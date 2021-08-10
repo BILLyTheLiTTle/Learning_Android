@@ -62,6 +62,10 @@ Various Android examples based on what comes to my mind!
 - Very simple UI (no effort to understand)
 - Implement MVI pattern using OO State Design Pattern
 
+### 8. [Jetpack Compose Example](JetpackComposeExample)
+- Use Main UI Components (List, Tabs and Pager, Loading)
+- Use MVI pattern (a possible implementation)
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
