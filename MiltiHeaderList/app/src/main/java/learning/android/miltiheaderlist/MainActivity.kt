@@ -98,7 +98,9 @@ fun MainList(data: List<Item>) {
                             depending on the user scrolling action
                          */
                         if (listState.firstVisibleItemIndex < firstItemIndex.value) { // move to start
-                            header.value = dataList[listState.firstVisibleItemIndex-1].type
+                            if (listState.firstVisibleItemIndex > 0) {
+                                header.value = dataList[listState.firstVisibleItemIndex - 1].type
+                            }
                         }
                          else if (listState.firstVisibleItemIndex > firstItemIndex.value) { // move to the end
                             header.value = dataList[listState.firstVisibleItemIndex].type
