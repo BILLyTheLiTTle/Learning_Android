@@ -11,7 +11,3 @@ But during development I changed my mind and decided to give it a try. This is t
 
 ## Issues
 The way it changes the top sticky header is not so smooth. I would prefer with an animation.
-
-## Disclaimer
-- [Details](https://en.wikipedia.org/wiki/State_pattern) for OO State Design Pattern.
-- Obviously, I could not understand reading only from Wikipedia and I had to read the appropriate chapter in [Head First Design Patterns](https://www.amazon.com/Head-First-Design-Patterns-Object-Oriented/dp/149207800X).
