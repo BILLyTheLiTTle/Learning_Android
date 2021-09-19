@@ -66,6 +66,9 @@ Various Android examples based on what comes to my mind!
 - Use Main UI Components (List, Tabs and Pager, Loading)
 - Use MVI pattern (a possible implementation)
 
+### 9. [Double Sticky Header Example](MiltiHeaderList)
+- Not a perfect but a good implementation of a `LazyColumn` with double sticky headers
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
