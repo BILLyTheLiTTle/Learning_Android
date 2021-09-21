@@ -62,9 +62,7 @@ fun MainList(data: List<Item>) {
     }
 
     // create a list which is a mirror of the LazyColumn
-    val dataList = remember {
-        mutableListOf<Item>()
-    }
+    val dataList = mutableListOf<Item>()
     val groupHeader = data.groupBy { it.type }
     groupHeader.forEach { (header, items) ->
         dataList.add(Item(type = header))
