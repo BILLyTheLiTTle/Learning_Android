@@ -19,6 +19,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
+import kotlinx.coroutines.launch
 import learning.android.miltiheaderlist.ui.theme.MiltiHeaderListTheme
 
 class MainActivity : ComponentActivity() {
@@ -102,8 +104,17 @@ fun MainList(data: List<Item>) {
                                 header.value = dataList[listState.firstVisibleItemIndex - 1].type
                             }
                         }
-                         else if (listState.firstVisibleItemIndex > firstItemIndex.value) { // move to the end
-                            header.value = dataList[listState.firstVisibleItemIndex].type
+                        else if (listState.firstVisibleItemIndex > firstItemIndex.value) { // move to the end
+                            /*
+                            When you scroll to start and you go to the point where the stickyHeader should
+                            become visible by default it behaves like scrolling to the end. When this happens
+                            you enter in this else-if block but the firstVisibleItemIndex is increased by 2
+                            (you added a new item, the stickyHeader). So, do the following action whenever
+                            all these things did not happen.
+                             */
+                            if (listState.firstVisibleItemIndex - firstItemIndex.value != 2){
+                                header.value = dataList[listState.firstVisibleItemIndex].type
+                            }
                         }
                         firstItemIndex.value = listState.firstVisibleItemIndex
                     }
