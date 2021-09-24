@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,16 +18,16 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import learning.android.miltiheaderlist.library.DoubleHeaderList
+import learning.android.miltiheaderlist.library.IndexedList
 import learning.android.miltiheaderlist.ui.theme.MiltiHeaderListTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,13 +40,62 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     //MainList(getTheData())
-                    ExampleDoubleHeaderList(getTheData())
+//                    ExampleDoubleHeaderList(getTheData())
+                    ExampleIndexedList(getTheIndexedData())
                 }
             }
         }
     }
 }
 
+@ExperimentalFoundationApi
+@RequiresApi(Build.VERSION_CODES.N)
+@Composable
+fun ExampleIndexedList(data: List<CustomListItem2>,
+                       indices: List<Char> = ('A'..'Z').toList()) {
+    val lazyListState = rememberLazyListState()
+
+    IndexedList(
+        // The list of the indices
+        indices = indices,
+        // The state of the main LazyColumn, the one with the real data
+        itemsListState = lazyListState,
+        // The modifier is exported for the Column, the one with the indices
+        modifier = Modifier
+            .background(color = Color.Transparent)
+            .height(300.dp),
+        // The way to connect the index with a data item (here the index item matches the first letter of the surname)
+        predicate = {
+            data.indexOfFirst { item ->
+                item.surname.startsWith(it.toString(), true) }
+            },
+        // The list of the main data
+        lazyColumnContent = {
+            LazyColumn(modifier = Modifier.height(400.dp), state = lazyListState) {
+                items(data) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(5.dp)
+                            .clickable { },
+                        elevation = 10.dp
+                    ) {
+                        Column {
+                            Text(text = it.surname, fontSize = 15.sp)
+                            Text(text = it.name, fontSize = 10.sp)
+                        }
+                    }
+                }
+            }
+        },
+        // The item content for the indices list
+        indexedItemContent = {
+            Text(text = it.toString(), fontSize = 20.sp)
+        }
+ )
+}
+
+@ExperimentalCoilApi
 @ExperimentalFoundationApi
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable

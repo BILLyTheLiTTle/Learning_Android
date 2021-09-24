@@ -124,3 +124,49 @@ fun getTheData(): List<CustomListItem> {
         "https://i.annihil.us/u/prod/marvel/i/mg/6/90/612e8e0826ce5/clean.jpg")
     )
 }
+
+class CustomListItem2(
+    val surname: String = "",
+    val name: String = "",
+)
+
+fun getTheIndexedData(): List<CustomListItem2> {
+    return listOf(
+        CustomListItem2("ASurname", "AName"),
+        CustomListItem2("ASurname", "AName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("BSurname", "BName"),
+        CustomListItem2("CSurname", "CName"),
+        CustomListItem2("CSurname", "CName"),
+        CustomListItem2("CSurname", "CName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("GSurname", "GName"),
+        CustomListItem2("ISurname", "IName"),
+        CustomListItem2("ISurname", "IName"),
+        CustomListItem2("ISurname", "IName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("KSurname", "KName"),
+        CustomListItem2("ZSurname", "ZName"),
+        CustomListItem2("ZSurname", "ZName"),
+    )
+}
