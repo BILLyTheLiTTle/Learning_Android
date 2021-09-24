@@ -20,6 +20,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -71,7 +73,7 @@ fun ExampleIndexedList(data: List<CustomListItem2>,
             },
         // The list of the main data
         lazyColumnContent = {
-            LazyColumn(modifier = Modifier.height(400.dp), state = lazyListState) {
+            LazyColumn(state = lazyListState) {
                 items(data) {
                     Card(
                         modifier = Modifier
@@ -81,8 +83,12 @@ fun ExampleIndexedList(data: List<CustomListItem2>,
                         elevation = 10.dp
                     ) {
                         Column {
-                            Text(text = it.surname, fontSize = 15.sp)
-                            Text(text = it.name, fontSize = 10.sp)
+                            Text(text = it.surname,
+                                fontSize = 17.sp, fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic,
+                                modifier = Modifier.padding(start = 10.dp))
+                            Text(text = it.name,
+                                fontSize = 15.sp, fontWeight = FontWeight.SemiBold,
+                                modifier = Modifier.padding(start = 15.dp))
                         }
                     }
                 }
