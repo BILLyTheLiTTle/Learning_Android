@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 @RequiresApi(Build.VERSION_CODES.N)
 @ExperimentalFoundationApi
 @Composable
-fun <T> IndexedList(
+fun <T> IndexColumn(
     indices: List<T>,
     itemsListState: LazyListState,
     modifier: Modifier,

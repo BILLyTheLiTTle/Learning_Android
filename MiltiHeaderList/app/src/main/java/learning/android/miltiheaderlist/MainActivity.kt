@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
-import learning.android.miltiheaderlist.library.DoubleHeaderList
-import learning.android.miltiheaderlist.library.IndexedList
+import learning.android.miltiheaderlist.library.DoubleHeaderLazyColumn
+import learning.android.miltiheaderlist.library.IndexColumn
 import learning.android.miltiheaderlist.ui.theme.MiltiHeaderListTheme
 
 class MainActivity : ComponentActivity() {
@@ -55,7 +55,7 @@ fun ExampleIndexedList(data: List<CustomListItem2>,
                        indices: List<Char> = ('A'..'Z').toList()) {
     val lazyListState = rememberLazyListState()
 
-    IndexedList(
+    IndexColumn(
         // The list of the indices
         indices = indices,
         // The state of the main LazyColumn, the one with the real data
@@ -100,7 +100,7 @@ fun ExampleIndexedList(data: List<CustomListItem2>,
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun ExampleDoubleHeaderList(data: List<CustomListItem>){
-    DoubleHeaderList(data = data,
+    DoubleHeaderLazyColumn(data = data,
         modifier = Modifier.fillMaxSize(),
         headerContent = {
             Card(

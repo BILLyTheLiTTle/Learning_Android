@@ -24,7 +24,7 @@ open class Item(
 @RequiresApi(Build.VERSION_CODES.N)
 @ExperimentalFoundationApi
 @Composable
-fun DoubleHeaderList(data: List<Item>,
+fun DoubleHeaderLazyColumn(data: List<Item>,
                      modifier: Modifier,
                      headerContent: @Composable (String) -> Unit,
                      subHeaderContent: @Composable (String) -> Unit,
