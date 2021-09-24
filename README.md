@@ -41,6 +41,7 @@ Various Android examples based on what comes to my mind!
 
 ### 6. [Double Sticky Header Example](MiltiHeaderList)
 - Not a perfect but a good implementation of a `LazyColumn` with double sticky headers
+- It also shows an implementation of indexed `Column` bond in a `LazyColumn`
 
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
