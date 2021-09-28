@@ -43,6 +43,10 @@ Various Android examples based on what comes to my mind!
 - Not a perfect but a good implementation of a `LazyColumn` with double sticky headers
 - It also shows an implementation of indexed `Column` bond in a `LazyColumn`
 
+### 7. [Request Permissions](Permissions_Application)
+- Request permission
+- Keep track of granted/denied/never ask again permissions
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
