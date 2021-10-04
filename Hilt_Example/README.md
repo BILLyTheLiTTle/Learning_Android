@@ -15,8 +15,9 @@ In this application the target is to use:
 ## Details
 ### Hilt
 - A good [article](https://dagger.dev/hilt/gradle-setup.html) to **add Hilt dependencies**.
-- When you step into the problem of not fimnding kapt(), the [answer](https://stackoverflow.com/questions/52580584/could-not-find-method-kapt-for-glide) from Martin Zeitler for the **kapt plugin** would be very helpful.
+- When you step into the problem of not finding kapt(), the [answer](https://stackoverflow.com/questions/52580584/could-not-find-method-kapt-for-glide) from Martin Zeitler for the **kapt plugin** would be very helpful.
 - A quick [video](https://www.youtube.com/watch?v=KI3L6d6Sm3Q) for **@Provides** and **@Binds** and how to inject **String**s in constructors.
+- An [article](https://www.valueof.io/blog/components-scope-dagger-hilt) to understand the difference between **Component** and **Scope**.
 
 ### Multi-module project
 - For multi-module project make sure you create the module as described [here](https://stackoverflow.com/questions/32419621/can-we-have-multiple-apps-in-one-android-studio-project) by Stephan Henningsen but not forget to use **Android Library** option instead of **Phone & Table Module**.
