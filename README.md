@@ -47,6 +47,17 @@ Various Android examples based on what comes to my mind!
 - Request permission
 - Keep track of granted/denied/never ask again permissions
 
+### 8. [Dog Breeds](DogBreeds)
+- Jetpack Compose
+- Jetpack Compose Navigation
+- Jetpack Paging Library
+- Kotlin Coroutines
+- Kotlin Flow (StateFlow, SharedFlow)
+- Dependency Injection (Hilt)
+- Retrofit
+- Clean architecture
+- Testing (Unit, Coroutines Unit, Espresso)
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
