@@ -44,4 +44,4 @@ In this application the target is to use:
 No issues at the moment.
 
 ## Disclaimer
-- Wheather data loads from [here](https://goweather.herokuapp.com/weather/Patras).
+- Wheather data load from [here](https://goweather.herokuapp.com/weather/Patras).
