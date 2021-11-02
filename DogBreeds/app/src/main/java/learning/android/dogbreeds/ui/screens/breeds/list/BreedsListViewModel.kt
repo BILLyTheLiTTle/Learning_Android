@@ -18,15 +18,14 @@ class BreedsListViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        breedsUseCase.breedsRequest.limit = "10"
-        breedsUseCase.breedsRequest.page = "0"
+        breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(10, 0)
     }
 
     private val _breedsResult: MutableStateFlow<NetworkResult<List<UiBreedModel>>> = MutableStateFlow(NetworkResult.loading())
     val breedsResult: StateFlow<NetworkResult<List<UiBreedModel>>> = _breedsResult
     fun getBreeds() {
         viewModelScope.launch {
-            breedsUseCase.execute()
+         breedsUseCase.execute()
                 .catch {
                     _breedsResult.value = NetworkResult.error("Error fetching data")
 //                    Log.e(this@BreedsListViewModel::getBreeds.name, it.stackTraceToString())

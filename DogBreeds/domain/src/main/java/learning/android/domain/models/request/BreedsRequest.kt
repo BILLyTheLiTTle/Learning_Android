@@ -2,7 +2,7 @@ package learning.android.domain.models.request
 
 import javax.inject.Inject
 
-class BreedsRequest @Inject constructor() {
-    lateinit var limit: String
-    lateinit var page: String
-}
+data class BreedsRequest @Inject constructor(
+    val limit: Int,
+    val page: Int
+)
