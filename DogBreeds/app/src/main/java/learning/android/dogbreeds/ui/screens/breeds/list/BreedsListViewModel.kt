@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import learning.android.domain.models.flow.NetworkResult
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class BreedsListViewModel @Inject constructor(
     private val breedsUseCase: GetBreedsUseCase
 ) : ViewModel() {
+    private val TAG = BreedsListViewModel::class.simpleName
 
     init {
         breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(10, 0)
@@ -25,14 +28,19 @@ class BreedsListViewModel @Inject constructor(
     private val _breedsResult: MutableStateFlow<NetworkResult<List<UiBreedModel>>> = MutableStateFlow(NetworkResult.loading())
     val breedsResult: StateFlow<NetworkResult<List<UiBreedModel>>> = _breedsResult
     private fun getBreeds() {
-        viewModelScope.launch {
-         breedsUseCase.execute()
+        val FUNCTION_TAG = "${TAG}_${::getBreeds.name}"
+        val coroutineName = CoroutineName(FUNCTION_TAG)
+
+        viewModelScope.launch(coroutineName) {
+            Log.d(FUNCTION_TAG, "Coroutine -> ${Thread.currentThread().name}")
+            breedsUseCase.execute()
                 .catch {
                     _breedsResult.value = NetworkResult.error("Error fetching data")
-//                    Log.e(this@BreedsListViewModel::getBreeds.name, it.stackTraceToString())
+                    Log.e(FUNCTION_TAG, it.stackTraceToString())
                 }
                 .collect{
                     _breedsResult.value = NetworkResult.success(it.data)
+                    Log.d(FUNCTION_TAG, it.data.toString())
                 }
         }
     }
