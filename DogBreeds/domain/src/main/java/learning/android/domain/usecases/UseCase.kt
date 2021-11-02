@@ -1,8 +1,8 @@
 package learning.android.domain.usecases
 
-import kotlinx.coroutines.flow.Flow
-import learning.android.domain.models.flow.NetworkResult
-
+/**
+ * The use-case abstraction
+ */
 interface UseCase<T> {
     fun execute(): T
 }

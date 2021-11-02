@@ -4,6 +4,9 @@ import learning.android.data.models.BreedModel
 import learning.android.domain.models.response.UiBreedModel
 import javax.inject.Inject
 
+/**
+ * It maps the breed from JSON to the appropriate UI object
+ */
 class BreedMapper @Inject constructor() {
     fun toUiBreedModel(breedModel: BreedModel): UiBreedModel {
 

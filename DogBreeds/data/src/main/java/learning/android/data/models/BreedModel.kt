@@ -1,8 +1,11 @@
 package learning.android.data.models
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
+/**
+ * The JSON object for breeds.
+ */
 data class BreedModel(
     @SerializedName("weight")
     @Expose

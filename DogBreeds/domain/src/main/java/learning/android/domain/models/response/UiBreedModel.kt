@@ -1,5 +1,8 @@
 package learning.android.domain.models.response
 
+/**
+ * The UI object for breeds.
+ */
 data class UiBreedModel(
     val weight: UiWeight,
     val height: UiHeight,

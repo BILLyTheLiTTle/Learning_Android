@@ -5,6 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ * The API calls for usage with Retrofit
+ */
 interface ApiService {
 
     @GET("breeds")
