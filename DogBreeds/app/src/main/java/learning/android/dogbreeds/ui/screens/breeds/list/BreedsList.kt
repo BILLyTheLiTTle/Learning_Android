@@ -9,9 +9,9 @@ import learning.android.dogbreeds.ui.theme.DogBreedsTheme
 @Composable
 fun BreedsList() {
     val viewModel: BreedsListViewModel = viewModel()
-    LaunchedEffect(Unit) {
-        viewModel.getBreeds()
-    }
+//    LaunchedEffect(Unit) {
+//        viewModel.getBreeds()
+//    }
     Text(text = viewModel.breedsResult.collectAsState().value.data.toString())
 }
 

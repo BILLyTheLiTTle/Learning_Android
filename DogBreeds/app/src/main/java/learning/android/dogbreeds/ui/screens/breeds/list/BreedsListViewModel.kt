@@ -19,11 +19,12 @@ class BreedsListViewModel @Inject constructor(
 
     init {
         breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(10, 0)
+        getBreeds()
     }
 
     private val _breedsResult: MutableStateFlow<NetworkResult<List<UiBreedModel>>> = MutableStateFlow(NetworkResult.loading())
     val breedsResult: StateFlow<NetworkResult<List<UiBreedModel>>> = _breedsResult
-    fun getBreeds() {
+    private fun getBreeds() {
         viewModelScope.launch {
          breedsUseCase.execute()
                 .catch {
