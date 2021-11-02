@@ -26,7 +26,7 @@ class BreedsListViewModel @Inject constructor(
     }
 
     private val _breedsResult: MutableStateFlow<NetworkResult<List<UiBreedModel>>> = MutableStateFlow(NetworkResult.loading())
-    val breedsResult: StateFlow<NetworkResult<List<UiBreedModel>>> = _breedsResult
+    val breedsResult = _breedsResult.asStateFlow()
     private fun getBreeds() {
         val FUNCTION_TAG = "${TAG}_${::getBreeds.name}"
         val coroutineName = CoroutineName(FUNCTION_TAG)
@@ -44,4 +44,12 @@ class BreedsListViewModel @Inject constructor(
                 }
         }
     }
+
+//    val breedsResult: StateFlow<NetworkResult<List<UiBreedModel>>> =
+//        breedsUseCase.execute()
+//            .catch {
+//                emit(NetworkResult.error("Error fetching data"))
+//                Log.e("ERROR", it.stackTraceToString())
+//            }
+//            .stateIn(viewModelScope, SharingStarted.Lazily, NetworkResult.loading())
 }

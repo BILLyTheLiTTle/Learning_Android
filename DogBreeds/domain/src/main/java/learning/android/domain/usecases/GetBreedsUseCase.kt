@@ -11,6 +11,6 @@ class GetBreedsUseCase @Inject constructor(
     var breedsRequest: BreedsRequest,
     private val apiRepo: RemoteRepo): UseCase<Flow<NetworkResult<List<UiBreedModel>>>>
  {
-     override suspend fun execute(): Flow<NetworkResult<List<UiBreedModel>>> =
+     override fun execute(): Flow<NetworkResult<List<UiBreedModel>>> =
          apiRepo.getBreeds(breedsRequest.limit, breedsRequest.page)
 }

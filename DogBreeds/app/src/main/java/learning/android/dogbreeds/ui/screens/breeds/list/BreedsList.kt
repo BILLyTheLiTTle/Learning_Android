@@ -12,7 +12,7 @@ fun BreedsList() {
 //    LaunchedEffect(Unit) {
 //        viewModel.getBreeds()
 //    }
-    Text(text = viewModel.breedsResult.collectAsState().value.data.toString())
+    Text(text = viewModel.breedsResult.collectAsState().value.message.toString())
 }
 
 @Preview(showBackground = true)

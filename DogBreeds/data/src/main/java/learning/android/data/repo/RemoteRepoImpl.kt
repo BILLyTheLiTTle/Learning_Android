@@ -19,8 +19,12 @@ class RemoteRepoImpl @Inject constructor(
     private val breedMapper: dagger.Lazy<BreedMapper>
 ) : RemoteRepo {
 
-    override suspend fun getBreeds(limit: Int, page: Int): Flow<NetworkResult<List<UiBreedModel>>> {
-        return flow<NetworkResult<List<UiBreedModel>>> {
+    private val TAG = RemoteRepoImpl::class.simpleName
+
+    override fun getBreeds(limit: Int, page: Int): Flow<NetworkResult<List<UiBreedModel>>> {
+        val FUNCTION_TAG = "${TAG}_${::getBreeds.name}"
+        return flow {
+            Log.d(FUNCTION_TAG, "Coroutine -> ${Thread.currentThread().name}")
             val breeds = apiService.getBreeds(limit, page)
                 .map { breedMapper.get().toUiBreedModel(it)
                 }
