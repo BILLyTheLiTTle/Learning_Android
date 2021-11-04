@@ -21,6 +21,11 @@ Apart from the notes used for **Hilt_Example** and **JetpackComposeExample** pro
   - Use `SharedFlow` for parsing *Events* from UI.
 - This [article](https://medium.com/androiddevelopers/migrating-from-livedata-to-kotlins-flow-379292f419fb) shows the best way to `collect` (using `repeatOnLifecycle`) a `StateFlow` and avoiding any memory leaks by canceling. I was able to understand the transition from `LiveData` to `StateFlow` (check `OPTION 2` in `learning.android.dogbreeds.ui.screens.breeds.list.BreedsListViewModel`).
 
+### Color sources
+- If you ever have any problem about color naming yu should visit the links mentioned [here](https://proandroiddev.com/naming-conventions-colors-xml-android-8f89139f1056).
+It is a good start to define a descriptive color name!
+- Also you can have nice color combinations [here](https://material.io/resources/color/#!/?view.left=0&view.right=0).
+
 ## Issues
 To be added later.
 

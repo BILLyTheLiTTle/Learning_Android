@@ -86,4 +86,6 @@ dependencies {
     // For local unit tests
     testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
+
+    implementation 'io.coil-kt:coil-compose:1.4.0'
 }
