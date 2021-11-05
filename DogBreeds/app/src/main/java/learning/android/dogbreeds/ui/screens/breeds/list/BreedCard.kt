@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import learning.android.dogbreeds.R
 import learning.android.dogbreeds.ui.theme.*
@@ -60,7 +61,14 @@ private fun BreedImage(imgUrl: String) {
             painter = rememberImagePainter(
                 data = imgUrl,
                 builder = {
-                    crossfade(true)
+                    // These do not achieve my goal (I want to see the dog image without waiting when scroll up)
+                    memoryCachePolicy(CachePolicy.ENABLED)
+                    diskCachePolicy(CachePolicy.ENABLED)
+                    networkCachePolicy(CachePolicy.ENABLED)
+
+                    placeholder(R.drawable.placeholder_dog)
+                    error(R.drawable.error)
+
                     transformations(CircleCropTransformation())
                 }
             ),

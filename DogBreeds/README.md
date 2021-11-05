@@ -26,6 +26,10 @@ Apart from the notes used for **Hilt_Example** and **JetpackComposeExample** pro
 It is a good start to define a descriptive color name!
 - Also you can have nice color combinations [here](https://material.io/resources/color/#!/?view.left=0&view.right=0).
 
+### Paging adapter
+- A good [article](https://proandroiddev.com/infinite-lists-with-paging-3-in-jetpack-compose-b095533aefe6) about paging library.
+- You also need to visit this [article](https://medium.com/simform-engineering/list-view-with-pagination-using-jetpack-compose-e131174eac8e) to see the implementation of `getRefreshKey()` inside the `PagingSource`. I believe that this implementation is wrong because it creates issues with the refreshing of the data. See my implementation in code instead.
+
 ## Issues
 To be added later.
 

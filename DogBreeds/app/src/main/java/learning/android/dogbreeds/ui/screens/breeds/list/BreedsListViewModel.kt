@@ -1,13 +1,11 @@
 package learning.android.dogbreeds.ui.screens.breeds.list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import learning.android.domain.models.flow.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.usecases.GetBreedsUseCase
 import javax.inject.Inject
@@ -19,9 +17,13 @@ class BreedsListViewModel @Inject constructor(
     private val TAG = BreedsListViewModel::class.simpleName
 
     init {
-        breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(10, 0)
-        getBreeds()
+        breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(10, BreedSource.FIRST_PAGE)
+//        getBreeds()
     }
+
+    val breedsResult: Flow<PagingData<UiBreedModel>> = Pager(PagingConfig(pageSize = breedsUseCase.breedsRequest.limit)) {
+        BreedSource(breedsUseCase)
+    }.flow
 
     /*
     Below, we have 2 options to request data from UI and parse them to UI. Every single option has its
@@ -41,25 +43,25 @@ class BreedsListViewModel @Inject constructor(
     Obviously, there could be a way to fix (a), (b) but we should stick to KISS principle!
      */
     // OPTION 1
-    private val _breedsResult: MutableStateFlow<NetworkResult<List<UiBreedModel>>> = MutableStateFlow(NetworkResult.loading())
-    val breedsResult = _breedsResult.asStateFlow()
-    private fun getBreeds() {
-        val FUNCTION_TAG = "${TAG}_${::getBreeds.name}"
-        val coroutineName = CoroutineName(FUNCTION_TAG)
-
-        viewModelScope.launch(coroutineName) {
-            Log.d(FUNCTION_TAG, "Coroutine -> ${Thread.currentThread().name}")
-            breedsUseCase.execute()
-                .catch {
-                    _breedsResult.value = NetworkResult.error("Error fetching data")
-                    Log.e(FUNCTION_TAG, it.stackTraceToString())
-                }
-                .collect{
-                    _breedsResult.value = NetworkResult.success(it.data)
-                    Log.d(FUNCTION_TAG, it.data.toString())
-                }
-        }
-    }
+//    private val _breedsResult: MutableStateFlow<NetworkResult<List<UiBreedModel>>> = MutableStateFlow(NetworkResult.loading())
+//    val breedsResult = _breedsResult.asStateFlow()
+//    private fun getBreeds() {
+//        val FUNCTION_TAG = "${TAG}_${::getBreeds.name}"
+//        val coroutineName = CoroutineName(FUNCTION_TAG)
+//
+//        viewModelScope.launch(coroutineName) {
+//            Log.d(FUNCTION_TAG, "Coroutine -> ${Thread.currentThread().name}")
+//            breedsUseCase.execute()
+//                .catch {
+//                    _breedsResult.value = NetworkResult.error("Error fetching data")
+//                    Log.e(FUNCTION_TAG, it.stackTraceToString())
+//                }
+//                .collect{
+//                    _breedsResult.value = NetworkResult.success(it.data)
+//                    Log.d(FUNCTION_TAG, it.data.toString())
+//                }
+//        }
+//    }
 
     // OPTION 2
 //    val breedsResult: StateFlow<NetworkResult<List<UiBreedModel>>> =

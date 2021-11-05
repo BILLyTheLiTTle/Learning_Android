@@ -1,10 +1,6 @@
 package learning.android.data.repo
 
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import learning.android.data.mappers.BreedMapper
 import learning.android.data.network.ApiService
 import learning.android.domain.models.flow.NetworkResult
@@ -22,15 +18,16 @@ class RemoteRepoImpl @Inject constructor(
 
     private val TAG = RemoteRepoImpl::class.simpleName
 
-    override fun getBreeds(limit: Int, page: Int): Flow<NetworkResult<List<UiBreedModel>>> {
+    override suspend fun getBreeds(limit: Int, page: Int): NetworkResult<List<UiBreedModel>> {
         val FUNCTION_TAG = "${TAG}_${::getBreeds.name}"
 
-        return flow {
+        return try {
             Log.d(FUNCTION_TAG, "Coroutine -> ${Thread.currentThread().name}")
             val breeds = apiService.getBreeds(limit, page)
-                .map { breedMapper.get().toUiBreedModel(it)
-                }
-            emit(NetworkResult.success(breeds))
-        }.flowOn(Dispatchers.IO)
+                .map { breedMapper.get().toUiBreedModel(it) }
+            NetworkResult.success(breeds)
+        } catch (e: Exception) {
+            NetworkResult.error(e)
+        }
     }
 }
