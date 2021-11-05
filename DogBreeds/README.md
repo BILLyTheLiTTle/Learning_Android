@@ -3,14 +3,15 @@
 ## Learning Outcomes
 In this application the target is to use:
 - Jetpack Compose
-- Jetpack Compose Navigation
-- Jetpack Paging Library
+- Jetpack Compose Navigation -> **TODO**
+- Jetpack Paging Library 3
 - Kotlin Coroutines
-- Kotlin Flow (StateFlow, SharedFlow)
+- Kotlin Flow (Flow, StateFlow, SharedFlow) -> **TODO**
 - Dependency Injection (Hilt)
 - Retrofit
+- Room Database -> **TODO**
 - Clean architecture
-- Testing (Unit, Coroutines Unit, Espresso)
+- Testing (Unit, Coroutines Unit, Espresso) -> **TODO**
 
 ## Details
 Apart from the notes used for **Hilt_Example** and **JetpackComposeExample** projects, the following sources provided extreme help:
