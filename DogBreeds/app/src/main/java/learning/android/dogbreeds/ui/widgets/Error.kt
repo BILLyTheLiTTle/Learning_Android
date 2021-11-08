@@ -15,7 +15,7 @@ import coil.transform.CircleCropTransformation
 import learning.android.dogbreeds.R
 
 @Composable
-fun ErrorView(msg: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun Error(msg: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.background(Color.Red).clickable(onClick = onClick)) {
         Image(
             painter = rememberImagePainter(

@@ -3,7 +3,7 @@ package learning.android.dogbreeds.ui.screens.breeds.list
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.flow.MutableStateFlow
-import learning.android.domain.models.flow.NetworkResult
+import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.usecases.GetBreedsUseCase
 

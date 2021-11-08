@@ -1,6 +1,5 @@
 package learning.android.dogbreeds.ui.screens.breeds.details
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,11 +7,10 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import learning.android.domain.models.flow.NetworkResult
+import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.usecases.GetBreedDetailsUseCase
 import learning.android.domain.utils.coDebug
-import learning.android.domain.utils.erDebug
 import javax.inject.Inject
 
 @HiltViewModel

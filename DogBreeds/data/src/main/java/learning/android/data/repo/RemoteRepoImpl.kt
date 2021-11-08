@@ -1,13 +1,12 @@
 package learning.android.data.repo
 
-import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import learning.android.data.mappers.BreedMapper
 import learning.android.data.network.ApiService
-import learning.android.domain.models.flow.NetworkResult
+import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.repositories.RemoteRepo
 import learning.android.domain.utils.coDebug

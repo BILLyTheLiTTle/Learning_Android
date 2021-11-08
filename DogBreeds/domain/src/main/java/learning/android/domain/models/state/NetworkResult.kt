@@ -1,4 +1,4 @@
-package learning.android.domain.models.flow
+package learning.android.domain.models.state
 
 /**
  * Wrapper around the network response which will be used as State in the MVI pattern

@@ -1,7 +1,7 @@
 package learning.android.domain.repositories
 
 import kotlinx.coroutines.flow.Flow
-import learning.android.domain.models.flow.NetworkResult
+import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 
 /**

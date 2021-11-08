@@ -1,6 +1,6 @@
 package learning.android.domain.usecases
 
-import learning.android.domain.models.flow.NetworkResult
+import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.repositories.RemoteRepo
 import javax.inject.Inject

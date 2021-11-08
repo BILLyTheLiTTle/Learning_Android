@@ -19,9 +19,9 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import learning.android.dogbreeds.ui.navigation.NavigationRoutes
 import learning.android.dogbreeds.ui.theme.DogBreedsTheme
-import learning.android.dogbreeds.ui.widgets.ErrorView
+import learning.android.dogbreeds.ui.widgets.Error
 import learning.android.dogbreeds.ui.widgets.LoadingListItem
-import learning.android.dogbreeds.ui.widgets.LoadingView
+import learning.android.dogbreeds.ui.widgets.Loading
 import learning.android.dogbreeds.ui.widgets.list.viewstates.ErrorListItem
 
 @Composable
@@ -65,14 +65,14 @@ fun BreedsList(navController: NavHostController) {
                 content.apply {
                     when {
                         loadState.refresh is LoadState.Loading -> {
-                            LoadingView(modifier = Modifier.fillParentMaxSize())
+                            Loading(modifier = Modifier.fillParentMaxSize())
                         }
                         loadState.append is LoadState.Loading -> {
                             LoadingListItem(modifier = Modifier.fillMaxWidth())
                         }
                         loadState.refresh is LoadState.Error -> {
                             val e = loadState.refresh as LoadState.Error
-                            ErrorView(
+                            Error(
                                 modifier = Modifier.fillMaxWidth(),
                                 msg = e.error.localizedMessage ?: "",
                                 onClick = { retry() }
