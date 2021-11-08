@@ -11,7 +11,7 @@ data class UiBreedModel(
     val lifeSpan: String?,
     val temperament: String?,
     val origin: String?,
-    val image: UiImage,
+    val image: UiImage?,
     val countryCode: String?,
     val description: String?) {
 

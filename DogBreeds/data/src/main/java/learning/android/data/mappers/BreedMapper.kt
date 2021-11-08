@@ -14,7 +14,7 @@ class BreedMapper @Inject constructor() {
 
         fun toUiBreedHeight(height: BreedModel.Height) = UiBreedModel.UiHeight(height.metric)
 
-        fun toUiBreedImage(image: BreedModel.Image) = UiBreedModel.UiImage(image.url)
+        fun toUiBreedImage(image: BreedModel.Image?) = UiBreedModel.UiImage(image?.url ?: "")
 
         return UiBreedModel(
             toUiBreedWeight(breedModel.weight),
