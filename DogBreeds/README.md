@@ -3,10 +3,11 @@
 ## Learning Outcomes
 In this application the target is to use:
 - Jetpack Compose
-- Jetpack Compose Navigation -> **TODO**
+- Jetpack Compose Animation -> **TODO**
+- Jetpack Compose Navigation ->
 - Jetpack Paging Library 3
 - Kotlin Coroutines
-- Kotlin Flow (Flow, StateFlow, SharedFlow) -> **TODO**
+- Kotlin Flow (Flow, StateFlow, SharedFlow) -> **TODO** In details to net dog (with network request id=1) with SharedFlow and the return with StateFlow
 - Dependency Injection (Hilt)
 - Retrofit
 - Room Database -> **TODO**
@@ -30,6 +31,9 @@ It is a good start to define a descriptive color name!
 ### Paging adapter
 - A good [article](https://proandroiddev.com/infinite-lists-with-paging-3-in-jetpack-compose-b095533aefe6) about paging library.
 - You also need to visit this [article](https://medium.com/simform-engineering/list-view-with-pagination-using-jetpack-compose-e131174eac8e) to see the implementation of `getRefreshKey()` inside the `PagingSource`. I believe that this implementation is wrong because it creates issues with the refreshing of the data. See my implementation in code instead.
+
+### Naigation
+Apart from the articles mentioned in **JetpackComposeExample** see this [article](https://proandroiddev.com/jetpack-compose-navigation-architecture-with-viewmodels-1de467f19e1c), as well.
 
 ## Issues
 To be added later.

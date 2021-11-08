@@ -7,14 +7,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import learning.android.dogbreeds.ui.navigation.NavigationRoutes
 import learning.android.dogbreeds.ui.theme.DogBreedsTheme
 import learning.android.dogbreeds.ui.widgets.ErrorView
 import learning.android.dogbreeds.ui.widgets.LoadingListItem
@@ -22,8 +25,8 @@ import learning.android.dogbreeds.ui.widgets.LoadingView
 import learning.android.dogbreeds.ui.widgets.list.viewstates.ErrorListItem
 
 @Composable
-fun BreedsList() {
-    val viewModel: BreedsListViewModel = viewModel()
+fun BreedsList(navController: NavHostController) {
+    val viewModel: BreedsListViewModel = hiltViewModel()
     val content = viewModel.breedsResult.collectAsLazyPagingItems()
 //    LaunchedEffect(Unit) {
 //        viewModel.getBreeds()
@@ -51,7 +54,10 @@ fun BreedsList() {
                     height = it?.height?.metric ?: "",
                     weight = it?.weight?.metric ?: "",
                     description = it?.description ?: "",
-                    imgUrl = it?.image?.url ?: ""
+                    imgUrl = it?.image?.url ?: "",
+                    onClick = {
+                        navController.navigate("${NavigationRoutes.BREED_DETAILS}${it?.id ?: ""}")
+                    }
                 )
             }
 
@@ -91,6 +97,6 @@ fun BreedsList() {
 @Composable
 fun BreedsListPreview() {
     DogBreedsTheme {
-        BreedsList()
+        BreedsList(navController = NavHostController(LocalContext.current))
     }
 }

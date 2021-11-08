@@ -2,6 +2,7 @@ package learning.android.dogbreeds.ui.screens.breeds.list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,12 +28,13 @@ fun BreedCard(
     height: String,
     weight: String,
     description: String,
-    imgUrl: String
+    imgUrl: String,
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 2.dp),
+            .padding(horizontal = 2.dp).clickable(onClick = onClick),
         shape = RoundedCornerShape(6.dp),
         elevation = 5.dp,
         backgroundColor = Pink
@@ -145,7 +147,8 @@ fun BreedCardPreview() {
             "Dog Height",
             "Dog Weight",
             "Dog Description",
-            "Dog Image"
+            "Dog Image",
+            {}
         )
     }
 }
