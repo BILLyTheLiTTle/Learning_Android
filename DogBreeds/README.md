@@ -7,7 +7,7 @@ In this application the target is to use:
 - Jetpack Compose Navigation ->
 - Jetpack Paging Library 3
 - Kotlin Coroutines
-- Kotlin Flow (Flow, StateFlow, SharedFlow) -> **TODO** In details to net dog (with network request id=1) with SharedFlow and the return with StateFlow
+- Kotlin Flow (Flow, StateFlow, SharedFlow) -> **TODO** In details to next dog (with network request id=1) with SharedFlow
 - Dependency Injection (Hilt)
 - Retrofit
 - Room Database -> **TODO**
