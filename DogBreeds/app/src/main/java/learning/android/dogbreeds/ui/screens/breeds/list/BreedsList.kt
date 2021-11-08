@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,15 +32,11 @@ fun BreedsList() {
     /*
     It seems that swipe-to-refresh has an issue when you are doing it crazy fast.
     So, I had to invent a way to slow down the reaction to user actions in a deterministic way.
-    It decreases the issue occurrence but it is not a fix!
+    It seems that the issue is fixed!
      */
-    val refreshState = rememberSwipeRefreshState(
-        content.loadState.refresh is LoadState.Loading
-                || content.loadState.append is LoadState.Loading
-                || content.loadState.prepend is LoadState.Loading
-    )
-    SwipeRefresh(state = refreshState, onRefresh = {
-        if (!refreshState.isRefreshing) {
+    val isFetchingState = BreedSource.isFetchingState.collectAsState()
+    SwipeRefresh(state = rememberSwipeRefreshState(isRefreshing = false), onRefresh = {
+        if (!isFetchingState.value) {
             content.refresh()
         }
     }) {
@@ -62,7 +59,6 @@ fun BreedsList() {
                 content.apply {
                     when {
                         loadState.refresh is LoadState.Loading -> {
-                            refreshState.isRefreshing = false
                             LoadingView(modifier = Modifier.fillParentMaxSize())
                         }
                         loadState.append is LoadState.Loading -> {
