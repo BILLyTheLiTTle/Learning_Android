@@ -38,9 +38,15 @@ class RemoteRepoImpl @Inject constructor(
     override suspend fun getBreedDetails(id: Int): NetworkResult<UiBreedModel> {
         return try {
             coLog(TAG, ::getBreedDetails.name)
+
             val breed = apiService.getBreedDetails(id)
+            val image = apiService.getBreedImage(breed.referenceImageId)
+
             val uiBreed = breedMapper.get().toUiBreedModel(breed)
-            NetworkResult.success(uiBreed)
+            val uiImage = breedMapper.get().toUiBreedImage(image)
+            val breedFull = uiBreed.copy(image = uiImage)
+
+            NetworkResult.success(breedFull)
         } catch (e: Exception) {
             erLog(TAG, ::getBreedDetails.name, e)
             NetworkResult.error(e)

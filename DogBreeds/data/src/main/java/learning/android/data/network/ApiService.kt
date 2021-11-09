@@ -15,4 +15,7 @@ interface ApiService {
 
     @GET("breeds/{breed_id}")
     suspend fun getBreedDetails(@Path("breed_id") breedId: Int): BreedModel
+
+    @GET("images/{image_id}")
+    suspend fun getBreedImage(@Path("image_id") breedId: String): BreedModel.Image
 }

@@ -16,10 +16,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import learning.android.dogbreeds.R
 import learning.android.dogbreeds.ui.theme.*
+import learning.android.dogbreeds.ui.widgets.image.CircularImage
 
 
 @Composable
@@ -34,7 +34,8 @@ fun BreedCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 2.dp).clickable(onClick = onClick),
+            .padding(horizontal = 2.dp)
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(6.dp),
         elevation = 5.dp,
         backgroundColor = Pink
@@ -51,35 +52,7 @@ fun BreedCard(
 
 @Composable
 private fun BreedImage(imgUrl: String) {
-    Surface(
-        elevation = 5.dp,
-        color = Mystic,
-        shape = CircleShape,
-        modifier = Modifier
-            .padding(horizontal = 1.dp, vertical = 4.dp)
-            .border(2.dp, CareysPink, CircleShape)
-    ) {
-        Image(
-            painter = rememberImagePainter(
-                data = imgUrl,
-                builder = {
-                    // These do not achieve my goal (I want to see the dog image without waiting when scroll up)
-                    memoryCachePolicy(CachePolicy.ENABLED)
-                    diskCachePolicy(CachePolicy.ENABLED)
-                    networkCachePolicy(CachePolicy.ENABLED)
-
-                    placeholder(R.drawable.placeholder_dog)
-                    error(R.drawable.error)
-
-                    transformations(CircleCropTransformation())
-                }
-            ),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(3.dp)
-                .size(100.dp)
-        )
-    }
+    CircularImage(imgUrl = imgUrl, modifier = Modifier.size(100.dp))
 }
 
 @Composable

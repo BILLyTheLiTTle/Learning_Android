@@ -8,13 +8,14 @@ import javax.inject.Inject
  * It maps the breed from JSON to the appropriate UI object
  */
 class BreedMapper @Inject constructor() {
+
+    fun toUiBreedImage(image: BreedModel.Image?) = UiBreedModel.UiImage(image?.url ?: "")
+
     fun toUiBreedModel(breedModel: BreedModel): UiBreedModel {
 
         fun toUiBreedWeight(weight: BreedModel.Weight) = UiBreedModel.UiWeight(weight.metric)
 
         fun toUiBreedHeight(height: BreedModel.Height) = UiBreedModel.UiHeight(height.metric)
-
-        fun toUiBreedImage(image: BreedModel.Image?) = UiBreedModel.UiImage(image?.url ?: "")
 
         return UiBreedModel(
             toUiBreedWeight(breedModel.weight),

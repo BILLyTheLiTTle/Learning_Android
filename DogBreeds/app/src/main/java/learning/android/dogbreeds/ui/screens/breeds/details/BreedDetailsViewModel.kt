@@ -75,4 +75,9 @@ class BreedDetailsViewModel @Inject constructor(
 //                }
 //        }
 //    }
+
+    companion object {
+        const val FIRST_ITEM_ID = 1
+        const val LAST_ITEM_ID = 264
+    }
 }

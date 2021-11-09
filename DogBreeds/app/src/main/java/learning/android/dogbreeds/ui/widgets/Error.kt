@@ -16,7 +16,7 @@ import learning.android.dogbreeds.R
 
 @Composable
 fun Error(msg: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.background(Color.Red).clickable(onClick = onClick)) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.clickable(onClick = onClick)) {
         Image(
             painter = rememberImagePainter(
                 data = R.drawable.error,

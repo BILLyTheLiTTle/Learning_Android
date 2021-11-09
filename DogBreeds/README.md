@@ -3,8 +3,12 @@
 ## Learning Outcomes
 In this application the target is to use:
 - Jetpack Compose
-- Jetpack Compose Animation -> **TODO**
-- Jetpack Compose Navigation ->
+  - Layouts (`LazyColumn`, `Column`, `Row`, `Box`, `ConstraintLayout`)
+  - Effects (`LaunchedEffect`)
+  - Navigation
+  - Animation -> **TODO**
+  - Various (`Modifier`, `Button`, etc)
+- Jetpack Compose Animation
 - Jetpack Paging Library 3
 - Kotlin Coroutines
 - Kotlin Flow (Flow, StateFlow, SharedFlow) -> **TODO** In details to next dog (with network request id=1) with SharedFlow
