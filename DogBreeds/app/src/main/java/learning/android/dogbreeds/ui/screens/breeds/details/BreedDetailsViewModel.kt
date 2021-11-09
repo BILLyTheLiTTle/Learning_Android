@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
@@ -19,6 +18,45 @@ class BreedDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val TAG = BreedDetailsViewModel::class.simpleName
+
+    /*
+    I could have navigate to previous/next breed by using:
+    - getBreedDetails() function directly by the composables
+    - LaunchedEffect() in composable by using and changing its parameter
+        (parameter should be something with state instead of Unit obviously)
+    - SharedFlow and write much more code(!)
+     */
+    private val _event: MutableSharedFlow<UserActionEvent<Int>> = MutableSharedFlow()
+
+    init {
+        viewModelScope.launch {
+            _event.onEach { handleUserAction(it) }. collect()
+        }
+    }
+
+    fun setUserAction(action: UserActionEvent<Int>) {
+        viewModelScope.launch {
+            _event.emit(action)
+        }
+    }
+
+    private fun handleUserAction(action: UserActionEvent<Int>) {
+        /*
+        Obviously, I don't need this when clause but I would like to see
+        how it looks when I have a lot of events!
+         */
+        when (action) {
+            is NextBreed<Int> -> {
+                getBreedDetails(action.value.toString())
+            }
+            is PreviousBreed<Int> -> {
+                getBreedDetails(action.value.toString())
+            }
+            else -> {
+
+            }
+        }
+    }
 
     /*
     Below, we have 2 options to request data from UI and parse them to UI

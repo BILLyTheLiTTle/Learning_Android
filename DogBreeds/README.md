@@ -11,7 +11,7 @@ In this application the target is to use:
 - Jetpack Compose Animation
 - Jetpack Paging Library 3
 - Kotlin Coroutines
-- Kotlin Flow (Flow, StateFlow, SharedFlow) -> **TODO** In details to next dog (with network request id=1) with SharedFlow
+- Kotlin Flow (Flow, StateFlow, SharedFlow)
 - Dependency Injection (Hilt)
 - Retrofit
 - Room Database -> **TODO**
@@ -25,7 +25,7 @@ Apart from the notes used for **Hilt_Example** and **JetpackComposeExample** pro
   - Cancel a `Flow` properly (from `onStart`/`onStop` and using `LifecycleOwner`, as well)
   - Use `StateFlow` for parsing *States* to UI
   - Use `SharedFlow` for parsing *Events* from UI.
-- This [article](https://medium.com/androiddevelopers/migrating-from-livedata-to-kotlins-flow-379292f419fb) shows the best way to `collect` (using `repeatOnLifecycle`) a `StateFlow` and avoiding any memory leaks by canceling. I was able to understand the transition from `LiveData` to `StateFlow` (check `OPTION 2` in `learning.android.dogbreeds.ui.screens.breeds.list.BreedsListViewModel`).
+- This [article](https://medium.com/androiddevelopers/migrating-from-livedata-to-kotlins-flow-379292f419fb) shows the best way to `collect` (using `repeatOnLifecycle`) a `StateFlow` and avoiding any memory leaks by canceling. I was able to understand the transition from `LiveData` to `StateFlow` (check `OPTION 2` in `learning.android.dogbreeds.ui.screens.breeds.details.BreedDetailsViewModel`).
 
 ### Color sources
 - If you ever have any problem about color naming yu should visit the links mentioned [here](https://proandroiddev.com/naming-conventions-colors-xml-android-8f89139f1056).

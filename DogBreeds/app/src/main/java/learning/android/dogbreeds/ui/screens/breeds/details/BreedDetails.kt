@@ -124,7 +124,7 @@ fun BreedDetails(breedId: String) {
                     description = content.value.data?.description ?: ""
                 )
 
-                BreedNavigation(id = content.value.data?.id ?: 0)
+                BreedNavigation(id = content.value.data?.id ?: 0, viewModel)
             }
         }
     }
@@ -207,7 +207,7 @@ private fun BreedSpecs(
 }
 
 @Composable
-private fun BreedNavigation(id: Int) {
+private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) {
     Row(
         modifier = Modifier
             .layoutId(NAVIGATION_REFERENCE_ID)
@@ -217,7 +217,9 @@ private fun BreedNavigation(id: Int) {
             Button(
                 modifier = Modifier.weight(10f),
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
-                onClick = {}) {
+                onClick = {
+                    viewModel.setUserAction(PreviousBreed(id-1))
+                }) {
                 Text(text = "Previous")
             }
         }
@@ -230,7 +232,9 @@ private fun BreedNavigation(id: Int) {
             Button(modifier = Modifier
                 .weight(10f),
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
-                onClick = {}) {
+                onClick = {
+                    viewModel.setUserAction(NextBreed(id+1))
+                }) {
                 Text(text = "Next")
             }
         }
