@@ -12,14 +12,14 @@ See relevant feature request: https://youtrack.jetbrains.com/issue/KT-11968
 //    Log.d("", "")
 //}
 
-fun coDebug(className: String?, functionName: String) {
+fun coLog(className: String?, functionName: String) {
     Log.d("${className ?: "?"}_$functionName", "Coroutine -> ${Thread.currentThread().name}")
 }
 
-fun coDebug(coroutineName: CoroutineName) {
+fun coLog(coroutineName: CoroutineName) {
     Log.d(coroutineName.name, "Coroutine -> ${Thread.currentThread().name}")
 }
 
-fun erDebug(className: String?, functionName: String, exception: Exception) {
+fun erLog(className: String?, functionName: String, exception: Exception) {
     Log.e("${className ?: "?"}_$functionName", Log.getStackTraceString(exception))
 }

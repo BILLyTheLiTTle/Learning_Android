@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.usecases.GetBreedDetailsUseCase
-import learning.android.domain.utils.coDebug
+import learning.android.domain.utils.coLog
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,7 +40,7 @@ class BreedDetailsViewModel @Inject constructor(
         breedDetailsUseCase.id = id.toInt()
 
         viewModelScope.launch(coroutineName) {
-            coDebug(coroutineName) //(b)
+            coLog(coroutineName) //(b)
             _breedDetailsResult.value = breedDetailsUseCase.execute() //(a) //(b)
         }
     }
@@ -63,11 +63,11 @@ class BreedDetailsViewModel @Inject constructor(
 //        breedDetailsUseCase.id = id.toInt()
 //
 //        viewModelScope.launch(coroutineName) {
-//            coDebug(coroutineName)
+//            coLog(coroutineName)
 //            breedDetailsUseCase.execute() // (a)
 //                .catch {
 //                    _breedDetailsResult.value = NetworkResult.error("Error fetching data")
-//                    erDebug(TAG, ::getBreedDetails.name, it.error)
+//                    erLog(TAG, ::getBreedDetails.name, it.error)
 //                }
 //                .collect{
 //                    _breedDetailsResult.value = NetworkResult.success(it.data)
