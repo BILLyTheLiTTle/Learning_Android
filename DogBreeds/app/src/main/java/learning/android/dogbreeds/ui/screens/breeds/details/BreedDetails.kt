@@ -7,9 +7,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
@@ -34,7 +32,7 @@ private const val LOADING_REFERENCE_ID = "loading"
 private const val ERROR_REFERENCE_ID = "error"
 
 @Composable
-fun BreedDetails(breedId: String) {
+fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation this breedId value never changes
     val viewModel: BreedDetailsViewModel = hiltViewModel()
     val content = viewModel.breedDetailsResult.collectAsState()
     val constraintSet = ConstraintSet {
@@ -80,8 +78,14 @@ fun BreedDetails(breedId: String) {
 
     }
 
+    // LaunchedEffect() implementation
+//    val state = remember {
+//        mutableStateOf(breedId)
+//    }
+//    LaunchedEffect(state) {
     LaunchedEffect(Unit) {
         viewModel.getBreedDetails(breedId)
+//        viewModel.getBreedDetails(state.value) // LaunchedEffect() implementation
     }
 
     // No need to use constraint layout but I would like to experiment
@@ -124,7 +128,7 @@ fun BreedDetails(breedId: String) {
                     description = content.value.data?.description ?: ""
                 )
 
-                BreedNavigation(id = content.value.data?.id ?: 0, viewModel)
+                BreedNavigation(id = content.value.data?.id ?: 0, viewModel)//, state) // LaunchedEffect() implementation
             }
         }
     }
@@ -207,7 +211,7 @@ private fun BreedSpecs(
 }
 
 @Composable
-private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) {
+private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) { //, state: MutableState<String>) {// LaunchedEffect() implementation
     Row(
         modifier = Modifier
             .layoutId(NAVIGATION_REFERENCE_ID)
@@ -218,7 +222,9 @@ private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) {
                 modifier = Modifier.weight(10f),
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
                 onClick = {
+//                    viewModel.getBreedDetails((id-1).toString()) // just call the function
                     viewModel.setUserAction(PreviousBreed(id-1))
+//                    state.value = "${state.value.toInt() - 1}"// LaunchedEffect() implementation
                 }) {
                 Text(text = "Previous")
             }
@@ -233,7 +239,9 @@ private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) {
                 .weight(10f),
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
                 onClick = {
+//                    viewModel.getBreedDetails((id+1).toString()) // just call the function
                     viewModel.setUserAction(NextBreed(id+1))
+//                    state.value = "${state.value.toInt() + 1}"// LaunchedEffect() implementation
                 }) {
                 Text(text = "Next")
             }
