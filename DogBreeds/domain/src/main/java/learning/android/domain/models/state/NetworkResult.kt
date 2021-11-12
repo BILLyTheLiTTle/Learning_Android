@@ -1,7 +1,7 @@
 package learning.android.domain.models.state
 
 /**
- * Wrapper around the network response which will be used as State in the MVI pattern
+ * Wrapper for the network response.
  */
 data class NetworkResult<T>(
     val status: Status,
@@ -23,11 +23,5 @@ data class NetworkResult<T>(
         fun <T> loading(): NetworkResult<T> {
             return NetworkResult(Status.LOADING, null, null, "Loading...")
         }
-    }
-
-    enum class Status {
-        SUCCESS,
-        ERROR,
-        LOADING
     }
 }

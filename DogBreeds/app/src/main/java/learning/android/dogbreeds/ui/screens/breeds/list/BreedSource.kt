@@ -3,8 +3,8 @@ package learning.android.dogbreeds.ui.screens.breeds.list
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.flow.MutableStateFlow
-import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
+import learning.android.domain.models.state.Status
 import learning.android.domain.usecases.GetBreedsUseCase
 
 class BreedSource(
@@ -37,7 +37,7 @@ class BreedSource(
 
             isFetchingState.value = false
 
-            if (breedListResponse.status == NetworkResult.Status.ERROR) {
+            if (breedListResponse.status == Status.ERROR) {
                 LoadResult.Error(breedListResponse.error ?: Throwable("Error"))
             } else {
                 LoadResult.Page(

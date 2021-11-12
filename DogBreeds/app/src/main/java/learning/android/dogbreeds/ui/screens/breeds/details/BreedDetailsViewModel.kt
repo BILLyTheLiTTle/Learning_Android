@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
+import learning.android.domain.models.state.DataResult
 import learning.android.domain.usecases.GetBreedDetailsUseCase
 import learning.android.domain.utils.coLog
 import javax.inject.Inject
@@ -69,7 +70,7 @@ class BreedDetailsViewModel @Inject constructor(
     (b) -> Just 2 lines of code
     - No Reactive Trend applied to the core functionality
      */
-    private val _breedDetailsResult: MutableStateFlow<NetworkResult<UiBreedModel>> = MutableStateFlow(NetworkResult.loading())
+    private val _breedDetailsResult: MutableStateFlow<DataResult<UiBreedModel>> = MutableStateFlow(DataResult.loading())
     val breedDetailsResult = _breedDetailsResult.asStateFlow()
     fun getBreedDetails(id: String) {
         val FUNCTION_TAG = "${TAG}_${::getBreedDetails.name}"

@@ -22,7 +22,7 @@ import learning.android.dogbreeds.ui.theme.header
 import learning.android.dogbreeds.ui.widgets.Error
 import learning.android.dogbreeds.ui.widgets.Loading
 import learning.android.dogbreeds.ui.widgets.image.CircularImage
-import learning.android.domain.models.state.NetworkResult
+import learning.android.domain.models.state.Status
 
 
 private const val IMAGE_REFERENCE_ID = "image"
@@ -95,14 +95,14 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
             .background(color = Pink)
     ) {
         when (content.value.status) {
-            NetworkResult.Status.LOADING -> {
+            Status.LOADING -> {
                 Loading(
                     modifier = Modifier
                         .layoutId(LOADING_REFERENCE_ID)
                         .background(Color.Transparent)
                 )
             }
-            NetworkResult.Status.ERROR -> {
+            Status.ERROR -> {
                 Error(
                     msg = content.value.message.toString(), modifier = Modifier
                         .layoutId(
