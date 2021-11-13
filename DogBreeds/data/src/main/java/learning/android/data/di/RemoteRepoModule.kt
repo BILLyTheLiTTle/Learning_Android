@@ -9,7 +9,7 @@ import learning.android.domain.repositories.RemoteRepo
 import javax.inject.Singleton
 
 /**
- * Hilt Module to generate repository related module
+ * Hilt Module to generate network repository related module
  */
 @Module
 @InstallIn(SingletonComponent::class)

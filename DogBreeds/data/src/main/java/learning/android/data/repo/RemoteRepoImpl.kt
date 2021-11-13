@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import learning.android.data.mappers.BreedMapper
-import learning.android.data.network.ApiService
+import learning.android.data.api.network.ApiService
 import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.repositories.RemoteRepo
@@ -14,7 +14,7 @@ import learning.android.domain.utils.erLog
 import javax.inject.Inject
 
 /**
- * The implementation of the repository pattern
+ * The implementation of the repository pattern (remote repo)
  */
 class RemoteRepoImpl @Inject constructor(
     private val apiService: ApiService,

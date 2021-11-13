@@ -5,7 +5,7 @@ import learning.android.domain.models.state.NetworkResult
 import learning.android.domain.models.response.UiBreedModel
 
 /**
- * The abstraction of the repository pattern
+ * The abstraction of the repository pattern (remote repo)
  */
 interface RemoteRepo {
     suspend fun getBreeds(limit: Int, page: Int): NetworkResult<List<UiBreedModel>>

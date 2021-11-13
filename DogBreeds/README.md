@@ -14,7 +14,7 @@ In this application the target is to use:
 - Kotlin Flow (Flow, StateFlow, SharedFlow)
 - Dependency Injection (Hilt)
 - Retrofit
-- Room Database -> **TODO**
+- Room Database (Dao, TypeConverters)
 - Clean architecture
 - Testing (Unit, Coroutines Unit, Espresso) -> **TODO**
 
@@ -38,6 +38,11 @@ It is a good start to define a descriptive color name!
 
 ### Naigation
 Apart from the articles mentioned in **JetpackComposeExample** see this [article](https://proandroiddev.com/jetpack-compose-navigation-architecture-with-viewmodels-1de467f19e1c), as well.
+
+### Room
+- A simple [guide](https://levelup.gitconnected.com/using-room-in-jetpack-compose-d2b6b674d3a5) for Room. Don't forget to include the ktx ependency, as well
+- An really good [guide](https://svvashishtha.medium.com/using-room-with-hilt-cb57a1bc32f) for Room with Hilt.
+- If you want to store objects to your DB, this [answer](https://stackoverflow.com/a/50452877) will show you how. But don't forget **In addition to option 1, type converters should also be declared on appdatabase -> @TypeConverters(ImagesConverters::class)** as it is mentioned in the comment of the answer!
 
 ## Issues
 To be added later.

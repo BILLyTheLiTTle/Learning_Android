@@ -1,4 +1,4 @@
-package learning.android.data.network
+package learning.android.data.api.network
 
 import learning.android.data.models.BreedModel
 import retrofit2.http.GET

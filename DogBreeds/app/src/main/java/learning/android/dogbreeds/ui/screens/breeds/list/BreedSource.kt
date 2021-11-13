@@ -12,6 +12,7 @@ class BreedSource(
 ): PagingSource<Int, UiBreedModel>() {
 
     init {
+        breedsUseCase.shouldGetLocalData = true
         breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(page = FIRST_PAGE)
     }
 
