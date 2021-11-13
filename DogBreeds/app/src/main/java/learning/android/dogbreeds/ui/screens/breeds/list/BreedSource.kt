@@ -3,6 +3,7 @@ package learning.android.dogbreeds.ui.screens.breeds.list
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.models.state.Status
 import learning.android.domain.usecases.GetBreedsUseCase
@@ -12,12 +13,16 @@ class BreedSource(
 ): PagingSource<Int, UiBreedModel>() {
 
     init {
+        resetProperties()
+    }
+
+    private fun resetProperties() {
         breedsUseCase.shouldGetLocalData = true
         breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(page = FIRST_PAGE)
     }
 
     override fun getRefreshKey(state: PagingState<Int, UiBreedModel>): Int? {
-        isFetchingState.value = true
+        _isFetchingState.value = true
         /*
         When I return the state.anchorPosition the refresh was starting over AND from the start.
         For example, if anchorPosition was 25 the request contained nextPage = 25, then 24, 26, 23, 27...
@@ -30,13 +35,13 @@ class BreedSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UiBreedModel> {
         return try {
-            isFetchingState.value = true
+            _isFetchingState.value = true
             val nextPage = params.key ?: FIRST_PAGE
             val breedListResponse = breedsUseCase.execute()
 
             breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(page = nextPage + 1)
 
-            isFetchingState.value = false
+            _isFetchingState.value = false
 
             if (breedListResponse.status == Status.ERROR) {
                 LoadResult.Error(breedListResponse.error ?: Throwable("Error"))
@@ -51,7 +56,7 @@ class BreedSource(
                 )
             }
         } catch (e: Exception) {
-            isFetchingState.value = false
+            _isFetchingState.value = false
             LoadResult.Error(e)
         }
     }
@@ -63,6 +68,7 @@ class BreedSource(
         Create a fetching state from the PagingSource, to use across the app.
         It is a good (IMHO) option to handle the refresh actions
          */
-        val isFetchingState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+        private val _isFetchingState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+        val isFetchingState = _isFetchingState.asStateFlow()
     }
 }
