@@ -157,6 +157,7 @@ private fun BreedSpecs(
     Column(
         modifier = Modifier
             .layoutId(SPECS_REFERENCE_ID)
+            .fillMaxWidth(0.97f)
             .verticalScroll(rememberScrollState())
     ) {
         if (name.isNotEmpty()) {

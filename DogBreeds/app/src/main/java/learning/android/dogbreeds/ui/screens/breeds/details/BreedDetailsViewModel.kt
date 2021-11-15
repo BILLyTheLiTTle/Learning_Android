@@ -116,7 +116,7 @@ class BreedDetailsViewModel @Inject constructor(
 //    }
 
     companion object {
-        const val FIRST_ITEM_ID = 1
+        const val FIRST_ITEM_ID = 1 -1 // -1 Due to Cerberus which entered later!
         const val LAST_ITEM_ID = 264
     }
 }
