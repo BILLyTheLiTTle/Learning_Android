@@ -7,21 +7,19 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.ConstraintSet
-import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import learning.android.dogbreeds.ui.theme.CareysPink
 import learning.android.dogbreeds.ui.theme.Pink
@@ -49,6 +47,10 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
 
     val constraintSet = getConstraints(breedImageTopGap.value)
 
+    val swipeableId = remember {
+        mutableStateOf(100L)
+    }
+
     // LaunchedEffect() implementation
 //    val state = remember {
 //        mutableStateOf(breedId)
@@ -64,6 +66,30 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
         constraintSet, modifier = Modifier
             .fillMaxSize()
             .background(color = Pink)
+            .pointerInput(Unit) {
+                detectHorizontalDragGestures { change, dragAmount ->
+                    if (change.id.value != swipeableId.value) {
+                        swipeableId.value = change.id.value
+                        if (dragAmount < 0f) {
+                            if (content.value.data?.id ?: BreedDetailsViewModel.LAST_ITEM_ID < BreedDetailsViewModel.LAST_ITEM_ID) {
+                                viewModel.setUserAction(
+                                    NextBreed(
+                                        (content.value.data?.id ?: 1) + 1
+                                    )
+                                )
+                            }
+                        } else if (dragAmount > 0f) {
+                            if (content.value.data?.id ?: BreedDetailsViewModel.FIRST_ITEM_ID > BreedDetailsViewModel.FIRST_ITEM_ID) {
+                                viewModel.setUserAction(
+                                    PreviousBreed(
+                                        (content.value.data?.id ?: 1) - 1
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
+            }
     ) {
         when (content.value.status) {
             Status.LOADING -> {
