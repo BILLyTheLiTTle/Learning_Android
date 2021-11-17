@@ -1,6 +1,12 @@
 package learning.android.dogbreeds.ui.screens.breeds.details
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -11,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
@@ -24,59 +31,23 @@ import learning.android.dogbreeds.ui.widgets.Loading
 import learning.android.dogbreeds.ui.widgets.image.CircularImage
 import learning.android.domain.models.state.Status
 
-
-private const val IMAGE_REFERENCE_ID = "image"
-private const val SPECS_REFERENCE_ID = "specs"
-private const val NAVIGATION_REFERENCE_ID = "navigation"
-private const val LOADING_REFERENCE_ID = "loading"
-private const val ERROR_REFERENCE_ID = "error"
-
+@ExperimentalAnimationApi
 @Composable
 fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation this breedId value never changes
     val viewModel: BreedDetailsViewModel = hiltViewModel()
     val content = viewModel.breedDetailsResult.collectAsState()
-    val constraintSet = ConstraintSet {
-        val image = createRefFor(IMAGE_REFERENCE_ID)
-        val specs = createRefFor(SPECS_REFERENCE_ID)
-        val navigation = createRefFor(NAVIGATION_REFERENCE_ID)
-        val loading = createRefFor(LOADING_REFERENCE_ID)
-        val error = createRefFor(ERROR_REFERENCE_ID)
 
-        constrain(image) {
-            top.linkTo(parent.top, 10.dp)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }
-
-        constrain(specs) {
-            top.linkTo(image.bottom, 5.dp)
-            bottom.linkTo(navigation.top, 5.dp)
-            start.linkTo(parent.start, 5.dp)
-            end.linkTo(parent.end, 5.dp)
-            height = Dimension.fillToConstraints
-        }
-
-        constrain(navigation) {
-            bottom.linkTo(parent.bottom, 5.dp)
-            start.linkTo(parent.start, 5.dp)
-            end.linkTo(parent.end, 5.dp)
-        }
-
-        constrain(loading) {
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }
-
-        constrain(error) {
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }
-
+    // Transition Animation values
+    var fullScreenImageState by remember { mutableStateOf(false) }
+    val transition = updateTransition(fullScreenImageState, label = "fullScreenImageState")
+    val breedImageTopGap = transition.animateDp(label = "breedImageTopGap") {
+        if (it) 150.dp else 10.dp
     }
+    val breedImageSize = transition.animateDp(label = "breedImageTopGap") {
+        if (it) 300.dp else 150.dp
+    }
+
+    val constraintSet = getConstraints(breedImageTopGap.value)
 
     // LaunchedEffect() implementation
 //    val state = remember {
@@ -116,7 +87,15 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
                 }
             }
             else -> {
-                BreedImage(imgUrl = content.value.data?.image?.url ?: "")
+                val specsExpandedState = remember {
+                    mutableStateOf(true)
+                }
+
+                BreedImage(imgUrl = content.value.data?.image?.url ?: "", breedImageSize.value) {
+                    specsExpandedState.value = !specsExpandedState.value
+                    fullScreenImageState = !fullScreenImageState
+                }
+
 
                 BreedSpecs(
                     name = content.value.data?.name ?: "",
@@ -125,94 +104,137 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
                     origin = content.value.data?.origin ?: "",
                     weight = content.value.data?.weight?.metric ?: "",
                     height = content.value.data?.height?.metric ?: "",
-                    description = content.value.data?.description ?: ""
+                    description = content.value.data?.description ?: "",
+                    isExpanded = specsExpandedState.value
                 )
 
-                BreedNavigation(id = content.value.data?.id ?: 0, viewModel)//, state) // LaunchedEffect() implementation
+
+                BreedNavigation(
+                    id = content.value.data?.id ?: 0,
+                    viewModel
+                )//, state) // LaunchedEffect() implementation
             }
         }
     }
 }
 
 @Composable
-private fun BreedImage(imgUrl: String) {
-    Row(modifier = Modifier.layoutId(IMAGE_REFERENCE_ID)) {
+private fun BreedImage(imgUrl: String, size: Dp, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .layoutId(IMAGE_REFERENCE_ID)
+    ) {
         if (imgUrl.isNotEmpty()) {
             CircularImage(
                 imgUrl = imgUrl,
                 modifier = Modifier
-                    .size(150.dp)
+                    .size(size)
+                    .clickable(onClick = onClick)
             )
         }
     }
 }
 
+@ExperimentalAnimationApi
 @Composable
 private fun BreedSpecs(
     name: String, temperament: String,
     lifeSpan: String, origin: String,
     weight: String, height: String,
-    description: String
+    description: String,
+    isExpanded: Boolean
 ) {
-    Column(
-        modifier = Modifier
-            .layoutId(SPECS_REFERENCE_ID)
-            .fillMaxWidth(0.97f)
-            .verticalScroll(rememberScrollState())
+    AnimatedVisibility(
+        visible = isExpanded,
+        enter = fadeIn(initialAlpha = 0.1f),
+        exit = fadeOut(),
+        modifier = Modifier.layoutId(SPECS_REFERENCE_ID)
     ) {
-        if (name.isNotEmpty()) {
-            Text(
-                text = "Name: $name",
-                style = header
-            )
-        }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(0.97f)
+                .verticalScroll(rememberScrollState())
+        ) {
+            if (name.isNotEmpty()) {
+                val isNameExpanded = remember { mutableStateOf(false) }
+                BreedSpecsLine(title = "Name",
+                    value = if (!isNameExpanded.value) name.take(5).plus("...") else name,
+                    modifier = Modifier
+                        .animateEnterExit(enter = slideInVertically(), exit = slideOutVertically())
+                        .animateContentSize(
+                            animationSpec = tween(
+                                durationMillis = 1000,
+                                easing = LinearOutSlowInEasing
+                            )
+                        )
+                        .clickable { isNameExpanded.value = !isNameExpanded.value }
+                )
+            }
 
-        if (temperament.isNotEmpty()) {
-            Text(
-                text = "Temperament: $temperament",
-                style = header
-            )
-        }
+            if (temperament.isNotEmpty()) {
+                val isTemperamentExpanded = remember { mutableStateOf(false) }
+                BreedSpecsLine(title = "Temperament",
+                    value = if (!isTemperamentExpanded.value) temperament.take(8).plus("...") else temperament,
+                    modifier = Modifier
+                        .animateEnterExit(enter = expandIn(), exit = shrinkOut())
+                        .animateContentSize()
+                        .clickable { isTemperamentExpanded.value = !isTemperamentExpanded.value }
+                )
+            }
 
-        if (lifeSpan.isNotEmpty()) {
-            Text(
-                text = "Lifespan: $lifeSpan",
-                style = header
-            )
-        }
+            if (lifeSpan.isNotEmpty()) {
+                BreedSpecsLine(title = "Lifespan", value = lifeSpan,
+                    modifier = Modifier.animateEnterExit())
+            }
 
-        if (origin.isNotEmpty()) {
-            Text(
-                text = "Origin: $origin",
-                style = header
-            )
-        }
+            if (origin.isNotEmpty()) {
+                BreedSpecsLine(title = "Origin", value = origin)
+            }
 
-        if (weight.isNotEmpty()) {
-            Text(
-                text = "Weight: $weight (kg)",
-                style = header
-            )
-        }
+            if (weight.isNotEmpty()) {
+                BreedSpecsLine(title = "Weight", value = "$weight (kg)",
+                    modifier = Modifier.animateEnterExit())
+            }
 
-        if (height.isNotEmpty()) {
-            Text(
-                text = "Height: $height (cm)",
-                style = header
-            )
-        }
+            if (height.isNotEmpty()) {
+                BreedSpecsLine(title = "Height", value = "$height (cm)",
+                    modifier = Modifier.animateEnterExit())
+            }
 
-        if (description.isNotEmpty()) {
-            Text(
-                text = "Description: $description",
-                style = header
-            )
+            if (description.isNotEmpty()) {
+                val isDescExpanded = remember { mutableStateOf(false) }
+                BreedSpecsLine(title = "Description",
+                    value = if (!isDescExpanded.value) description.take(20).plus("...") else description,
+                    modifier = Modifier
+                        .animateContentSize(
+                            animationSpec = tween(
+                                durationMillis = 1000,
+                                easing = LinearOutSlowInEasing
+                            )
+                        )
+                        .clickable { isDescExpanded.value = !isDescExpanded.value }
+                )
+            }
         }
     }
 }
 
 @Composable
-private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) { //, state: MutableState<String>) {// LaunchedEffect() implementation
+private fun BreedSpecsLine(title: String, value: String,
+modifier: Modifier = Modifier) {
+    Text(
+        text = "$title: $value",
+        style = header,
+        modifier = modifier
+    )
+    Spacer(modifier = Modifier.height(5.dp))
+}
+
+@Composable
+private fun BreedNavigation(
+    id: Int,
+    viewModel: BreedDetailsViewModel
+) { //, state: MutableState<String>) {// LaunchedEffect() implementation
     Row(
         modifier = Modifier
             .layoutId(NAVIGATION_REFERENCE_ID)
@@ -224,7 +246,7 @@ private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) { //, sta
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
                 onClick = {
 //                    viewModel.getBreedDetails((id-1).toString()) // just call the function
-                    viewModel.setUserAction(PreviousBreed(id-1))
+                    viewModel.setUserAction(PreviousBreed(id - 1))
 //                    state.value = "${state.value.toInt() - 1}"// LaunchedEffect() implementation
                 }) {
                 Text(text = "Previous")
@@ -241,7 +263,7 @@ private fun BreedNavigation(id: Int, viewModel: BreedDetailsViewModel) { //, sta
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
                 onClick = {
 //                    viewModel.getBreedDetails((id+1).toString()) // just call the function
-                    viewModel.setUserAction(NextBreed(id+1))
+                    viewModel.setUserAction(NextBreed(id + 1))
 //                    state.value = "${state.value.toInt() + 1}"// LaunchedEffect() implementation
                 }) {
                 Text(text = "Next")

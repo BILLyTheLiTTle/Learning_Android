@@ -6,7 +6,7 @@ In this application the target is to use:
   - Layouts (`LazyColumn`, `Column`, `Row`, `Box`, `ConstraintLayout`)
   - Effects (`LaunchedEffect`)
   - Navigation
-  - Animation -> **TODO**
+  - Animation (`AnimatedVisibility`, animate `AnimatedVisibility` children separately, `animateContentSize`, `updateTransition`) 
   - Various (`Modifier`, `Button`, etc)
 - Jetpack Compose Animation
 - Jetpack Paging Library 3
