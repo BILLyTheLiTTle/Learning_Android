@@ -117,11 +117,13 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
                     mutableStateOf(true)
                 }
 
-                BreedImage(imgUrl = content.value.data?.image?.url ?: "", breedImageSize.value) {
-                    specsExpandedState.value = !specsExpandedState.value
-                    fullScreenImageState = !fullScreenImageState
-                }
-
+                BreedImage(imgUrl = content.value.data?.image?.url ?: "",
+                    size = breedImageSize.value,
+                    onClick = {
+                        specsExpandedState.value = !specsExpandedState.value
+                        fullScreenImageState = !fullScreenImageState
+                    }
+                )
 
                 BreedSpecs(
                     name = content.value.data?.name ?: "",
@@ -133,7 +135,6 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
                     description = content.value.data?.description ?: "",
                     isExpanded = specsExpandedState.value
                 )
-
 
                 BreedNavigation(
                     id = content.value.data?.id ?: 0,
