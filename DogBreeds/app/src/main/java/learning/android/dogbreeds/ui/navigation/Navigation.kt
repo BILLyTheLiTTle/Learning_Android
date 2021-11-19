@@ -1,5 +1,6 @@
 package learning.android.dogbreeds.ui.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -7,11 +8,16 @@ import androidx.navigation.compose.composable
 import learning.android.dogbreeds.ui.screens.breeds.details.BreedDetails
 import learning.android.dogbreeds.ui.screens.breeds.list.BreedsList
 
+@ExperimentalAnimationApi
 @Composable
 fun Navigation(navController: NavHostController) {
     NavHost(navController = navController,
         startDestination = NavigationRoutes.BREED_LIST_ROUTE) {
-        composable(NavigationRoutes.BREED_LIST_ROUTE) { BreedsList(navController) }
+        composable(NavigationRoutes.BREED_LIST_ROUTE) {
+            BreedsList {
+                navController.navigate("${NavigationRoutes.BREED_DETAILS}${it.id}")
+            }
+        }
         composable(NavigationRoutes.BREED_DETAILS_ROUTE) {
             BreedDetails(it.arguments?.getString(NavigationRoutes.BREED_ID_QUERY, "") ?: "")
         }

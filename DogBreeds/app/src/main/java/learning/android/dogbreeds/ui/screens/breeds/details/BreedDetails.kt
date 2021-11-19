@@ -17,10 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import learning.android.dogbreeds.R
 import learning.android.dogbreeds.ui.theme.CareysPink
 import learning.android.dogbreeds.ui.theme.Pink
 import learning.android.dogbreeds.ui.theme.header
@@ -34,6 +38,7 @@ import learning.android.domain.models.state.Status
 fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation this breedId value never changes
     val viewModel: BreedDetailsViewModel = hiltViewModel()
     val content = viewModel.breedDetailsResult.collectAsState()
+    val breedSpecsStr = stringResource(id = R.string.breed_specs)
 
     // Transition Animation values
     var fullScreenImageState by remember { mutableStateOf(false) }
@@ -119,6 +124,7 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
 
                 BreedImage(imgUrl = content.value.data?.image?.url ?: "",
                     size = breedImageSize.value,
+                    modifier = Modifier.semantics { contentDescription = content.value.data?.name ?: "" },
                     onClick = {
                         specsExpandedState.value = !specsExpandedState.value
                         fullScreenImageState = !fullScreenImageState
@@ -126,6 +132,7 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
                 )
 
                 BreedSpecs(
+                    modifier = Modifier.semantics { contentDescription = breedSpecsStr },
                     name = content.value.data?.name ?: "",
                     temperament = content.value.data?.temperament ?: "",
                     lifeSpan = content.value.data?.lifeSpan ?: "",
@@ -146,9 +153,9 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
 }
 
 @Composable
-private fun BreedImage(imgUrl: String, size: Dp, onClick: () -> Unit) {
+private fun BreedImage(imgUrl: String, modifier: Modifier = Modifier, size: Dp, onClick: () -> Unit) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .layoutId(IMAGE_REFERENCE_ID)
     ) {
         if (imgUrl.isNotEmpty()) {
@@ -165,6 +172,7 @@ private fun BreedImage(imgUrl: String, size: Dp, onClick: () -> Unit) {
 @ExperimentalAnimationApi
 @Composable
 private fun BreedSpecs(
+    modifier: Modifier = Modifier,
     name: String, temperament: String,
     lifeSpan: String, origin: String,
     weight: String, height: String,
@@ -175,7 +183,7 @@ private fun BreedSpecs(
         visible = isExpanded,
         enter = fadeIn(initialAlpha = 0.1f),
         exit = fadeOut(),
-        modifier = Modifier.layoutId(SPECS_REFERENCE_ID)
+        modifier = modifier.layoutId(SPECS_REFERENCE_ID)
     ) {
         Column(
             modifier = Modifier
@@ -184,7 +192,7 @@ private fun BreedSpecs(
         ) {
             if (name.isNotEmpty()) {
                 val isNameExpanded = remember { mutableStateOf(false) }
-                BreedSpecsLine(title = "Name",
+                BreedSpecsLine(title = stringResource(id = R.string.breed_specs_name_label),
                     value = if (!isNameExpanded.value) name.take(5).plus("...") else name,
                     modifier = Modifier
                         .animateEnterExit(enter = slideInVertically(), exit = slideOutVertically())
@@ -200,7 +208,7 @@ private fun BreedSpecs(
 
             if (temperament.isNotEmpty()) {
                 val isTemperamentExpanded = remember { mutableStateOf(false) }
-                BreedSpecsLine(title = "Temperament",
+                BreedSpecsLine(title = stringResource(id = R.string.breed_specs_temperament_label),
                     value = if (!isTemperamentExpanded.value) temperament.take(8).plus("...") else temperament,
                     modifier = Modifier
                         .animateEnterExit(enter = expandIn(), exit = shrinkOut())
@@ -210,27 +218,27 @@ private fun BreedSpecs(
             }
 
             if (lifeSpan.isNotEmpty()) {
-                BreedSpecsLine(title = "Lifespan", value = lifeSpan,
+                BreedSpecsLine(title = stringResource(id = R.string.breed_specs_lifespan_label), value = lifeSpan,
                     modifier = Modifier.animateEnterExit())
             }
 
             if (origin.isNotEmpty()) {
-                BreedSpecsLine(title = "Origin", value = origin)
+                BreedSpecsLine(title = stringResource(id = R.string.breed_specs_origin_label), value = origin)
             }
 
             if (weight.isNotEmpty()) {
-                BreedSpecsLine(title = "Weight", value = "$weight (kg)",
+                BreedSpecsLine(title = stringResource(id = R.string.breed_specs_weight_label), value = "$weight (kg)",
                     modifier = Modifier.animateEnterExit())
             }
 
             if (height.isNotEmpty()) {
-                BreedSpecsLine(title = "Height", value = "$height (cm)",
+                BreedSpecsLine(title = stringResource(id = R.string.breed_specs_height_label), value = "$height (cm)",
                     modifier = Modifier.animateEnterExit())
             }
 
             if (description.isNotEmpty()) {
                 val isDescExpanded = remember { mutableStateOf(false) }
-                BreedSpecsLine(title = "Description",
+                BreedSpecsLine(title = stringResource(id = R.string.breed_specs_description_label),
                     value = if (!isDescExpanded.value) description.take(20).plus("...") else description,
                     modifier = Modifier
                         .animateContentSize(
@@ -262,6 +270,9 @@ private fun BreedNavigation(
     id: Int,
     viewModel: BreedDetailsViewModel
 ) { //, state: MutableState<String>) {// LaunchedEffect() implementation
+    val previousBreedStr = stringResource(id = R.string.previous_breed)
+    val nextBreedStr = stringResource(id = R.string.next_breed)
+
     Row(
         modifier = Modifier
             .layoutId(NAVIGATION_REFERENCE_ID)
@@ -269,14 +280,16 @@ private fun BreedNavigation(
     ) {
         if (id > BreedDetailsViewModel.FIRST_ITEM_ID) {
             Button(
-                modifier = Modifier.weight(10f),
+                modifier = Modifier
+                    .weight(10f)
+                    .semantics { contentDescription = previousBreedStr },
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
                 onClick = {
 //                    viewModel.getBreedDetails((id-1).toString()) // just call the function
                     viewModel.setUserAction(PreviousBreed(id - 1))
 //                    state.value = "${state.value.toInt() - 1}"// LaunchedEffect() implementation
                 }) {
-                Text(text = "Previous")
+                Text(text = previousBreedStr)
             }
         }
 
@@ -286,14 +299,15 @@ private fun BreedNavigation(
 
         if (id < BreedDetailsViewModel.LAST_ITEM_ID) {
             Button(modifier = Modifier
-                .weight(10f),
+                .weight(10f)
+                .semantics { contentDescription = nextBreedStr },
                 colors = ButtonDefaults.buttonColors(backgroundColor = CareysPink),
                 onClick = {
 //                    viewModel.getBreedDetails((id+1).toString()) // just call the function
                     viewModel.setUserAction(NextBreed(id + 1))
 //                    state.value = "${state.value.toInt() + 1}"// LaunchedEffect() implementation
                 }) {
-                Text(text = "Next")
+                Text(text = nextBreedStr)
             }
         }
     }

@@ -9,17 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import learning.android.dogbreeds.ui.navigation.NavigationRoutes
+import learning.android.dogbreeds.R
 import learning.android.dogbreeds.ui.theme.DogBreedsTheme
 import learning.android.dogbreeds.ui.theme.WhiteLilac
 import learning.android.dogbreeds.ui.widgets.Error
@@ -28,9 +29,10 @@ import learning.android.dogbreeds.ui.widgets.Loading
 import learning.android.dogbreeds.ui.widgets.list.viewstates.ErrorListItem
 
 @Composable
-fun BreedsList(navController: NavHostController) {
+fun BreedsList(navigateAction: () -> Unit) {
     val viewModel: BreedsListViewModel = hiltViewModel()
     val content = viewModel.breedsResult.collectAsLazyPagingItems()
+    val breedsListStr = stringResource(id = R.string.breeds_list)
 
     /*
     It seems that swipe-to-refresh has an issue when you are doing it crazy fast.
@@ -44,8 +46,10 @@ fun BreedsList(navController: NavHostController) {
         }
     }) {
         LazyColumn(
-            modifier = Modifier.fillMaxHeight(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = Modifier
+                .fillMaxHeight()
+                .semantics { contentDescription = breedsListStr },
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
 
             items(content) {
@@ -55,9 +59,8 @@ fun BreedsList(navController: NavHostController) {
                     weight = it?.weight?.metric ?: "",
                     description = it?.description ?: "",
                     imgUrl = it?.image?.url ?: "",
-                    onClick = {
-                        navController.navigate("${NavigationRoutes.BREED_DETAILS}${it?.id ?: ""}")
-                    }
+                    modifier = Modifier.semantics { contentDescription = it?.name ?: "" },
+                    onClick = navigateAction
                 )
             }
 
@@ -65,7 +68,9 @@ fun BreedsList(navController: NavHostController) {
                 content.apply {
                     when {
                         loadState.refresh is LoadState.Loading -> {
-                            Loading(modifier = Modifier.fillParentMaxSize().background(WhiteLilac))
+                            Loading(modifier = Modifier
+                                .fillParentMaxSize()
+                                .background(WhiteLilac))
                         }
                         loadState.append is LoadState.Loading -> {
                             LoadingListItem(modifier = Modifier.fillMaxWidth())
@@ -73,7 +78,9 @@ fun BreedsList(navController: NavHostController) {
                         loadState.refresh is LoadState.Error -> {
                             val e = loadState.refresh as LoadState.Error
                             Error(
-                                modifier = Modifier.fillMaxWidth().background(Color.Red),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(Color.Red),
                                 msg = e.error.localizedMessage ?: "",
                                 onClick = { retry() }
                             )
@@ -97,6 +104,6 @@ fun BreedsList(navController: NavHostController) {
 @Composable
 fun BreedsListPreview() {
     DogBreedsTheme {
-        BreedsList(navController = NavHostController(LocalContext.current))
+        BreedsList({ })
     }
 }
