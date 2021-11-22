@@ -19,7 +19,7 @@ In this application the target is to use:
 - Clean architecture
 - Testing
   - Instrumentation (Hilt, Semantics, wait until UI is ready)
-  - Unit (Flow, Coroutines, Mock) -> **TODO**
+  - Unit (Flow, Coroutines, Mock)
 
 ## Details
 Apart from the notes used for **Hilt_Example** and **JetpackComposeExample** projects, the following sources provided extreme help:
@@ -55,6 +55,14 @@ Apart from the articles mentioned in **JetpackComposeExample** see this [article
   - Test class implemenenting `AndroidJUnitRunner`
   - `@Rule`s ordering
   - Shows how to get viewmodel in test class by using (`createAndroidComposeRule<MyActivity>()`)
+
+#### Unit Tests
+- This [article](https://fabiosanto.medium.com/unit-testing-coroutines-state-flow-c6e6de580027) contains simple example about how to test coroutine which returns a `StateFlow`.
+- This [answer](https://stackoverflow.com/a/57958441/1392366) will help you fix any mocking issues to calls to Android platform(ex. `Log.d()`, etc).
+- If you need any help about mocking objects which contains initialization in variables (through `init{}`, or directly such us `var shouldGetLocalData = true`) don't forget to `relax` the mock like is described [here](https://stackoverflow.com/questions/61151905/io-mockk-mockkexception-no-answer-found-for-savedstatehandle1-setkey-some).
+
+#### Paging Library 3 Tests
+- This is an [article](https://medium.com/@mohamed.gamal.elsayed/android-how-to-test-paging-3-pagingsource-433251ade028) about Paging Library 3 testing but I think that my way is much simpler.
 
 ## Issues
 To be added later.

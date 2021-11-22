@@ -48,6 +48,9 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 hilt {
@@ -84,9 +87,14 @@ dependencies {
 
 //    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-//    testImplementation "io.mockk:mockk:1.12.1"
-//    testImplementation "io.mockk:mockk-agent-jvm:1.12.1"
-//    androidTestImplementation "io.mockk:mockk-android:1.12.1"
+    testImplementation "io.mockk:mockk:1.12.1"
+    testImplementation "io.mockk:mockk-agent-jvm:1.12.1"
+    androidTestImplementation "io.mockk:mockk-android:1.12.1"
+
+    //For runBlockingTest, CoroutineDispatcher etc.
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
+    //For InstantTaskExecutorRule
+//    testImplementation "androidx.arch.core:core-testing:2.1.0"
 
     implementation "androidx.paging:paging-compose:1.0.0-alpha14"
     implementation "com.google.accompanist:accompanist-swiperefresh:0.21.1-beta"
