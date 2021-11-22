@@ -17,7 +17,7 @@ In this application the target is to use:
 - Retrofit
 - Room Database (Dao, TypeConverters)
 - Clean architecture
-- Testing
+- Testing -> **TODO test every module with 95% coverage**
   - Instrumentation (Hilt, Semantics, wait until UI is ready)
   - Unit (Flow, Coroutines, Mock)
 
