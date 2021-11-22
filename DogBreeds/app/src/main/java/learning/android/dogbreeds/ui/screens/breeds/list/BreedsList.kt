@@ -29,7 +29,7 @@ import learning.android.dogbreeds.ui.widgets.Loading
 import learning.android.dogbreeds.ui.widgets.list.viewstates.ErrorListItem
 
 @Composable
-fun BreedsList(navigateAction: () -> Unit) {
+fun BreedsList(navigateAction: (String) -> Unit) {
     val viewModel: BreedsListViewModel = hiltViewModel()
     val content = viewModel.breedsResult.collectAsLazyPagingItems()
     val breedsListStr = stringResource(id = R.string.breeds_list)
@@ -60,7 +60,7 @@ fun BreedsList(navigateAction: () -> Unit) {
                     description = it?.description ?: "",
                     imgUrl = it?.image?.url ?: "",
                     modifier = Modifier.semantics { contentDescription = it?.name ?: "" },
-                    onClick = navigateAction
+                    onClick = { navigateAction(it?.id.toString()) }
                 )
             }
 

@@ -15,7 +15,7 @@ fun Navigation(navController: NavHostController) {
         startDestination = NavigationRoutes.BREED_LIST_ROUTE) {
         composable(NavigationRoutes.BREED_LIST_ROUTE) {
             BreedsList {
-                navController.navigate("${NavigationRoutes.BREED_DETAILS}${it.id}")
+                navController.navigate("${NavigationRoutes.BREED_DETAILS}${it}")
             }
         }
         composable(NavigationRoutes.BREED_DETAILS_ROUTE) {
