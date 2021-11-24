@@ -4,11 +4,13 @@ import androidx.paging.PagingSource
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.unmockkAll
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import learning.android.domain.models.response.UiBreedModel
 import learning.android.domain.models.state.DataResult
 import learning.android.domain.usecases.GetBreedsUseCase
+import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -27,6 +29,11 @@ class BreedsListViewModelTest {
             useCase.breedsRequest = useCase.breedsRequest.copy(page = BreedSource.FIRST_PAGE)
         } returns Unit
         breedsPagingSource = BreedSource(useCase)
+    }
+
+    @After
+    fun tearDown() {
+        unmockkAll()
     }
 
     @ExperimentalCoroutinesApi
@@ -56,6 +63,7 @@ class BreedsListViewModelTest {
     @Test
     fun test_whenFetchItemsWithSuccess_shouldPagerContainsItems() {
         runBlockingTest {
+            // TODO try using Hierarchical mocking for this item
             val item = UiBreedModel(
                 weight = UiBreedModel.UiWeight(""), height = UiBreedModel.UiHeight(""),
                 id = 1, name = "test", lifeSpan = "", temperament = "", origin = "",

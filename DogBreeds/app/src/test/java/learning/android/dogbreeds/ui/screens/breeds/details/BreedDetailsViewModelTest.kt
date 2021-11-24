@@ -3,6 +3,7 @@ package learning.android.dogbreeds.ui.screens.breeds.details
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.unmockkAll
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.*
@@ -43,6 +44,7 @@ class BreedDetailsViewModelTest {
         // Reset Coroutine Dispatcher and Scope.
         testDispatcher.cleanupTestCoroutines()
         testScope.cleanupTestCoroutines()
+        unmockkAll()
     }
 
     @ExperimentalCoroutinesApi
