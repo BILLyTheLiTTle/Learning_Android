@@ -1,5 +1,6 @@
 package learning.android.dogbreeds.ui.screens.breeds.details
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,6 +12,7 @@ import learning.android.domain.models.state.DataResult
 import learning.android.domain.usecases.GetBreedDetailsUseCase
 import learning.android.domain.utils.coLog
 import javax.inject.Inject
+import kotlin.system.measureTimeMillis
 
 @HiltViewModel
 class BreedDetailsViewModel @Inject constructor(
@@ -77,10 +79,13 @@ class BreedDetailsViewModel @Inject constructor(
 
         breedDetailsUseCase.id = id.toInt()
 
-        viewModelScope.launch(coroutineName) {
-            coLog(coroutineName) //(b)
-            _breedDetailsResult.value = breedDetailsUseCase.execute() //(a) //(b)
+        val time = measureTimeMillis {
+            viewModelScope.launch(coroutineName) {
+                coLog(coroutineName) //(b)
+                _breedDetailsResult.value = breedDetailsUseCase.execute() //(a) //(b)
+            }
         }
+        Log.d("Breed Detail Performanc", "$time")
     }
 
     /* OPTION 2

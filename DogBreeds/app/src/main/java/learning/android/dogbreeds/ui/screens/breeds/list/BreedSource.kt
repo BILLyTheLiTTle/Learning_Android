@@ -1,12 +1,17 @@
 package learning.android.dogbreeds.ui.screens.breeds.list
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.withContext
 import learning.android.domain.models.response.UiBreedModel
+import learning.android.domain.models.state.DataResult
 import learning.android.domain.models.state.Status
 import learning.android.domain.usecases.GetBreedsUseCase
+import kotlin.system.measureTimeMillis
 
 class BreedSource(
     private val breedsUseCase: GetBreedsUseCase
@@ -37,7 +42,13 @@ class BreedSource(
         return try {
             _isFetchingState.value = true
             val nextPage = params.key ?: FIRST_PAGE
-            val breedListResponse = breedsUseCase.execute()
+            var breedListResponse: DataResult<List<UiBreedModel>>
+            val time = measureTimeMillis {
+//                withContext(Dispatchers.Default) { // No need to do this for this example
+                    breedListResponse = breedsUseCase.execute()
+//                }
+            }
+            Log.d("Breeds List Performance", "$time")
 
             breedsUseCase.breedsRequest = breedsUseCase.breedsRequest.copy(page = nextPage + 1)
 

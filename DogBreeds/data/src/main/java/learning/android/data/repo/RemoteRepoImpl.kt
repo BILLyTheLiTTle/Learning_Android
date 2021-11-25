@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 import learning.android.data.mappers.BreedMapper
 import learning.android.data.api.network.ApiService
 import learning.android.domain.models.state.NetworkResult
@@ -26,8 +27,10 @@ class RemoteRepoImpl @Inject constructor(
     override suspend fun getBreeds(limit: Int, page: Int): NetworkResult<List<UiBreedModel>> {
         return try {
             coLog(TAG, ::getBreeds.name)
-            val breeds = apiService.getBreeds(limit, page)
-                .map { breedMapper.get().toUiBreedModel(it) }
+            val breeds = withContext(Dispatchers.IO) {
+                apiService.getBreeds(limit, page)
+                    .map { breedMapper.get().toUiBreedModel(it) }
+            }
             NetworkResult.success(breeds)
         } catch (e: Exception) {
             erLog(TAG, ::getBreedDetails.name, e)
@@ -39,8 +42,12 @@ class RemoteRepoImpl @Inject constructor(
         return try {
             coLog(TAG, ::getBreedDetails.name)
 
-            val breed = apiService.getBreedDetails(id)
-            val image = apiService.getBreedImage(breed.referenceImageId)
+            val breed = withContext(Dispatchers.IO) {
+                apiService.getBreedDetails(id)
+            }
+            val image = withContext(Dispatchers.IO) {
+                apiService.getBreedImage(breed.referenceImageId)
+            }
 
             val uiBreed = breedMapper.get().toUiBreedModel(breed)
             val uiImage = breedMapper.get().toUiBreedImage(image)
