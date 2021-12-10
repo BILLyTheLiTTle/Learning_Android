@@ -17,15 +17,15 @@ class GetBreedDetailsUseCase @Inject constructor(
 ): UseCase<DataResult<UiBreedModel>>
 {
     override suspend fun execute(): DataResult<UiBreedModel> {
-        return if (id == 0) {
-            withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
+            if (id == 0) {
                 val localResult = localRepo.getBreedDetails(id)
                 stateMapper.toDataResult(localResult)
-            }
-        } else {
-            val networkResult = apiRepo.getBreedDetails(id)
-            stateMapper.toDataResult(networkResult)
-        }
 
+            } else {
+                val networkResult = apiRepo.getBreedDetails(id)
+                stateMapper.toDataResult(networkResult)
+            }
+        }
     }
 }
