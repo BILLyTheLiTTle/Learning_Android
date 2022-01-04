@@ -19,7 +19,7 @@ import javax.inject.Inject
  */
 class RemoteRepoImpl @Inject constructor(
     private val apiService: ApiService,
-    private val breedMapper: dagger.Lazy<BreedMapper>
+    private val breedMapper: BreedMapper
 ) : RemoteRepo {
 
     private val TAG = RemoteRepoImpl::class.simpleName
@@ -29,7 +29,7 @@ class RemoteRepoImpl @Inject constructor(
             coLog(TAG, ::getBreeds.name)
             val breeds = withContext(Dispatchers.IO) {
                 apiService.getBreeds(limit, page)
-                    .map { breedMapper.get().toUiBreedModel(it) }
+                    .map { breedMapper.toUiBreedModel(it) }
             }
             NetworkResult.success(breeds)
         } catch (e: Exception) {
@@ -49,8 +49,8 @@ class RemoteRepoImpl @Inject constructor(
                 apiService.getBreedImage(breed.referenceImageId)
             }
 
-            val uiBreed = breedMapper.get().toUiBreedModel(breed)
-            val uiImage = breedMapper.get().toUiBreedImage(image)
+            val uiBreed = breedMapper.toUiBreedModel(breed)
+            val uiImage = breedMapper.toUiBreedImage(image)
             val breedFull = uiBreed.copy(image = uiImage)
 
             NetworkResult.success(breedFull)
@@ -63,7 +63,7 @@ class RemoteRepoImpl @Inject constructor(
     override suspend fun getBreedDetailsAsFlow(id: Int): Flow<NetworkResult<UiBreedModel>> {
         return flow<NetworkResult<UiBreedModel>> {
             val breed = apiService.getBreedDetails(id)
-            val uiBreed = breedMapper.get().toUiBreedModel(breed)
+            val uiBreed = breedMapper.toUiBreedModel(breed)
             emit(NetworkResult.success(uiBreed))
         }.flowOn(Dispatchers.IO)
     }

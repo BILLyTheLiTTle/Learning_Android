@@ -19,7 +19,7 @@ In this application the target is to use:
 - Clean architecture
 - Testing -> **TODO test every module with 95% coverage**
   - Instrumentation (Hilt, Semantics, wait until UI is ready)
-  - Unit (Flow, Coroutines, Mock)
+  - Unit (Flow, Coroutines, Mock, MockWebServer)
 
 ## Details
 Apart from the notes used for **Hilt_Example** and **JetpackComposeExample** projects, the following sources provided extreme help:
@@ -31,7 +31,7 @@ Apart from the notes used for **Hilt_Example** and **JetpackComposeExample** pro
 - This [article](https://medium.com/androiddevelopers/migrating-from-livedata-to-kotlins-flow-379292f419fb) shows the best way to `collect` (using `repeatOnLifecycle`) a `StateFlow` and avoiding any memory leaks by canceling. I was able to understand the transition from `LiveData` to `StateFlow` (check `OPTION 2` in `learning.android.dogbreeds.ui.screens.breeds.details.BreedDetailsViewModel`).
 
 ### Color sources
-- If you ever have any problem about color naming yu should visit the links mentioned [here](https://proandroiddev.com/naming-conventions-colors-xml-android-8f89139f1056).
+- If you ever have any problem about color naming you should visit the links mentioned [here](https://proandroiddev.com/naming-conventions-colors-xml-android-8f89139f1056).
 It is a good start to define a descriptive color name!
 - Also you can have nice color combinations [here](https://material.io/resources/color/#!/?view.left=0&view.right=0).
 
@@ -48,6 +48,7 @@ Apart from the articles mentioned in **JetpackComposeExample** see this [article
 - If you want to store objects to your DB, this [answer](https://stackoverflow.com/a/50452877) will show you how. But don't forget **In addition to option 1, type converters should also be declared on appdatabase -> @TypeConverters(ImagesConverters::class)** as it is mentioned in the comment of the answer!
 
 ### Testing
+- This [answer](https://stackoverflow.com/a/38345579/1392366) is helpful if you want to create a folder (ex. `resource`) for testing purposes.
 #### Instrumentation Tests
 - A very simple [article](https://levelup.gitconnected.com/testing-in-compose-d09b59337e4e) which shows basic testing examples and screenshot testing.
 - An amazing [article](https://medium.com/nerd-for-tech/writing-an-integration-test-with-jetpack-compose-and-dagger-hilt-8ef888c1a23d) with details about Jetpack Compose Intergation with Hilt:
@@ -60,6 +61,12 @@ Apart from the articles mentioned in **JetpackComposeExample** see this [article
 - This [article](https://fabiosanto.medium.com/unit-testing-coroutines-state-flow-c6e6de580027) contains simple example about how to test coroutine which returns a `StateFlow`.
 - This [answer](https://stackoverflow.com/a/57958441/1392366) will help you fix any mocking issues to calls to Android platform(ex. `Log.d()`, etc).
 - If you need any help about mocking objects which contains initialization in variables (through `init{}`, or directly such us `var shouldGetLocalData = true`) don't forget to `relax` the mock like is described [here](https://stackoverflow.com/questions/61151905/io-mockk-mockkexception-no-answer-found-for-savedstatehandle1-setkey-some).
+- `MockWebServer` is a way to mock server responses instead of mocking the model of the response. You could make a server to response with a 404 code and then you could check if the actual model is contructed correctly
+  - *(a)\** A very simple [guide](https://medium.com/mobile-app-development-publication/android-mock-server-for-unittest-82f5bbbf0362) which has examples of `MockWebServer`.
+  - *(b)\** A simple [example](https://medium.com/mobile-app-development-publication/android-reading-a-text-file-during-test-2815671e8b3b) which shows how to read sample json response from file.
+  - Although my source is simple enough I should try to follow this [guide](https://www.bloco.io/blog/mocking-retrofit-api-responses-with-mockwebserver-hilt) to use specific Hilt modules for testing.
+
+*\*(a), (b) :  The source of these could be found [here](https://github.com/elye/demo_android_mock_web_service). You actually need to read the [Chat](https://github.com/elye/demo_android_mock_web_service/blob/master/app/src/main/java/com/example/mockserverexperiment/Chat.kt) class and [ChatTest](https://github.com/elye/demo_android_mock_web_service/blob/master/app/src/test/java/com/example/mockserverexperiment/ChatTest.kt) class.*
 
 #### Paging Library 3 Tests
 - This is an [article](https://medium.com/@mohamed.gamal.elsayed/android-how-to-test-paging-3-pagingsource-433251ade028) about Paging Library 3 testing but I think that my way is much simpler.

@@ -56,7 +56,7 @@ Various Android examples based on what comes to my mind!
 - Dependency Injection (Hilt)
 - Retrofit
 - Clean architecture
-- Testing (Unit, Coroutines Unit, Espresso)
+- Testing (Unit, Coroutines Unit, UI Testing, MockWebServer)
 
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
