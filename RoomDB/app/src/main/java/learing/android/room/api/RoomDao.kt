@@ -2,6 +2,7 @@ package learing.android.room.api
 
 import androidx.room.*
 import learing.android.room.models.Customer
+import learing.android.room.models.Cart
 import learing.android.room.models.Product
 
 @Dao
@@ -10,11 +11,15 @@ interface RoomDao {
     fun getCustomers(): List<Customer>
     @Query("SELECT * FROM Product")
     fun getProducts(): List<Product>
+    @Query("SELECT * FROM Cart")
+    fun getCart(): List<Cart>
 
     @Insert
     fun insertCustomer(customer: Customer)
     @Insert
     fun insertProduct(product: Product)
+    @Insert
+    fun insertCart(cart: Cart)
 
     @Update
     fun updateCustomer(customer: Customer)
