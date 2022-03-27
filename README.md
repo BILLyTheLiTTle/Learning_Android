@@ -58,6 +58,11 @@ Various Android examples based on what comes to my mind!
 - Clean architecture
 - Testing (Unit, Coroutines Unit, UI Testing, MockWebServer)
 
+### 98. [Room SQLite Example](RoomDB)
+- Create DB
+- Execute Queries to DB
+- Execute queries affecting multiple tables
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
