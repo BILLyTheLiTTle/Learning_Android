@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
 //        dbDao?.insertProduct(Product(4, "Football Gloves"))
 //        dbDao?.insertProduct(Product(5, "Captain America Toy"))
 //        dbDao?.insertCart(Cart(1, 1))
-//        dbDao?.insertCart(Cart(2, 2))
-//        dbDao?.insertCart(Cart(3, 3))
-//        dbDao?.insertCart(Cart(4, 1))
+//        dbDao?.insertCart(Cart(2, 3))
+//        dbDao?.insertCart(Cart(3, 5))
+//        dbDao?.insertCart(Cart(1, 2))
 
         // DB actions
-        val result = dbDao?.getCart()
+        val result = dbDao?.getCustomerWithProductsFromCart()
 
         // show results to view
-        textView.text = result.toString()
+        textView.text = result?.joinToString(separator = "\n\n") ?: "EMPTY"
     }
 }

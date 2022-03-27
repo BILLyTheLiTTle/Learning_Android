@@ -4,16 +4,25 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(foreignKeys = [ForeignKey(
-    entity = Customer::class,
-    parentColumns = ["id"],
-    childColumns = ["customerIdReference"],
-    onUpdate = ForeignKey.CASCADE,
-    onDelete = ForeignKey.CASCADE
-)]
+// This class is used for many-to-many relationship
+
+@Entity(primaryKeys = ["customerIdReference", "productIdReference"],
+//    foreignKeys = [ForeignKey(
+//    entity = Customer::class,
+//    parentColumns = ["id"],
+//    childColumns = ["customerIdReference"],
+//    onUpdate = ForeignKey.CASCADE,
+//    onDelete = ForeignKey.CASCADE
+//),
+//    ForeignKey(
+//        entity = Product::class,
+//        parentColumns = ["id"],
+//        childColumns = ["productIdReference"],
+//        onUpdate = ForeignKey.CASCADE,
+//        onDelete = ForeignKey.CASCADE
+//    )]
 )
 data class Cart(
-    @PrimaryKey
-    val id: Long,
-    val customerIdReference: Long
+    val customerIdReference: Long,
+    val productIdReference: Long
 )

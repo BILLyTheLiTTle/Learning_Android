@@ -4,6 +4,8 @@ import androidx.room.*
 import learing.android.room.models.Customer
 import learing.android.room.models.Cart
 import learing.android.room.models.Product
+import learing.android.room.models.relationships.CustomerWithProductsFromCart
+import learing.android.room.models.relationships.CustomerWithCart
 
 @Dao
 interface RoomDao {
@@ -30,4 +32,12 @@ interface RoomDao {
     fun deleteCustomer(customer: Customer)
     @Delete
     fun deleteProduct(product: Product)
+
+    // Relationships
+    @Transaction
+    @Query("SELECT * FROM Customer")
+    fun getCustomersAndCart(): List<CustomerWithCart>
+    @Transaction
+    @Query("SELECT * FROM Customer")
+    fun getCustomerWithProductsFromCart(): List<CustomerWithProductsFromCart>
 }
