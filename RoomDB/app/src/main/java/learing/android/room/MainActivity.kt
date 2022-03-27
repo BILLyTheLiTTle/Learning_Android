@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.query_result)
 
         // DB pre-actions
+        // TODO uncomment all for first run
 //        dbDao?.insertCustomer(Customer(1, "Bill"))
 //        dbDao?.insertCustomer(Customer(2, "Jim"))
 //        dbDao?.insertCustomer(Customer(3, "Takis"))

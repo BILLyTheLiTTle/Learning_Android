@@ -20,7 +20,9 @@ abstract fun dataDao(): RoomDao
             if (INSTANCE == null) {
                 synchronized(TheDB::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        TheDB::class.java, "the_db.db").allowMainThreadQueries() // A big Don't
+                        TheDB::class.java, "the_db.db")
+                        // A big "Don't", but I don't want to complicate example using coroutines
+                        .allowMainThreadQueries()
                         .build()
                 }
             }

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 // This class is used for many-to-many relationship
 
 @Entity(primaryKeys = ["customerIdReference", "productIdReference"],
+    // The below don't give extra value nor give any error at this example.
 //    foreignKeys = [ForeignKey(
 //    entity = Customer::class,
 //    parentColumns = ["id"],
