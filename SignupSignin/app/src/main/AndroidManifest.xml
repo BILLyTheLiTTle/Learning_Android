@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SignupSignin">
         <activity
+            android:name=".signin.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signup.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
