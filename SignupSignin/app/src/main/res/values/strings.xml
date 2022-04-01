@@ -4,4 +4,9 @@
     <string name="signin_label">Sign in</string>
     <string name="username_label">Username</string>
     <string name="password_label">Password</string>
+
+
+    <!-- Bad values but I want to change the from one place. They are used for demonstration purposes -->
+    <string name="username_value" translatable="false">Bill</string>
+    <string name="password_value" translatable="false">Tsapalos</string>
 </resources>
