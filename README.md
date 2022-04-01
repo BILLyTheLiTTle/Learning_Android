@@ -63,6 +63,11 @@ Various Android examples based on what comes to my mind!
 - Execute simple queries to DB
 - Experiment with DB relationship from code and avoid lengthy queries
 
+### 10. [Sign up / Sign in](SignupSignin)
+- Android Keystore
+- Biometrics
+- Encryption for persistence (Read and Save user password)
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
