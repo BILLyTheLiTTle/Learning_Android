@@ -2,6 +2,7 @@ package learing.android.signupsignin.encryption
 
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
+import android.util.Log
 import learing.android.signupsignin.persistence.LocalStoragePretender
 import java.lang.Exception
 import java.security.KeyStore
@@ -36,8 +37,10 @@ class Encryption {
             val secretKeyEntry = keyStore.getEntry(alias, null) //as KeyStore.SecretKeyEntry
 
             return if (secretKeyEntry != null) {
+                Log.v("Encryption", "Key exists")
                 (secretKeyEntry as KeyStore.SecretKeyEntry).secretKey
             } else {
+                Log.v("Encryption", "Key generated")
                 generateKey(alias)
             }
         }

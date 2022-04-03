@@ -46,7 +46,7 @@ class SignInActivity : AppCompatActivity() {
             "Fail"
         }
 
-        Log.v("SignIn", message)
+        Log.v("SignIn", "Signing in result: $message")
     }
 
     private fun decryptAndCheck(password: String, username: String) {
@@ -61,6 +61,6 @@ class SignInActivity : AppCompatActivity() {
             "Fail: ${e.message.toString()}"
         }
 
-        Log.v("SignIn", message)
+        Log.v("SignIn", "Signing in result: $message")
     }
 }
