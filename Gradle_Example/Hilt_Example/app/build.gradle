@@ -77,6 +77,41 @@ kapt {
     correctErrorTypes true
 }
 
+// this task is stored in "other" Gradle folder
+// and "a1" in the name makes my task to be in top of the others
+task a1SampleTask {
+    // See the output of the run to see the order of the printed messages
+    doFirst {
+        println('A1 -> Execution phase. Starting...')
+    }
+
+    println('A1 -> Configuration phase')
+
+    doLast {
+        println('A1 -> Execution phase. Ended!')
+    }
+}
+task a2SampleTask {
+    doFirst {
+        println('A2 -> Execution phase. Starting...')
+    }
+
+    println('A2 -> Configuration phase')
+
+    doLast {
+        println('A2 -> Execution phase. Ended!')
+    }
+}
+// No matter the "mustRunAfter" or "dependsOn" the configuration of a1SampleTask and
+// a2SampleTask always runs (the same happens for every single task in gradle build files).
+
+// When you run a2SampleTask alone, it does not run the a1SampleTask.
+// If you want to run a2SampleTask and a1SampleTask together it runs first the a1SampleTask.
+a2SampleTask.mustRunAfter(a1SampleTask) // -> No need to co exist with dependsOn
+
+// When you run a2SampleTask it always run a1SampleTask before.
+a2SampleTask.dependsOn(a1SampleTask) // -> No need to co exist with mustRunAfter
+
 dependencies {
 
     implementation project(path: ':domain')

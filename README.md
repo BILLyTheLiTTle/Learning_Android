@@ -76,7 +76,7 @@ Various Android examples based on what comes to my mind!
 - Create a custom task to rename output file per flavor
 - Modify the above custom task to a new plugin
 - Run gradle tasks (dependsOn, mustRunAfter doLast, doFirst) and use attributes in command line (profiling)
-- Gradle Android properties (split apk, manual shrinking, Jack and Jill)
+- Gradle Android properties (split apk, manual shrinking)
 
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
