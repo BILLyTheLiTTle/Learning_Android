@@ -19,6 +19,9 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+//        resConfigs "el" // There is no other language than the default one
+        resConfigs "hdpi" // Comment this on and off and keep an eye at the size of the executable
     }
 
     buildTypes {
@@ -67,6 +70,14 @@ android {
         // If issues with severity "fatal" are found, the release build is aborted.
         checkReleaseBuilds false
     }
+
+//    splits {
+//        density {
+//            enable true
+//            include 'mdpi', 'hdpi'
+//            compatibleScreens 'normal', 'large'
+//        }
+//    }
 }
 
 hilt {
@@ -111,6 +122,20 @@ a2SampleTask.mustRunAfter(a1SampleTask) // -> No need to co exist with dependsOn
 
 // When you run a2SampleTask it always run a1SampleTask before.
 a2SampleTask.dependsOn(a1SampleTask) // -> No need to co exist with mustRunAfter
+
+// Dynamically created task
+android.applicationVariants.all { variant ->
+    if (variant.install) {
+        tasks.create(name: "a1Run ${variant.name}", dependsOn: variant.install) {
+            doLast {
+                exec {
+                    executable = 'C:\\Users\\v.tsapalos\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb'
+                    args = ['shell', 'am', 'start', '-n', "${variant.applicationId}/learning.android.hilt.ui.MainActivity"]
+                }
+            }
+        }
+    }
+}
 
 dependencies {
 

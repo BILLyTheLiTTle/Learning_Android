@@ -8,6 +8,7 @@ In this application the target is to:
 - Create a sample task to show the difference between configuration and execution phase
 - Create a custom task to rename output file per flavor
 - Modify the above custom task to a new plugin
+- Create new tasks dynamically
 - Run gradle tasks (dependsOn, mustRunAfter doLast, doFirst) and use attributes in command line (profiling)
 - Gradle Android properties (split apk, manual shrinking)
 
