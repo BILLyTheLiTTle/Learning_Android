@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HiltExample</string>
+
+    <string name="temperature_label">Temperature:</string>
+    <string name="wind_label">Wind:</string>
+    <string name="description_label">Description:</string>
+</resources>
