@@ -4,6 +4,8 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
 }
+// Call a script plugin from the local file system
+apply from: 'outputFilesHandling.gradle'
 
 android {
     compileSdkVersion 30
@@ -138,16 +140,16 @@ android.applicationVariants.all { variant ->
 }
 
 // A simple hook into Android plugin.
-// This task can be found as custom plugin by me in the project.
-android.applicationVariants.all { variant ->
-    variant.outputs.all {output ->
-        def builtType = variant.buildType.name
-        def versionName = variant.versionName
-        def versionCode = variant.versionCode
-        def flavor = variant.flavorName
-        outputFileName = "app-${flavor}-${builtType}-${versionName}-${versionCode}.apk"
-    }
-}
+// This task can be found as custom plugin by me in the project as "outputFilesHandling.gradle".
+//android.applicationVariants.all { variant ->
+//    variant.outputs.all {output ->
+//        def builtType = variant.buildType.name
+//        def versionName = variant.versionName
+//        def versionCode = variant.versionCode
+//        def flavor = variant.flavorName
+//        outputFileName = "app-${flavor}-${builtType}-${versionName}-${versionCode}.apk"
+//    }
+//}
 
 dependencies {
 
