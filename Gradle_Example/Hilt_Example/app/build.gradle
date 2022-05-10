@@ -137,6 +137,18 @@ android.applicationVariants.all { variant ->
     }
 }
 
+// A simple hook into Android plugin.
+// This task can be found as custom plugin by me in the project.
+android.applicationVariants.all { variant ->
+    variant.outputs.all {output ->
+        def builtType = variant.buildType.name
+        def versionName = variant.versionName
+        def versionCode = variant.versionCode
+        def flavor = variant.flavorName
+        outputFileName = "app-${flavor}-${builtType}-${versionName}-${versionCode}.apk"
+    }
+}
+
 dependencies {
 
     implementation project(path: ':domain')
