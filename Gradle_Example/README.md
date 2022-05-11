@@ -22,4 +22,5 @@ This example at the moment  does not contain an example about how to create a bi
 <br/>I am satisfied with the script plugin  and I will not create a binary plugin example soon. <br/>A guide for the binary plugin implementation could be found [here](https://proandroiddev.com/gradlepluginandroidsdk-8a2494cbd238).
 
 ## Disclaimer
+- The balloon.aar library is the [skydoves/Balloon](https://github.com/skydoves/Balloon), but I have downloaded it for demonstration purposes.
 - Nothing more than already described in the [Hilt & MVVM & Data Binding & Clean Architecture & Reactive](Hilt_Example) example.
