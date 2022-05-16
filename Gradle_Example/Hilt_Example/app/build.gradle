@@ -131,7 +131,7 @@ android.applicationVariants.all { variant ->
         tasks.create(name: "a1Run ${variant.name}", dependsOn: variant.install) {
             doLast {
                 exec {
-                    executable = 'C:\\Users\\v.tsapalos\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb'
+                    executable = 'C:\\Users\\_username_\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb'
                     args = ['shell', 'am', 'start', '-n', "${variant.applicationId}/learning.android.hilt.ui.MainActivity"]
                 }
             }
