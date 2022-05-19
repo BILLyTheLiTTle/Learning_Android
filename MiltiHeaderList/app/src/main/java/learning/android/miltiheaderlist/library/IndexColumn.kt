@@ -48,12 +48,9 @@ fun <T> IndexedLazyColumn(
             modifier = modifier
         ) {
             if (!indexState.isScrollInProgress && shouldUpdateSelection.value) {
-                val list = indexState.layoutInfo.visibleItemsInfo
-                val startIndex = list.first().index
-                val lastIndex = list.last().index
-                val index = startIndex + ((lastIndex - startIndex) / 2)
+                val index = selectIndexItem(indexState)
 
-                scrollListBasedOnIndex(
+                scrollMainListBasedOnIndex(
                     coroutineContext, predicate,
                     indices, itemsListState,
                     selectedIndex, index
@@ -68,7 +65,7 @@ fun <T> IndexedLazyColumn(
                 Box(modifier = Modifier
                     .padding(5.dp)
                     .clickable {
-                        scrollListBasedOnIndex(
+                        scrollMainListBasedOnIndex(
                             coroutineContext, predicate,
                             indices, itemsListState,
                             selectedIndex, index
@@ -117,12 +114,9 @@ fun <T> IndexedDataLazyColumn(
             modifier = modifier
         ) {
             if (!indexState.isScrollInProgress && shouldUpdateSelection.value) {
-                val list = indexState.layoutInfo.visibleItemsInfo
-                val startIndex = list.first().index
-                val lastIndex = list.last().index
-                val index = startIndex + ((lastIndex - startIndex) / 2)
+                val index = selectIndexItem(indexState)
 
-                scrollListBasedOnIndex(
+                scrollMainListBasedOnIndex(
                     coroutineContext, predicate,
                     indices, itemsState,
                     selectedIndex, index
@@ -137,7 +131,7 @@ fun <T> IndexedDataLazyColumn(
                 Box(modifier = Modifier
                     .padding(5.dp)
                     .clickable {
-                        scrollListBasedOnIndex(
+                        scrollMainListBasedOnIndex(
                             coroutineContext, predicate,
                             indices, itemsState,
                             selectedIndex, index
@@ -150,7 +144,7 @@ fun <T> IndexedDataLazyColumn(
     }
 }
 
-private fun <T> scrollListBasedOnIndex(
+private fun <T> scrollMainListBasedOnIndex(
     coroutineContext: CoroutineScope,
     predicate: (T) -> Int,
     indices: List<T>,
@@ -165,4 +159,11 @@ private fun <T> scrollListBasedOnIndex(
         }
         selectedIndex.value = index
     }
+}
+
+private fun selectIndexItem(indexState: LazyListState): Int {
+    val list = indexState.layoutInfo.visibleItemsInfo
+    val startIndex = list.first().index
+    val lastIndex = list.last().index
+    return startIndex + ((lastIndex - startIndex) / 2)
 }
