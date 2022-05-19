@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 @RequiresApi(Build.VERSION_CODES.N)
 @ExperimentalFoundationApi
 @Composable
-fun <T> IndexColumnWithCustomLazyColumn(
+fun <T> IndexedLazyColumn(
     indices: List<T>,
     itemsListState: LazyListState,
     modifier: Modifier = Modifier,
@@ -50,11 +50,13 @@ fun <T> IndexColumnWithCustomLazyColumn(
             if (!indexState.isScrollInProgress && shouldUpdateSelection.value) {
                 val list = indexState.layoutInfo.visibleItemsInfo
                 val startIndex = list.first().index
+                val lastIndex = list.last().index
+                val index = startIndex + ((lastIndex - startIndex) / 2)
 
                 scrollListBasedOnIndex(
                     coroutineContext, predicate,
                     indices, itemsListState,
-                    selectedIndex, startIndex
+                    selectedIndex, index
                 )
 
                 shouldUpdateSelection.value = false
@@ -82,7 +84,7 @@ fun <T> IndexColumnWithCustomLazyColumn(
 @RequiresApi(Build.VERSION_CODES.N)
 @ExperimentalFoundationApi
 @Composable
-fun <T> IndexColumnWithData(
+fun <T> IndexedDataLazyColumn(
     indices: List<T>,
     data: List<T>,
     modifier: Modifier = Modifier,
@@ -117,11 +119,13 @@ fun <T> IndexColumnWithData(
             if (!indexState.isScrollInProgress && shouldUpdateSelection.value) {
                 val list = indexState.layoutInfo.visibleItemsInfo
                 val startIndex = list.first().index
+                val lastIndex = list.last().index
+                val index = startIndex + ((lastIndex - startIndex) / 2)
 
                 scrollListBasedOnIndex(
                     coroutineContext, predicate,
                     indices, itemsState,
-                    selectedIndex, startIndex
+                    selectedIndex, index
                 )
 
                 shouldUpdateSelection.value = false

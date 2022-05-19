@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
@@ -42,8 +41,8 @@ class MainActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     //MainList(getTheData())
 //                    ExampleDoubleHeaderList(getTheData())
-                    ExampleIndexedListWithCustomLazyColumn(getTheIndexedData())
-//                    ExampleIndexedListWithData(getTheIndexedData())
+                    ExampleIndexedLazyColumn(getTheIndexedData())
+//                    ExampleIndexedDataLazyColumn(getTheIndexedData())
                 }
             }
         }
@@ -53,11 +52,11 @@ class MainActivity : ComponentActivity() {
 @ExperimentalFoundationApi
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun ExampleIndexedListWithCustomLazyColumn(data: List<CustomListItem2>,
+fun ExampleIndexedLazyColumn(data: List<CustomListItem2>,
                        indices: List<Char> = ('A'..'Z').toList()) {
     val lazyListState = rememberLazyListState()
 
-    IndexColumnWithCustomLazyColumn(
+    IndexedLazyColumn(
         // The list of the indices
         indices = indices,
         // The state of the main LazyColumn, the one with the real data
@@ -69,7 +68,8 @@ fun ExampleIndexedListWithCustomLazyColumn(data: List<CustomListItem2>,
         // The way to connect the index with a data item (here the index item matches the first letter of the surname)
         predicate = {
             data.indexOfFirst { item ->
-                item.surname.startsWith(it.toString(), true) }
+                item.surname.startsWith(it.toString(), true)
+            }
                     },
         // The list of the main data
         lazyColumnContent = {
@@ -109,10 +109,10 @@ fun ExampleIndexedListWithCustomLazyColumn(data: List<CustomListItem2>,
 @ExperimentalFoundationApi
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun ExampleIndexedListWithData(data: List<CustomListItem2>,
+fun ExampleIndexedDataLazyColumn(data: List<CustomListItem2>,
                        indices: List<Char> = ('A'..'Z').toList()) {
 
-    IndexColumnWithData(
+    IndexedDataLazyColumn(
         // The list of the indices
         indices = indices,
         // The list of the actual data
