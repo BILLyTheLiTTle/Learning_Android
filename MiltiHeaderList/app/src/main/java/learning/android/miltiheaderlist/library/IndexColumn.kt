@@ -12,7 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -86,7 +85,7 @@ fun <T> IndexedDataLazyColumn(
     data: List<T>,
     modifier: Modifier = Modifier,
     predicate: (T) -> Int,
-    mainItemContent: @Composable (Int) -> Unit,
+    mainItemContent: @Composable LazyItemScope.(Int) -> Unit,
     indexedItemContent: @Composable (T, Boolean) -> Unit
 ) {
     val coroutineContext = rememberCoroutineScope()
