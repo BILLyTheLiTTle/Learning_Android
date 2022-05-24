@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,8 +32,8 @@ import learning.android.miltiheaderlist.library.*
 import learning.android.miltiheaderlist.ui.theme.MiltiHeaderListTheme
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalCoilApi::class, ExperimentalFoundationApi::class)
     @RequiresApi(Build.VERSION_CODES.N)
-    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -157,6 +158,7 @@ fun ExampleIndexedDataLazyColumn(data: List<CustomListItem2>,
     )
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @RequiresApi(Build.VERSION_CODES.N)

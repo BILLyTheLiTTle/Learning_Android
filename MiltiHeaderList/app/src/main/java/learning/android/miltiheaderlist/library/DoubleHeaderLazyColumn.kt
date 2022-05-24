@@ -2,6 +2,12 @@ package learning.android.miltiheaderlist.library
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,6 +27,7 @@ open class Item(
     open val subType: String
 )
 
+@ExperimentalAnimationApi
 @RequiresApi(Build.VERSION_CODES.N)
 @ExperimentalFoundationApi
 @Composable
@@ -58,9 +65,12 @@ fun DoubleHeaderLazyColumn(data: List<Item>,
         headerContent(header.value)
         LazyColumn(modifier = modifier, state = listState) {
             mainGroup.forEach { (type, groupedData) ->
-                if (header.value !== type) {
+                stickyHeader {
                     // This header visibility will be updated while scrolling
-                    stickyHeader {
+                    AnimatedVisibility(visible = header.value != type,
+                        enter= expandVertically(),
+                        exit= shrinkVertically(animationSpec = spring(stiffness = 150f))
+                    ) {
                         headerContent(type)
                     }
                 }
