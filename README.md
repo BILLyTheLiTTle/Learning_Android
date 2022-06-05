@@ -81,6 +81,12 @@ Various Android examples based on what comes to my mind!
 - Run gradle tasks (dependsOn, mustRunAfter doLast, doFirst) and use attributes in command line (profiling)
 - Gradle Android properties (split apk, manual shrinking)
 
+### 12. [Jetpack Compose Navigation](ComposeNavigation)
+- Modular application (3 feature modules, navigation, app)
+- Navigation module
+- Nested Navigation
+- Weird navigation flow (Home Screen -> Screen 1 -> Screen 1_1 -> back to Home Screen directly, etc)
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
