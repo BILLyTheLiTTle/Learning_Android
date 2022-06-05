@@ -3,7 +3,9 @@ package learning.android.composenavigation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -24,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    MainHome("Android")
                 }
             }
         }
@@ -32,14 +34,24 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MainHome(name: String) {
+    Column() {
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "Feature 1")
+        }
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "Feature 2")
+        }
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "Feature 3")
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ComposeNavigationTheme {
-        Greeting("Android")
+        MainHome("Android")
     }
 }
