@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ComposeNavigation"
 include ':app'
+include ':navigation'
+include ':featureOne'
+include ':featureTwo'
+include ':featureThree'
