@@ -26,7 +26,7 @@ class FeatureOneActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    FeatureOneHome("Android")
+                    FeatureOneHome()
                 }
             }
         }
@@ -34,9 +34,9 @@ class FeatureOneActivity : ComponentActivity() {
 }
 
 @Composable
-fun FeatureOneHome(name: String) {
+fun FeatureOneHome(welcomeText: String = "", originText: String = "") {
     Column() {
-        Text(text = "Feature 1 Screen")
+        Text(text = "$welcomeText. You came from $originText")
 
         Button(onClick = { /*TODO*/ }) {
             Text(text = "Feature 1.1")
@@ -54,6 +54,6 @@ fun FeatureOneHome(name: String) {
 @Composable
 fun DefaultPreview() {
     ComposeNavigationTheme {
-        FeatureOneHome("Android")
+        FeatureOneHome()
     }
 }

@@ -24,10 +24,34 @@ fun NavHomeScreen() {
     val destinationState by viewModel.navigator.destination.collectAsState()
     LaunchedEffect(destinationState) {
         if (destinationState != Destination.Nowhere()) {
-            navController.navigate(destinationState.route)
+            when (destinationState) {
+                is HomeScreen -> {
+                    navController.navigate(
+                        "${destinationState.route}/Hello from Home Screen"
+                    ) {
+                        destinationState.options
+                    }
+                }
+                is FeatureOneScreen -> {
+                    navController.navigate(
+                        "${destinationState.route}/${FeatureOneScreen.WELCOME_TEXT}=Hello Feature 1&${FeatureOneScreen.ORIGIN_TEXT}=Home"
+                    ) {
+                        popUpTo("${destinationState.route}/Welcome back")
+                    }
+                }
+                else -> {
+                    navController.navigate(destinationState.route) {
+                        destinationState.options
+                    }
+                }
+            }
+
         }
     }
-    NavHost(navController = navController, startDestination = HomeScreen.route) {
+    NavHost(
+        navController = navController,
+        startDestination = "${HomeScreen.route}/{${HomeScreen.WELCOME_TEXT}}"
+    ) {
         addHomeScreenGraph(viewModel)
         addFeatureOneScreenGraph(navController)
         addFeatureTwoScreenGraph(navController)
@@ -43,7 +67,11 @@ fun MainHome(
     Column() {
         Text(text = name)
 
-        Button(onClick = { viewModel.navigate(FeatureOneScreen) }) {
+        Button(onClick = {
+            val featureOneScreen = FeatureOneScreen
+            featureOneScreen.originTextValue = "Home Screen"
+            viewModel.navigate(featureOneScreen)
+        }) {
             Text(text = "Feature 1")
         }
         Button(onClick = { viewModel.navigate(FeatureTwoScreen) }) {
@@ -58,17 +86,33 @@ fun MainHome(
 private fun NavGraphBuilder.addHomeScreenGraph(
     homeViewModel: HomeViewModel
 ) {
-    composable(route = HomeScreen.route) {
-        MainHome(
-            name = "HOME",
-            viewModel = homeViewModel
-        )
+    HomeScreen.apply {
+        composable(
+            route = "${route}/{${WELCOME_TEXT}}",
+            arguments = arguments
+        ) {
+            MainHome(
+                name = it.arguments?.getString(WELCOME_TEXT)
+                    ?: WELCOME_TEXT_DEFAULT_VALUE,
+                viewModel = homeViewModel
+            )
+        }
     }
 }
 
 private fun NavGraphBuilder.addFeatureOneScreenGraph(navController: NavController) {
-    composable(route = FeatureOneScreen.route) {
-        FeatureOneHome(name = "ONE")
+    FeatureOneScreen.apply {
+        composable(
+            route = "$route/$WELCOME_TEXT={$WELCOME_TEXT}&$ORIGIN_TEXT={$ORIGIN_TEXT}",
+            arguments = arguments
+        ) {
+            FeatureOneHome(
+                welcomeText = it.arguments?.getString(WELCOME_TEXT)
+                    ?: WELCOME_TEXT_DEFAULT_VALUE,
+                originText = it.arguments?.getString(ORIGIN_TEXT)
+                    ?: ORIGIN_TEXT_DEFAULT_VALUE
+            )
+        }
     }
 }
 
