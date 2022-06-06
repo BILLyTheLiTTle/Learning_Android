@@ -36,6 +36,8 @@ class FeatureTwoActivity : ComponentActivity() {
 @Composable
 fun FeatureTwoHome(name: String) {
     Column() {
+        Text(text = "Feature 2 Screen")
+
         Button(onClick = { /*TODO*/ }) {
             Text(text = "Feature 2.1")
         }
