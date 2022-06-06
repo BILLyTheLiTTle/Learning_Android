@@ -82,6 +82,7 @@ Various Android examples based on what comes to my mind!
 - Gradle Android properties (split apk, manual shrinking)
 
 ### 12. [Jetpack Compose Navigation](ComposeNavigation)
+Very Bad example of using a navigation module.
 - Modular application (3 feature modules, navigation, app)
 - Navigation module
 - Nested Navigation
