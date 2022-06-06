@@ -8,6 +8,7 @@ In this application the target is to use:
 - Weird navigation flow (Home Screen -> Screen 1 -> Screen 1_1 -> back to Home Screen directly, etc)
 
 ### Sources
+- https://medium.com/google-developer-experts/modular-navigation-with-jetpack-compose-fda9f6b2bef7
 - https://medium.com/google-developer-experts/navigating-in-jetpack-compose-78c78d365c6a
 - https://joebirch.co/android/modular-navigation-with-jetpack-compose/
 - https://shortcut.io/tech/adding-animations-to-your-jetpack-compose-navigation/

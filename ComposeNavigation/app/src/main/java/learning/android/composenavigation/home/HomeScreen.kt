@@ -3,24 +3,32 @@ package learning.android.composenavigation.home
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import learning.android.composenavigation.navigation.Destination
+import learning.android.composenavigation.navigation.*
 import learning.android.feature_one.FeatureOneHome
 import learning.android.feature_three.FeatureThreeHome
 import learning.android.feature_two.FeatureTwoHome
+import learning.android.navigation.destinations.Destination
 import learning.android.navigation.navigateToNewScreen
 
 @Composable
 fun NavHomeScreen() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Destination.HomeScreen.route) {
-        addHomeScreenGraph(navController)
+    val viewModel = hiltViewModel<HomeViewModel>()
+    val destinationState by viewModel.navigator.destination.collectAsState()
+    LaunchedEffect(destinationState) {
+        if (destinationState != Destination.Nowhere()) {
+            navController.navigate(destinationState.route)
+        }
+    }
+    NavHost(navController = navController, startDestination = HomeScreen.route) {
+        addHomeScreenGraph(viewModel)
         addFeatureOneScreenGraph(navController)
         addFeatureTwoScreenGraph(navController)
         addFeatureThreeScreenGraph(navController)
@@ -30,54 +38,48 @@ fun NavHomeScreen() {
 @Composable
 fun MainHome(
     name: String,
-    navigateFeatureOne: (String) -> Unit,
-    navigateFeatureTwo: (String) -> Unit,
-    navigateFeatureThree: (String) -> Unit,
+    viewModel: HomeViewModel
 ) {
     Column() {
-        Button(onClick = { navigateFeatureOne("Feature One") }) {
+        Text(text = name)
+
+        Button(onClick = { viewModel.navigate(FeatureOneScreen) }) {
             Text(text = "Feature 1")
         }
-        Button(onClick = { navigateFeatureTwo("Feature Two") }) {
+        Button(onClick = { viewModel.navigate(FeatureTwoScreen) }) {
             Text(text = "Feature 2")
         }
-        Button(onClick = { navigateFeatureThree("Feature Three") }) {
+        Button(onClick = { viewModel.navigate(FeatureThreeScreen) }) {
             Text(text = "Feature 3")
         }
     }
 }
 
-private fun NavGraphBuilder.addHomeScreenGraph(navController: NavController) {
-    composable(route = Destination.HomeScreen.route) {
+private fun NavGraphBuilder.addHomeScreenGraph(
+    homeViewModel: HomeViewModel
+) {
+    composable(route = HomeScreen.route) {
         MainHome(
             name = "HOME",
-            navigateFeatureOne = {
-                navController.navigateToNewScreen(Destination.FeatureOneScreen.route)
-            },
-            navigateFeatureTwo = {
-                navController.navigateToNewScreen(Destination.FeatureTwoScreen.route)
-            },
-            navigateFeatureThree = {
-                navController.navigateToNewScreen(Destination.FeatureThreeScreen.route)
-            },
+            viewModel = homeViewModel
         )
     }
 }
 
 private fun NavGraphBuilder.addFeatureOneScreenGraph(navController: NavController) {
-    composable(route = Destination.FeatureOneScreen.route) {
+    composable(route = FeatureOneScreen.route) {
         FeatureOneHome(name = "ONE")
     }
 }
 
 private fun NavGraphBuilder.addFeatureTwoScreenGraph(navController: NavController) {
-    composable(route = Destination.FeatureTwoScreen.route) {
+    composable(route = FeatureTwoScreen.route) {
         FeatureTwoHome(name = "TWO")
     }
 }
 
 private fun NavGraphBuilder.addFeatureThreeScreenGraph(navController: NavController) {
-    composable(route = Destination.FeatureThreeScreen.route) {
+    composable(route = FeatureThreeScreen.route) {
         FeatureThreeHome(name = "THREE")
     }
 }
