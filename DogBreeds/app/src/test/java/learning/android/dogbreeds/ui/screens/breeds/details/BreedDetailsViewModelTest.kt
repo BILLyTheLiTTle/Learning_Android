@@ -67,4 +67,48 @@ class BreedDetailsViewModelTest {
             job.cancel()
         }
     }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2a() {
+        runTest {
+            every { useCase.id = 0 } returns Unit
+            coEvery { useCase.execute() } returns DataResult.error(Exception("Exception msg"))
+
+            val results = mutableListOf<DataResult<UiBreedModel>>()
+            val job = launch(UnconfinedTestDispatcher(/*testScheduler*/)) {
+                viewModel.breedDetailsResult.toList(results)
+            }
+            viewModel.getBreedDetails("0")
+
+            Assert.assertEquals(results[0].status, Status.LOADING)
+            Assert.assertEquals(results[1].status, Status.ERROR)
+            Assert.assertEquals(results[1].error?.message, "Exception msg")
+
+            job.cancel()
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2b() {
+        runTest {
+            every { useCase.id = 0 } returns Unit
+            coEvery { useCase.execute() } returns DataResult.error(Exception("Exception msg"))
+
+            val results = mutableListOf<DataResult<UiBreedModel>>()
+            val job = launch {
+                viewModel.breedDetailsResult.toList(results)
+            }
+            runCurrent()
+            viewModel.getBreedDetails("0")
+            runCurrent()
+
+            Assert.assertEquals(results[0].status, Status.LOADING)
+            Assert.assertEquals(results[1].status, Status.ERROR)
+            Assert.assertEquals(results[1].error?.message, "Exception msg")
+
+            job.cancel()
+        }
+    }
 }
