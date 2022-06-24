@@ -68,6 +68,20 @@ class BreedDetailsViewModelTest {
         }
     }
 
+    /*
+    Useful notes for test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2a
+    and test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2b:
+
+    Migration Guide: https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md
+    Pay attention to one paragraph before and after the bold title
+    (https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md#other-considerations)
+
+    Refresh your memory with the difference between CoroutineScope and CoroutineContext:
+    https://stackoverflow.com/questions/54416840/kotlin-coroutines-scope-vs-coroutine-context
+    Look at all 3 answers. They are helpful
+
+
+     */
     @ExperimentalCoroutinesApi
     @Test
     fun test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2a() {
