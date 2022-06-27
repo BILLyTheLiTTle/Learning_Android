@@ -65,6 +65,11 @@ Apart from the articles mentioned in **JetpackComposeExample** see this [article
   - *(a)\** A very simple [guide](https://medium.com/mobile-app-development-publication/android-mock-server-for-unittest-82f5bbbf0362) which has examples of `MockWebServer`.
   - *(b)\** A simple [example](https://medium.com/mobile-app-development-publication/android-reading-a-text-file-during-test-2815671e8b3b) which shows how to read sample json response from file.
   - Although my source is simple enough I should try to follow this [guide](https://www.bloco.io/blog/mocking-retrofit-api-responses-with-mockwebserver-hilt) to use specific Hilt modules for testing.
+- Unit testing with Coroutines version 1.6.X:
+  - See the [migration guide](https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md) but mainly pay attention to one paragraph before and after the [bold title](
+https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md#other-considerations).
+  - Refresh your memory with the difference between CoroutineScope and CoroutineContext with the responses [here](https://stackoverflow.com/questions/54416840/kotlin-coroutines-scope-vs-coroutine-context).
+  - A short [article](https://medium.com/@ralf.stuckert/testing-coroutines-update-1-6-0-701d53546683) that describes most of migration important aspects. Every example he show is not working, but in my tests in `BreedDetailsViewModelTest` you can find what is working, for sure.
 
 *\*(a), (b) :  The source of these could be found [here](https://github.com/elye/demo_android_mock_web_service). You actually need to read the [Chat](https://github.com/elye/demo_android_mock_web_service/blob/master/app/src/main/java/com/example/mockserverexperiment/Chat.kt) class and [ChatTest](https://github.com/elye/demo_android_mock_web_service/blob/master/app/src/test/java/com/example/mockserverexperiment/ChatTest.kt) class.*
 

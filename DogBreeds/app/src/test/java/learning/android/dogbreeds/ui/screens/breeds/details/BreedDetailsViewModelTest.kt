@@ -69,23 +69,13 @@ class BreedDetailsViewModelTest {
     }
 
     /*
-    Useful notes for test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2a
-    and test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2b:
+    Unit testing with Coroutines testing v. 1.6.X
+    */
 
-    Migration Guide: https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md
-    Pay attention to one paragraph before and after the bold title
-    (https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md#other-considerations)
-
-    Refresh your memory with the difference between CoroutineScope and CoroutineContext:
-    https://stackoverflow.com/questions/54416840/kotlin-coroutines-scope-vs-coroutine-context
-    Look at all 3 answers. They are helpful
-
-
-     */
     @ExperimentalCoroutinesApi
     @Test
     fun test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2a() {
-        runTest {
+        runTest(/*UnconfinedTestDispatcher(/*testScheduler*/)*/) {
             every { useCase.id = 0 } returns Unit
             coEvery { useCase.execute() } returns DataResult.error(Exception("Exception msg"))
 
@@ -103,6 +93,7 @@ class BreedDetailsViewModelTest {
         }
     }
 
+    // Comment/Uncomment the solutions below to experiment.
     @ExperimentalCoroutinesApi
     @Test
     fun test_whenFetchDataWithError_shouldBeDataWithErrorStatus_v2b() {
@@ -114,9 +105,15 @@ class BreedDetailsViewModelTest {
             val job = launch {
                 viewModel.breedDetailsResult.toList(results)
             }
-            runCurrent()
+            runCurrent() // Solution 2b_1
+//            yield() // Solution 2b_2
+//            advanceUntilIdle() // Solution 2b_3
+
             viewModel.getBreedDetails("0")
-            runCurrent()
+
+            runCurrent() // Solution 2b_1
+//            yield() // Solution 2b_2
+//            advanceUntilIdle() // Solution 2b_3
 
             Assert.assertEquals(results[0].status, Status.LOADING)
             Assert.assertEquals(results[1].status, Status.ERROR)
