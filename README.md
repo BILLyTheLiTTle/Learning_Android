@@ -87,6 +87,31 @@ Various Android examples based on what comes to my mind!
 - Nested Navigation
 - Weird navigation flow (Home Screen -> Screen 1 -> Screen 1_1 -> back to Home Screen directly, etc)
 
+### 13. [Dagger2 Example](Dagger2_Example)
+_Description_: <br/>
+There will be an application with 1 `Activity` and 2 `Fragments`. Each `Fragment` will show text like this:<br/>
+Aplication String: application_string_value<br/>
+Aplication Int: application_int_value<br/>
+Activity String: activity_string_value<br/>
+Activity Int: activity_int_value<br/>
+Fragment 1 String: fragment_one_string_value<br/>
+Fragment 1 Int: fragment_one_int_value<br/>
+Fragment 2 String: fragment_two_string_value<br/>
+Fragment 2 Int: fragment_two_int_value<br/>
+**_== TODO_: Delete the  above description after the app implementation ==**
+
+- **[C.11, 12]** Use different `Component`s with dependencies
+  - `AppComponent`
+  - `ActivityComponent`(with `@Subcomponent` -> `MyActivitySubcomponent`) 
+  - `FragmentComponent`(with `@Subcomponent`s -> `MyFragmentOneSubComponent`, `MyFragmentTwoSubcomponent`)
+- **[C.11]** Use different `Scope`s(`ApplicationScope`, `ActivityScope`, `FragmentScope`)
+- **[C.9]** Use Qualifiers (`@Named`) and create new annotation classes to submit qualifiers
+- **[C.9]** Allow optional binding (`@BindsOptionalOf`)
+- **[C.8]** Break cyclic dependency with `Provider<T>`
+- **[C.8]** Use `@Provides` in object and in abstract and see the one file per `@Provides` function generated
+- **[C.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`)
+- Add more if needed
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
