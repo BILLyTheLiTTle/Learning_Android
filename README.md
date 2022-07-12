@@ -98,6 +98,7 @@ Fragment 1 String: fragment_one_string_value<br/>
 Fragment 1 Int: fragment_one_int_value<br/>
 Fragment 2 String: fragment_two_string_value<br/>
 Fragment 2 Int: fragment_two_int_value<br/>
+All Fragments/Activities will have a String with `@BindsInstance` or/and the class name to show the id to verify its scope<br/>
 **_== TODO_: Delete the  above description after the app implementation ==**
 
 - **[C.11, 12]** Use different `Component`s with dependencies
@@ -110,6 +111,7 @@ Fragment 2 Int: fragment_two_int_value<br/>
 - **[C.8]** Break cyclic dependency with `Provider<T>`
 - **[C.8]** Use `@Provides` in object and in abstract and see the one file per `@Provides` function generated
 - **[C.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`)
+- **[C.13, 14]** Dagger multibinding for `ViewModel`s
 - Add more if needed
 
 ### No. [Project_Name](Project_Path)
