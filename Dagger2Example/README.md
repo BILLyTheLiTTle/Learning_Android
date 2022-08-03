@@ -1,4 +1,4 @@
-# Dog Breeds
+# Dagger2 Example
 
 ## Learning Outcomes
 In this application the target is to use:
