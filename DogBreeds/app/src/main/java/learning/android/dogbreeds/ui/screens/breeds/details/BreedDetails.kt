@@ -1,5 +1,6 @@
 package learning.android.dogbreeds.ui.screens.breeds.details
 
+import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateDp
@@ -32,6 +33,9 @@ import learning.android.dogbreeds.ui.widgets.Error
 import learning.android.dogbreeds.ui.widgets.Loading
 import learning.android.dogbreeds.ui.widgets.image.CircularImage
 import learning.android.domain.models.state.Status
+
+var notSafe = 0
+var safe = 0
 
 @ExperimentalAnimationApi
 @Composable
@@ -127,10 +131,17 @@ fun BreedDetails(breedId: String) { // In my LaunchedEffect() implementation thi
                     modifier = Modifier.semantics { contentDescription = content.value.data?.name ?: "" },
                     onClick = {
                         specsExpandedState.value = !specsExpandedState.value
-                        fullScreenImageState = !fullScreenImageState
+//                        fullScreenImageState = !fullScreenImageState
                     }
                 )
 
+                notSafe += 1
+
+                fullScreenImageState = false
+                SideEffect {
+                    safe += 1
+                }
+                Log.e("tsapalos", "Safe: ${safe} -VS- Not Safe: ${notSafe}")
                 BreedSpecs(
                     modifier = Modifier.semantics { contentDescription = breedSpecsStr },
                     name = content.value.data?.name ?: "",
