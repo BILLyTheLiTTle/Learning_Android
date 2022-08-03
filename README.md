@@ -87,7 +87,8 @@ Various Android examples based on what comes to my mind!
 - Nested Navigation
 - Weird navigation flow (Home Screen -> Screen 1 -> Screen 1_1 -> back to Home Screen directly, etc)
 
-### 13. [Dagger2 Example](Dagger2Example)
+<<<<<<< HEAD
+### 13. [Dagger2 Example](Dagger2_Example)
 - **[C.11, 12]** Use different `Component`s with dependencies
   - `AppComponent`
   - `ActivityComponent`(with `@Subcomponent` -> `MyActivitySubcomponent`) 
@@ -98,6 +99,7 @@ Various Android examples based on what comes to my mind!
 - **[C.8]** Break cyclic dependency with `Provider<T>`
 - **[C.8]** Use `@Provides` in object and in abstract and see the one file per `@Provides` function generated
 - **[C.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`)
+- **[C.13, 14]** Dagger multibinding for `ViewModel`s
 
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
