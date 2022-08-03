@@ -87,8 +87,7 @@ Various Android examples based on what comes to my mind!
 - Nested Navigation
 - Weird navigation flow (Home Screen -> Screen 1 -> Screen 1_1 -> back to Home Screen directly, etc)
 
-<<<<<<< HEAD
-### 13. [Dagger2 Example](Dagger2_Example)
+### 13. [Dagger2 Example](Dagger2Example)
 - **[C.11, 12]** Use different `Component`s with dependencies
   - `AppComponent`
   - `ActivityComponent`(with `@Subcomponent` -> `MyActivitySubcomponent`) 
