@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screen_one.FragmentOne">
+
+
+    <TextView
+        android:id="@+id/application_title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/application_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/application_name_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/application_name_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_title_textView" />
+
+    <TextView
+        android:id="@+id/application_name_value_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show application class name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/application_name_label_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/application_name_label_textView"
+        app:layout_constraintWidth_default="wrap" />
+
+    <TextView
+        android:id="@+id/application_string_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/application_string_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_name_value_textView" />
+
+    <TextView
+        android:id="@+id/application_string_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show application string value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/application_string_label_textView"
+        app:layout_constraintStart_toEndOf="@id/application_string_label_textView" />
+
+    <TextView
+        android:id="@+id/application_int_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/application_int_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_string_value_textView" />
+
+    <TextView
+        android:id="@+id/application_int_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show application int value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/application_int_label_textView"
+        app:layout_constraintStart_toEndOf="@id/application_int_label_textView" />
+
+    <TextView
+        android:id="@+id/activity_title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/activity_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_int_label_textView" />
+
+    <TextView
+        android:id="@+id/activity_name_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/activity_name_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_title_textView" />
+
+    <TextView
+        android:id="@+id/activity_name_value_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show activity class name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/activity_name_label_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/activity_name_label_textView"
+        app:layout_constraintWidth_default="wrap" />
+
+    <TextView
+        android:id="@+id/activity_string_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/activity_string_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_name_value_textView" />
+
+    <TextView
+        android:id="@+id/activity_string_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show activity string value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/activity_string_label_textView"
+        app:layout_constraintStart_toEndOf="@id/activity_string_label_textView" />
+
+    <TextView
+        android:id="@+id/activity_int_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/activity_int_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_string_value_textView" />
+
+    <TextView
+        android:id="@+id/activity_int_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show activity int value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/activity_int_label_textView"
+        app:layout_constraintStart_toEndOf="@id/activity_int_label_textView" />
+
+    <TextView
+        android:id="@+id/fragment_title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/fragment_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_int_label_textView" />
+
+    <TextView
+        android:id="@+id/fragment_name_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_name_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_title_textView" />
+
+    <TextView
+        android:id="@+id/fragment_name_value_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show fragment class name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/fragment_name_label_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_name_label_textView"
+        app:layout_constraintWidth_default="wrap" />
+
+    <TextView
+        android:id="@+id/fragment_string_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_string_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_name_value_textView" />
+
+    <TextView
+        android:id="@+id/fragment_string_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show fragment string value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/fragment_string_label_textView"
+        app:layout_constraintStart_toEndOf="@id/fragment_string_label_textView" />
+
+    <TextView
+        android:id="@+id/fragment_int_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_int_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_string_value_textView" />
+
+    <TextView
+        android:id="@+id/fragment_int_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show fragment int value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/fragment_int_label_textView"
+        app:layout_constraintStart_toEndOf="@id/fragment_int_label_textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

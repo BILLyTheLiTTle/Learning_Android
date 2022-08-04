@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Dagger2Example</string>
+    <string name="application_title">Application Data</string>
+    <string name="application_name_label">Application Name:</string>
+    <string name="application_string_label">Application String:</string>
+    <string name="application_int_label">Application Int:</string>
+
+    <string name="activity_title">Activity Data</string>
+    <string name="activity_name_label">Activity Name:</string>
+    <string name="activity_string_label">Activity String:</string>
+    <string name="activity_int_label">Activity Int:</string>
+
+    <string name="fragment_title">Fragment Data</string>
+    <string name="fragment_name_label">Fragment Name:</string>
+    <string name="fragment_string_label">Fragment String:</string>
+    <string name="fragment_int_label">Fragment Int:</string>
 </resources>
