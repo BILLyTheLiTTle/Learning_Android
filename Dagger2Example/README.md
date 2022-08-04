@@ -15,14 +15,18 @@ In this application the target is to use:
 
 ## Description (to be deleted at the end of development)
 There will be an application with 2 `Activit`ies and 4 `Fragment`s. Each `Fragment` will show text like this:<br/>
-String [Aplication@hex_value]: application_string_value<br/>
-Int [Aplication@hex_value]: application_int_value<br/>
-String [Activity@hex_value]: activity_string_value<br/>
-Int [Activity@hex_value]: activity_int_value<br/>
-String [FragmentOne@hex_value]: fragment_one_string_value<br/>
-Int [FragmentOne@hex_value]: fragment_one_int_value<br/>
-String [FragmentTwo@hex_value]: fragment_two_string_value<br/>
-Int [FragmentTwo@hex_value]: fragment_two_int_value<br/>
+Application: application_name_value<br/>
+String: application_string_value @ [String@hex_value]<br/>
+Int: application_int_value @ [Int@hex_value]<br/>
+Activity: activity_name_value<br/>
+String: activity_string_value @ [String@hex_value]<br/>
+Int: activity_int_value @ [Int@hex_value]<br/>
+Fragment: fragment_name_value<br/>
+String: fragment_one_string_value @ [String@hex_value]<br/>
+Int: fragment_one_int_value @ [Int@hex_value]<br/>
+Fragment: fragment_name_value<br/>
+String: fragment_two_string_value @ [String@hex_value]<br/>
+Int: fragment_two_int_value @ [Int@hex_value]<br/>
 
 ## Details
 

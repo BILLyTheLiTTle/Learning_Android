@@ -27,14 +27,14 @@
     <TextView
         android:id="@+id/application_name_value_textView"
         android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_default="wrap"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Show application class name"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/application_name_label_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/application_name_label_textView"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintStart_toEndOf="@id/application_name_label_textView" />
 
     <TextView
         android:id="@+id/application_string_label_textView"
@@ -48,7 +48,9 @@
 
     <TextView
         android:id="@+id/application_string_value_textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_default="wrap"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Show application string value"
@@ -68,7 +70,9 @@
 
     <TextView
         android:id="@+id/application_int_value_textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_default="wrap"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Show application int value"
