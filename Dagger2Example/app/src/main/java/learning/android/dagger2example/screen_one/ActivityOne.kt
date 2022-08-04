@@ -11,7 +11,7 @@ class ActivityOne : AppCompatActivity() {
 
     private lateinit var binding: ActivityOneBinding
 
-    val stringValue = "activity"
+    val stringValue = "activity_one"
     val intValue = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {

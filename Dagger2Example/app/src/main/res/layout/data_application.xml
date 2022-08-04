@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/application_title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/application_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/application_name_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/application_name_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_title_textView" />
+
+    <TextView
+        android:id="@+id/application_name_value_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show application class name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/application_name_label_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/application_name_label_textView"
+        app:layout_constraintWidth_default="wrap" />
+
+    <TextView
+        android:id="@+id/application_string_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/application_string_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_name_value_textView" />
+
+    <TextView
+        android:id="@+id/application_string_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show application string value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/application_string_label_textView"
+        app:layout_constraintStart_toEndOf="@id/application_string_label_textView" />
+
+    <TextView
+        android:id="@+id/application_int_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/application_int_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_string_value_textView" />
+
+    <TextView
+        android:id="@+id/application_int_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show application int value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/application_int_label_textView"
+        app:layout_constraintStart_toEndOf="@id/application_int_label_textView" />
+
+</merge>

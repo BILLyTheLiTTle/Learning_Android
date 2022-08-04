@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/fragment_title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/fragment_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_int_label_textView" />
+
+    <TextView
+        android:id="@+id/fragment_name_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_name_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_title_textView" />
+
+    <TextView
+        android:id="@+id/fragment_name_value_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show fragment class name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/fragment_name_label_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_name_label_textView"
+        app:layout_constraintWidth_default="wrap" />
+
+    <TextView
+        android:id="@+id/fragment_string_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_string_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_name_value_textView" />
+
+    <TextView
+        android:id="@+id/fragment_string_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show fragment string value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/fragment_string_label_textView"
+        app:layout_constraintStart_toEndOf="@id/fragment_string_label_textView" />
+
+    <TextView
+        android:id="@+id/fragment_int_label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_int_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_string_value_textView" />
+
+    <TextView
+        android:id="@+id/fragment_int_value_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Show fragment int value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/fragment_int_label_textView"
+        app:layout_constraintStart_toEndOf="@id/fragment_int_label_textView" />
+
+</merge>

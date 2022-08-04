@@ -31,3 +31,6 @@ To be added later.
 
 ## Disclaimer
 - Nothing to mention.
+
+
+ViewBinding with merge xml (https://stackoverflow.com/a/60260556)
