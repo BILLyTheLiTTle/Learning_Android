@@ -35,7 +35,7 @@
         app:layout_constraintBaseline_toBaselineOf="@id/fragment_name_label_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/fragment_name_label_textView"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintWidth="true" />
 
     <TextView
         android:id="@+id/fragment_string_label_textView"
@@ -51,7 +51,7 @@
         android:id="@+id/fragment_string_value_textView"
         android:layout_width="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_default="wrap"
+        app:layout_constraintWidth="true"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Show fragment string value"
@@ -73,7 +73,7 @@
         android:id="@+id/fragment_int_value_textView"
         android:layout_width="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_default="wrap"
+        app:layout_constraintWidth="true"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Show fragment int value"
