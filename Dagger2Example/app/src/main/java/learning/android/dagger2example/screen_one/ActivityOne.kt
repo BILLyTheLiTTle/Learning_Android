@@ -17,6 +17,7 @@ class ActivityOne : AppCompatActivity() {
         private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Create the Activity graph using Application graph with Activity lifecycle
         daggerActivityComponent = (application as Dagger2ExampleApplication).appComponent.activityComponent().create(this)
         super.onCreate(savedInstanceState)
         binding = ActivityOneBinding.inflate(layoutInflater)

@@ -46,7 +46,10 @@ class FragmentOne : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        // Create the Fragment graph using Activity graph with Fragment lifecycle
         daggerFragmentComponent = (activity as ActivityOne).daggerActivityComponent.fragmentComponent().create(this)
+
+        // Make Dagger instantiate @Inject fields in FragmentOne
         daggerFragmentComponent.inject(this)
     }
 

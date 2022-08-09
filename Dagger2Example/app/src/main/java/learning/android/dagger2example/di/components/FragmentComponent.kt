@@ -13,10 +13,12 @@ import learning.android.dagger2example.screen_two.FragmentThree
 @Subcomponent (modules = [ContentFragmentModule::class])
 interface FragmentComponent {
 
+    // This tells Dagger that FragmentOne wants to access the graph and request injection
     fun inject(fragmentOne: FragmentOne)
     fun inject(fragmentTwo: FragmentTwo)
     fun inject(fragmentThree: FragmentThree)
 
+    // Factory that is used to create instances of this subcomponent
     @Subcomponent.Factory
     interface Factory {
         fun create(@BindsInstance fragment: Fragment): FragmentComponent

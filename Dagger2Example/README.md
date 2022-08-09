@@ -2,39 +2,33 @@
 
 ## Learning Outcomes
 In this application the target is to use:
-- **[C.11, 12]** Use different `Component`s with dependencies
-  - `AppComponent`
-  - `ActivityComponent`(with `@Subcomponent` -> `MyActivitySubcomponent`) 
-  - `FragmentComponent`(with `@Subcomponent`s -> `MyFragmentOneSubComponent`, `MyFragmentTwoSubcomponent`)
+- **[C.11, 12]** Use different `Subcomponent`s: *<sup>1</sup>
+  - `ApplicationComponent`
+  - `ActivityComponent` (`Subcomponent` of `ApplicationComponent)
+  - `FragmentComponent` (`Subcomponent` of `ActivityComponent)
 - **[C.11]** Use different `Scope`s(`ApplicationScope`, `ActivityScope`, `FragmentScope`)
 - **[C.9]** Use Qualifiers (`@Named`) and create new annotation classes to submit qualifiers
-- **[C.9]** Allow optional binding (`@BindsOptionalOf`)
-- **[C.8]** Break cyclic dependency with `Provider<T>`
-- **[C.8]** Use `@Provides` in object and in abstract and see the one file per `@Provides` function generated
-- **[C.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`)
-
-## Description (to be deleted at the end of development)
-There will be an application with 2 `Activit`ies and 4 `Fragment`s. Each `Fragment` will show text like this:<br/>
-Application: application_name_value<br/>
-String: application_string_value @ [String@hex_value]<br/>
-Int: application_int_value @ [Int@hex_value]<br/>
-Activity: activity_name_value<br/>
-String: activity_string_value @ [String@hex_value]<br/>
-Int: activity_int_value @ [Int@hex_value]<br/>
-Fragment: fragment_name_value<br/>
-String: fragment_one_string_value @ [String@hex_value]<br/>
-Int: fragment_one_int_value @ [Int@hex_value]<br/>
-Fragment: fragment_name_value<br/>
-String: fragment_two_string_value @ [String@hex_value]<br/>
-Int: fragment_two_int_value @ [Int@hex_value]<br/>
+- **[C.9]** Allow optional binding (`@BindsOptionalOf`) (*TODO*)
+- **[C.8]** Break cyclic dependency with `Provider<T>` (*TODO*)
+- **[C.8]** Use `@Provides` in object and in abstract and see the one file per `@Provides` function generated (*TODO*)
+- **[C.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`) (*this example contains only Factory pattern*)
+- **[C.13, 14]** Dagger multibinding for `ViewModel`s (*will not do*)*<sup>2</sup>
 
 ## Details
+### Dagger
+This example is based on [*Dagger by Tutorials* book](https://www.raywenderlich.com/books/dagger-by-tutorials/v1.0). That's why you see something like [C.X] next to each learning outcome.
+
+If you want to read some theory real quick and with deep knowledge [Google's official guide](https://developer.android.com/training/dependency-injection/dagger-android) is superb.
+
+*<sup>1</sup>: Probably I should re work this example using `dependencies` instead of `Subcomponent`s but it is not my priority at the moment.
+
+*<sup>2</sup>: Dagger multibinding will not be implemented because I have already worked on this during my work time so I don't feel that I need more experimenting on this one. This [article](https://betterprogramming.pub/injecting-android-viewmodels-with-dagger2-in-clean-architecture-744c1fe81530) is brilliant on showing how to work with simple **Injection** but this [article](https://medium.com/@adrianocelentano/dagger-multibindings-for-android-part-2-4e0c38d85449) explains the same concept (with superb theory) and moves it further in explaining `Map`s in Dagger2.
+
+### Other
+Although this example's purpose is to demonstrate Dagger's usage I cannot oversee that the `ViewBinding` with `<merge>` in xml needs an effort as well. More info [here](https://stackoverflow.com/a/60260556).
 
 ## Issues
 To be added later.
 
 ## Disclaimer
 - Nothing to mention.
-
-
-ViewBinding with merge xml (https://stackoverflow.com/a/60260556)
