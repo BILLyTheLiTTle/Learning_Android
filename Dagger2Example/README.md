@@ -1,22 +1,22 @@
 # Dagger2 Example
 
 ## Learning Outcomes
-In this application the target is to use:
-- **[C.11, 12]** Use different `Subcomponent`s: *<sup>1</sup>
+In this application the target is to:
+- **[Ch.11, 12]** Use different `Subcomponent`s: *<sup>1</sup>
   - `ApplicationComponent`
   - `ActivityComponent` (`Subcomponent` of `ApplicationComponent)
   - `FragmentComponent` (`Subcomponent` of `ActivityComponent)
-- **[C.11]** Use different `Scope`s(`ApplicationScope`, `ActivityScope`, `FragmentScope`)
-- **[C.9]** Use Qualifiers (`@Named`) and create new annotation classes to submit qualifiers
-- **[C.9]** Allow optional binding (`@BindsOptionalOf`) (*TODO*)
-- **[C.8]** Break cyclic dependency with `Provider<T>` (*TODO*)
-- **[C.8]** Use `@Provides` in object and in abstract and see the one file per `@Provides` function generated (*TODO*)
-- **[C.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`) (*this example contains only Factory pattern*)
-- **[C.13, 14]** Dagger multibinding for `ViewModel`s (*will not do*)*<sup>2</sup>
+- **[Ch.11]** Use different `Scope`s(`ApplicationScope`, `ActivityScope`, `FragmentScope`)
+- **[Ch.9]** Use Qualifiers (`@Named`) and create new annotation classes to submit qualifiers
+- **[Ch.9]** Allow optional binding (`@BindsOptionalOf`) (*TODO*)
+- **[Ch.8]** Break cyclic dependency with `Provider<T>` (*TODO*)
+- **[Ch.8]** Use `@Provides` in object and in abstract and see the one file per `@Provides` function generated (*TODO*)
+- **[Ch.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`) (*this example contains only Factory pattern*)
+- **[Ch.13, 14]** Dagger multibinding for `ViewModel`s (*will not do*)*<sup>2</sup>
 
 ## Details
 ### Dagger
-This example is based on [*Dagger by Tutorials* book](https://www.raywenderlich.com/books/dagger-by-tutorials/v1.0). That's why you see something like [C.X] next to each learning outcome.
+This example is based on [*Dagger by Tutorials* book](https://www.raywenderlich.com/books/dagger-by-tutorials/v1.0). That's why you see something like [Ch.X] next to each learning outcome.
 
 If you want to read some theory real quick and with deep knowledge [Google's official guide](https://developer.android.com/training/dependency-injection/dagger-android) is superb.
 
