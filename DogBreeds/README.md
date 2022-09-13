@@ -9,6 +9,7 @@ In this application the target is to use:
   - Animation (`AnimatedVisibility`, animate `AnimatedVisibility` children separately, `animateContentSize`, `updateTransition`)
   - Gestures (Swipe left/right)
   - Various (`Modifier`, `Button`, etc)
+  - Optimization technique (it does not exist in the code of this example)
 - Jetpack Compose Animation
 - Jetpack Paging Library 3
 - Kotlin Coroutines
@@ -38,6 +39,9 @@ It is a good start to define a descriptive color name!
 ### Paging adapter
 - A good [article](https://proandroiddev.com/infinite-lists-with-paging-3-in-jetpack-compose-b095533aefe6) about paging library.
 - You also need to visit this [article](https://medium.com/simform-engineering/list-view-with-pagination-using-jetpack-compose-e131174eac8e) to see the implementation of `getRefreshKey()` inside the `PagingSource`. I believe that this implementation is wrong because it creates issues with the refreshing of the data. See my implementation in code instead.
+
+### Optimization technique
+One important optimazation is with `derivedStateOf`. It has lazy initialization which makes the first run faster. It will trigger recomposition if the content of the block produces different result. It can be combined with `remember{}` when the code in its block are `val/var` instead of states. More info could be found [here](https://www.bontouch.com/case/state-and-derived-state-in-compose/).
 
 ### Navigation
 Apart from the articles mentioned in **JetpackComposeExample** see this [article](https://proandroiddev.com/jetpack-compose-navigation-architecture-with-viewmodels-1de467f19e1c), as well.
