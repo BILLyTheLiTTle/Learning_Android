@@ -42,6 +42,7 @@ It is a good start to define a descriptive color name!
 
 ### Optimization techniques
 - One important optimazation is with `derivedStateOf`. It has lazy initialization which makes the first run faster. It will trigger recomposition if the content of the block produces different result. It can be combined with `remember{}` when the code in its block are `val/var` instead of states. More info could be found [here](https://www.bontouch.com/case/state-and-derived-state-in-compose/).
+- A lot of optimization techniques could be found [here](https://skyyo.medium.com/performance-in-jetpack-compose-9a85ce02f8f9).
 - Another optimization technique is to use `@Immutable` and `@Stable` annotations to skip recompositions whenever possible. A very descriptive article is [this one](https://blog.shreyaspatil.dev/promise-compose-compiler-and-imply-when-youll-change) and [that one](https://betterprogramming.pub/optimizing-recomposition-in-jetpack-compose-stability-system-f8ec0c92de33) as well
 
 ### Navigation
