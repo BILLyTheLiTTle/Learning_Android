@@ -3,11 +3,9 @@ package learning.android.kmm.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -17,11 +15,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import learning.android.kmm.NetworkAction
-import learning.android.kmm.NetworkActionImpl
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
+import learning.android.kmm.network.NetworkActionImpl
 import learning.android.kmm.Greeting as GreetingFunctionality
 
 @Composable
@@ -84,7 +82,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting() {
     var text by remember { mutableStateOf("") }
-    var response by remember { mutableStateOf("LOADING...") }
+    var response by remember { mutableStateOf("https://www.elegantthemes.com/blog/wp-content/uploads/2022/01/lazy-loading.png") }
+    val painter = rememberAsyncImagePainter(model = response)
 
     Column {
         TextField(
@@ -99,14 +98,25 @@ fun Greeting() {
         Text(text = GreetingFunctionality().greeting(text))
 
         Spacer(modifier = Modifier.padding(10.dp))
-
-        Text(text = "Network Response", style = TextStyle(fontWeight = FontWeight.Bold))
-
+        
+        NetworkPart(painter = painter)
+        
         LaunchedEffect(Unit) {
-            response = NetworkActionImpl().getDogImageUrl()
+            response = NetworkActionImpl().getDogImageUrl().message ?: ""
         }
+    }
+}
 
-        Text(text = response)
+@Composable
+private fun NetworkPart(painter: AsyncImagePainter) {
+    Column {
+        Text(text = "Network Response:", style = TextStyle(fontWeight = FontWeight.Bold))
+
+        Image(
+            painter = painter,
+            contentDescription = null,
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }
 

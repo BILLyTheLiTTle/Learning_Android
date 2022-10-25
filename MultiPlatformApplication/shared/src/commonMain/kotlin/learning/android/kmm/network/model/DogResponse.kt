@@ -8,5 +8,5 @@ data class DogResponse(
     val message: String? = null,
 
     @SerialName("status")
-    var status: Int? = null
+    var status: String? = null
 )
