@@ -20,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import learning.android.kmm.NetworkAction
+import learning.android.kmm.NetworkActionImpl
 import learning.android.kmm.Greeting as GreetingFunctionality
 
 @Composable
@@ -82,6 +84,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting() {
     var text by remember { mutableStateOf("") }
+    var response by remember { mutableStateOf("LOADING...") }
+
     Column {
         TextField(
             value = text,
@@ -98,7 +102,11 @@ fun Greeting() {
 
         Text(text = "Network Response", style = TextStyle(fontWeight = FontWeight.Bold))
 
-        Text(text = "Fetch from: https://dog.ceo/api/breeds/image/random")
+        LaunchedEffect(Unit) {
+            response = NetworkActionImpl().getDogImageUrl()
+        }
+
+        Text(text = response)
     }
 }
 
