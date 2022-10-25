@@ -100,6 +100,12 @@ Various Android examples based on what comes to my mind!
 - **[Ch.10]** Build above components using `Component.Builder` and `Component.Factory` (with `@BindsInstance`) (this example contains only Factory pattern)
 - **[Ch.13, 14]** Dagger multibinding for `ViewModel`s (*will not do*)
 
+### 14. [KMM Example](MultiPlatformApplication)
+- Use KMM for sharing the logic between Android/iOS
+- Integrate **Ktor** for KMM network calls
+- Integrate **Insert-Koin** for DI (*TODO*)
+- Integrate **SQLDelight** for DB functionality (*TODO*)
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
