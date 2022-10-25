@@ -4,19 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import learning.android.kmm.Greeting
+import learning.android.kmm.Greeting as GreetingFunctionality
 
 @Composable
 fun MyApplicationTheme(
@@ -58,6 +62,8 @@ fun MyApplicationTheme(
 }
 
 class MainActivity : ComponentActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -66,7 +72,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting(Greeting().greeting())
+                    Greeting()
                 }
             }
         }
@@ -74,14 +80,32 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(text: String) {
-    Text(text = text)
+fun Greeting() {
+    var text by remember { mutableStateOf("") }
+    Column {
+        TextField(
+            value = text,
+            onValueChange = {
+                text = it
+            },
+            label = {
+                Text(text = "Enter name")
+            }
+        )
+        Text(text = GreetingFunctionality().greeting(text))
+
+        Spacer(modifier = Modifier.padding(10.dp))
+
+        Text(text = "Network Response", style = TextStyle(fontWeight = FontWeight.Bold))
+
+        Text(text = "Fetch from: https://dog.ceo/api/breeds/image/random")
+    }
 }
 
 @Preview
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        Greeting("Hello, Android!")
+        Greeting()
     }
 }
