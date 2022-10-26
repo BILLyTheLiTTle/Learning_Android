@@ -1,4 +1,4 @@
-package learning.android.kmm.network.model
+package learning.android.kmm.network
 
 object ApiRoutes {
     private const val BASE_URL = "https://dog.ceo/api"

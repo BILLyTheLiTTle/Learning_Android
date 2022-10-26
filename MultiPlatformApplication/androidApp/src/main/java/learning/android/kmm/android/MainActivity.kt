@@ -102,7 +102,7 @@ fun Greeting() {
         NetworkPart(painter = painter)
         
         LaunchedEffect(Unit) {
-            response = NetworkActionImpl().getDogImageUrl().message ?: ""
+            response = NetworkActionImpl.getDogImageUrl().message ?: ""
         }
     }
 }
