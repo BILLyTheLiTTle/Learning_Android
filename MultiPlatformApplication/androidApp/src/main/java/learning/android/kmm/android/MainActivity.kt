@@ -11,6 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -19,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import learning.android.kmm.db.DatabaseDriverFactory
+import learning.android.kmm.db.Repository
 import learning.android.kmm.network.NetworkActionImpl
 import learning.android.kmm.Greeting as GreetingFunctionality
 
@@ -84,12 +87,16 @@ fun Greeting() {
     var text by remember { mutableStateOf("") }
     var response by remember { mutableStateOf("https://www.elegantthemes.com/blog/wp-content/uploads/2022/01/lazy-loading.png") }
     val painter = rememberAsyncImagePainter(model = response)
+    val context = LocalContext.current
+    var dbText = Repository(DatabaseDriverFactory(context)).getData(0).collectAsState(initial = "")
 
     Column {
         TextField(
             value = text,
             onValueChange = {
                 text = it
+                Repository(DatabaseDriverFactory(context))
+                    .updateData(0, it)
             },
             label = {
                 Text(text = "Enter name")
@@ -100,6 +107,8 @@ fun Greeting() {
         Spacer(modifier = Modifier.padding(10.dp))
         
         NetworkPart(painter = painter)
+        
+        DbPart(dbContent = dbText.value)
         
         LaunchedEffect(Unit) {
             response = NetworkActionImpl.getDogImageUrl().message ?: ""
@@ -117,6 +126,15 @@ private fun NetworkPart(painter: AsyncImagePainter) {
             contentDescription = null,
             modifier = Modifier.fillMaxWidth()
         )
+    }
+}
+
+@Composable
+private fun DbPart(dbContent: String) {
+    Column {
+        Text(text = "DB Response:", style = TextStyle(fontWeight = FontWeight.Bold))
+
+        Text(text = dbContent)
     }
 }
 

@@ -5,6 +5,7 @@ plugins {
     kotlin("android").version("1.7.10").apply(false)
     kotlin("multiplatform").version("1.7.10").apply(false)
     kotlin("plugin.serialization").version("1.7.10").apply(false)
+    id("com.squareup.sqldelight").version("1.5.3").apply(false)
 }
 
 tasks.register("clean", Delete::class) {
