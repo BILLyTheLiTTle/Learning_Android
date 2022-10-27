@@ -1,8 +1,11 @@
 package learning.android.kmm.db
 
-class Repository(databaseDriverFactory: DatabaseDriverFactory) {
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-    private val database = Database(databaseDriverFactory)
+class Repository: KoinComponent {
+
+    private val database : Database by inject()// = Database(databaseDriverFactory)
 
     fun getData(id: Long) = database.selectItem(id)
 

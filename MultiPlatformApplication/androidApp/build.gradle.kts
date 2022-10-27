@@ -63,4 +63,8 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-workmanager:$koinAndroidVersion")
     // Navigation Graph
     implementation("io.insert-koin:koin-androidx-navigation:$koinAndroidVersion")
+
+//    val koinAndroidComposeVersion= "3.3.0"
+//    // Jetpack Compose
+//    implementation("io.insert-koin:koin-androidx-compose:$koinAndroidComposeVersion")
 }

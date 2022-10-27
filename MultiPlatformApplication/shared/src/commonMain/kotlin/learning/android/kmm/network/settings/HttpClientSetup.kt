@@ -4,10 +4,10 @@ import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 
-object HttpClientSetup {
+class HttpClientSetup(private val jsonSerializerSetup: JsonSerializerSetup) {
     val client = HttpClient {
         install(ContentNegotiation) {
-            json(JsonSerializerSetup.jsonSettings)
+            json(jsonSerializerSetup.jsonSettings)
         }
     }
 }

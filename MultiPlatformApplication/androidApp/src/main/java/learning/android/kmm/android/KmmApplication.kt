@@ -1,8 +1,8 @@
 package learning.android.kmm.android
 
 import android.app.Application
-import learning.android.kmm.di.AndroidOtherModules
-import learning.android.kmm.di.OtherModules
+import learning.android.kmm.di.*
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class KmmApplication: Application() {
@@ -11,7 +11,13 @@ class KmmApplication: Application() {
         super.onCreate()
 
         startKoin {
-            modules(AndroidOtherModules.platformModule, OtherModules.greetingModule)
+            androidContext(this@KmmApplication)
+            modules(
+                AndroidOtherModules.platformModule,
+                OtherModules.greetingModule,
+                NetworkModules.networkModule,
+                AndroidDatabaseModules.databaseModule,
+                DatabaseModules.databaseModule)
         }
     }
 }

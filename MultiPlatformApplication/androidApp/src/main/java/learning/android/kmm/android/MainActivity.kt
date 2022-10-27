@@ -21,9 +21,11 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import learning.android.kmm.AndroidPlatform
-import learning.android.kmm.db.DatabaseDriverFactory
 import learning.android.kmm.db.Repository
+import learning.android.kmm.network.NetworkAction
 import learning.android.kmm.network.NetworkActionImpl
+import learning.android.kmm.network.settings.HttpClientSetup
+import learning.android.kmm.network.settings.JsonSerializerSetup
 import org.koin.android.ext.android.inject
 import learning.android.kmm.Greeting as GreetingFunctionality
 
@@ -69,7 +71,8 @@ fun MyApplicationTheme(
 class MainActivity : ComponentActivity() {
 
     private val greeting: GreetingFunctionality by inject()
-
+    private val network: NetworkAction by inject()
+    private val repository: Repository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +82,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting(greeting)
+                    Greeting(greeting, network, repository)
                 }
             }
         }
@@ -87,20 +90,22 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(greeting: GreetingFunctionality) {
+fun Greeting(
+    greeting: GreetingFunctionality,
+    networkAction: NetworkAction,
+    repository: Repository
+) {
     var text by remember { mutableStateOf("") }
     var response by remember { mutableStateOf("https://www.elegantthemes.com/blog/wp-content/uploads/2022/01/lazy-loading.png") }
     val painter = rememberAsyncImagePainter(model = response)
-    val context = LocalContext.current
-    val dbText = Repository(DatabaseDriverFactory(context)).getData(0).collectAsState(initial = "")
+    val dbText = repository.getData(0).collectAsState(initial = "")
 
     Column {
         TextField(
             value = text,
             onValueChange = {
                 text = it
-                Repository(DatabaseDriverFactory(context))
-                    .updateData(0, it)
+                repository.updateData(0, it)
             },
             label = {
                 Text(text = "Enter name")
@@ -115,7 +120,7 @@ fun Greeting(greeting: GreetingFunctionality) {
         DbPart(dbContent = dbText.value)
         
         LaunchedEffect(Unit) {
-            response = NetworkActionImpl.getDogImageUrl().message ?: ""
+            response = networkAction.getDogImageUrl().message ?: ""
         }
     }
 }
@@ -146,6 +151,10 @@ private fun DbPart(dbContent: String) {
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        Greeting(greeting = GreetingFunctionality(AndroidPlatform()))
+        Greeting(
+            greeting = GreetingFunctionality(AndroidPlatform()),
+            networkAction = NetworkActionImpl(HttpClientSetup(JsonSerializerSetup())),
+            repository = Repository()
+        )
     }
 }

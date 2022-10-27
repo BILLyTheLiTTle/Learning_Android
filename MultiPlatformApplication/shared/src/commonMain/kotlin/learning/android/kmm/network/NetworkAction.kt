@@ -9,9 +9,9 @@ interface NetworkAction {
     suspend fun getDogImageUrl(): DogResponse
 }
 
-object NetworkActionImpl: NetworkAction, NetworkErrorGenerator {
+class NetworkActionImpl(httpClientSetup: HttpClientSetup): NetworkAction, NetworkErrorGenerator {
 
-    private val client = HttpClientSetup.client
+    private val client = httpClientSetup.client
 
     override suspend fun getDogImageUrl(): DogResponse {
         val response: DogResponse = client.get{ url(ApiRoutes.RANDOM_IMAGE)}.body()

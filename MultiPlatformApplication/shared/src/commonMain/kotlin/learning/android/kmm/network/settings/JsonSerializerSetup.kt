@@ -2,7 +2,7 @@ package learning.android.kmm.network.settings
 
 import kotlinx.serialization.json.Json
 
-object JsonSerializerSetup {
+class JsonSerializerSetup {
     val jsonSettings = Json {
         ignoreUnknownKeys = true
         isLenient = true
