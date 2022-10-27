@@ -103,8 +103,9 @@ Various Android examples based on what comes to my mind!
 ### 14. [KMM Example](MultiPlatformApplication)
 - Use KMM for sharing the logic between Android/iOS
 - Integrate **Ktor** for KMM network calls
-- Integrate **Insert-Koin** for DI (*TODO*)
-- Integrate **SQLDelight** for DB functionality (*TODO*)
+- Integrate **Insert-Koin** for DI
+- Integrate **SQLDelight** for DB functionality
+- Implement **Unit Tests** with **Insert-Koin** (*TODO*)
 
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity

@@ -4,8 +4,9 @@
 In this application the target is to use:
 - Use KMM for sharing the logic between Android/iOS
 - Integrate **Ktor** for KMM network calls
-- Integrate **Insert-Koin** for DI (*TODO*)
-- Integrate **SQLDelight** for DB functionality (*TODO*)
+- Integrate **Insert-Koin** for DI
+- Integrate **SQLDelight** for DB functionality
+- Implement **Unit Tests** with **Insert-Koin** (*TODO*)
 
 ## Details
 Probably this [guide](https://kotlinlang.org/docs/multiplatform-mobile-ktor-sqldelight.html#make-the-business-logic-cross-platform) should be the most complete guide I have seen. Keep an eye on it because it will be updated as it from official Kotlin documentation.
@@ -28,7 +29,18 @@ The official documentation for **Ktor** is unbeatable. Actually there are not ma
 - Last but not least don't forget the [**SQLDelight *plugin***](https://plugins.jetbrains.com/plugin/8191-sqldelight) for the Android Studio to facilitate the whole process. It can be installed from the Marketplace of the IDE.
 
 ### DI framework documentation (Insert-Koin)
+- This [article](https://medium.com/swlh/dependency-injection-with-koin-for-android-43dda4d800d1) seems to be a very descriptive **Koin** article. I only got the way about how to add Context instance to Koin container (`androidContext(this@KmmApplication)`), but it may used for more. *Keep an eye on this one for unit tests as well*.
+- For unit tests with **Koin** keep an eye on this [article](https://insert-koin.io/docs/reference/koin-test/checkmodules) as well.
+- [Here](https://insert-koin.io/docs/setup/koin) you can find all gradle dependencies about **Koin** that you may need.
+- The official documentation is unbeatable at the time of this writing. See [here](https://insert-koin.io/docs/reference/koin-core/definitions) to understand the very basic things of **Koin** about modules but when it comes to `scoped` dependencies this [article](https://proandroiddev.com/understanding-android-scopes-with-koin-cfe6b60ca579) will do the job! One minor thing to notice, in the article about `scoped` dependencies, is that `scope<MyActivity>` does not scope anything to `MyActivity`, it just says that the scope of the dependencies will be found in the `MyActivity` class and there it is `override val scope : Scope by activityScope()`.
+- Last but not least, don't forget the way I used `by inject()` in the `Repository` class in `shared` module at `commonMain` directory. I had to make the `Repository` to implement `KoinComponent` interface! This can be also viewed in this [article](https://johnoreilly.dev/posts/kotlinmultiplatform-koin/)
+
+#### Unit tests with Koin
 *To be added...*
+
+*I should experiment with two variations:*
+- *Test class which has the dependencies in the constructor (could be tested without Koin)*
+- *Test class which has the dependency in a field (probably could not be tested with Koin)*
 
 ## Issues
 Not so much options for libraries!
