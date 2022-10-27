@@ -20,9 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import learning.android.kmm.AndroidPlatform
 import learning.android.kmm.db.DatabaseDriverFactory
 import learning.android.kmm.db.Repository
 import learning.android.kmm.network.NetworkActionImpl
+import org.koin.android.ext.android.inject
 import learning.android.kmm.Greeting as GreetingFunctionality
 
 @Composable
@@ -66,6 +68,8 @@ fun MyApplicationTheme(
 
 class MainActivity : ComponentActivity() {
 
+    private val greeting: GreetingFunctionality by inject()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +79,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting()
+                    Greeting(greeting)
                 }
             }
         }
@@ -83,12 +87,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting() {
+fun Greeting(greeting: GreetingFunctionality) {
     var text by remember { mutableStateOf("") }
     var response by remember { mutableStateOf("https://www.elegantthemes.com/blog/wp-content/uploads/2022/01/lazy-loading.png") }
     val painter = rememberAsyncImagePainter(model = response)
     val context = LocalContext.current
-    var dbText = Repository(DatabaseDriverFactory(context)).getData(0).collectAsState(initial = "")
+    val dbText = Repository(DatabaseDriverFactory(context)).getData(0).collectAsState(initial = "")
 
     Column {
         TextField(
@@ -102,7 +106,7 @@ fun Greeting() {
                 Text(text = "Enter name")
             }
         )
-        Text(text = GreetingFunctionality().greeting(text))
+        Text(text = greeting.greeting(text))
 
         Spacer(modifier = Modifier.padding(10.dp))
         
@@ -142,6 +146,6 @@ private fun DbPart(dbContent: String) {
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        Greeting()
+        Greeting(greeting = GreetingFunctionality(AndroidPlatform()))
     }
 }

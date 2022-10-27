@@ -39,6 +39,28 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.2.1")
     implementation("androidx.compose.material:material:1.2.1")
     implementation("androidx.activity:activity-compose:1.5.1")
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
     implementation("io.coil-kt:coil-compose:2.1.0")
+
+    val coreVersion = "3.2.2"
+    // Koin Core features
+    implementation("io.insert-koin:koin-core:$coreVersion")
+    // Koin Test features
+    testImplementation("io.insert-koin:koin-test:$coreVersion")
+    // Koin for JUnit 4
+    testImplementation("io.insert-koin:koin-test-junit4:$coreVersion")
+    // Koin for JUnit 5
+    testImplementation("io.insert-koin:koin-test-junit5:$coreVersion")
+
+    val koinAndroidVersion= "3.3.0"
+    // Koin main features for Android
+    implementation("io.insert-koin:koin-android:$koinAndroidVersion")
+    // Java Compatibility
+    implementation("io.insert-koin:koin-android-compat:$koinAndroidVersion")
+    // Jetpack WorkManager
+    implementation("io.insert-koin:koin-androidx-workmanager:$koinAndroidVersion")
+    // Navigation Graph
+    implementation("io.insert-koin:koin-androidx-navigation:$koinAndroidVersion")
 }
