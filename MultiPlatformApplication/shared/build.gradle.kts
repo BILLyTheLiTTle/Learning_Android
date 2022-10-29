@@ -6,6 +6,8 @@ plugins {
     id("kotlinx-serialization")
 
     id("com.squareup.sqldelight")
+
+//    id("com.google.devtools.ksp")
 }
 
 kotlin {
@@ -45,6 +47,19 @@ kotlin {
                 implementation(kotlin("test"))
 
                 implementation("io.insert-koin:koin-test:$koinVersion")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+                implementation("io.mockk:mockk-common:1.12.1")
+                // not working for iOS
+                // without this, it cannot find "every", "any" and some other functions
+                implementation("io.mockk:mockk-jvm:1.13.2")
+
+                // Mockative seems to not working at themoment of this writing
+                // io.mockative.NoSuchMockError: A mock for the type Database was not generated.
+//                implementation("io.mockative:mockative:1.2.3")
+//                ksp{
+//                    implementation("io.mockative:mockative-processor:1.1.2")
+//                }
             }
         }
         val androidMain by getting {

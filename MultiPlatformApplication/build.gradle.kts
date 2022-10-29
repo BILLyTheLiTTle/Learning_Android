@@ -6,6 +6,7 @@ plugins {
     kotlin("multiplatform").version("1.7.10").apply(false)
     kotlin("plugin.serialization").version("1.7.10").apply(false)
     id("com.squareup.sqldelight").version("1.5.3").apply(false)
+//    id("com.google.devtools.ksp") version "1.7.10-1.0.6"
 }
 
 tasks.register("clean", Delete::class) {
