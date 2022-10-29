@@ -105,7 +105,7 @@ Various Android examples based on what comes to my mind!
 - Integrate **Ktor** for KMM network calls
 - Integrate **Insert-Koin** for DI
 - Integrate **SQLDelight** for DB functionality
-- Implement **Unit Tests** with **Insert-Koin** (*TODO*)
+- Implement **Unit Tests** with **Insert-Koin** (*not working properly*)
 
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity

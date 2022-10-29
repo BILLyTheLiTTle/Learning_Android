@@ -6,7 +6,7 @@ In this application the target is to use:
 - Integrate **Ktor** for KMM network calls
 - Integrate **Insert-Koin** for DI
 - Integrate **SQLDelight** for DB functionality
-- Implement **Unit Tests** with **Insert-Koin** (*TODO*)
+- Implement **Unit Tests** with **Insert-Koin** (*not working properly*)
 
 ## Details
 Probably this [guide](https://kotlinlang.org/docs/multiplatform-mobile-ktor-sqldelight.html#make-the-business-logic-cross-platform) should be the most complete guide I have seen. Keep an eye on it because it will be updated as it from official Kotlin documentation.
@@ -33,17 +33,17 @@ The official documentation for **Ktor** is unbeatable. Actually there are not ma
 - For unit tests with **Koin** keep an eye on this [article](https://insert-koin.io/docs/reference/koin-test/checkmodules) as well.
 - [Here](https://insert-koin.io/docs/setup/koin) you can find all gradle dependencies about **Koin** that you may need.
 - The official documentation is unbeatable at the time of this writing. See [here](https://insert-koin.io/docs/reference/koin-core/definitions) to understand the very basic things of **Koin** about modules but when it comes to `scoped` dependencies this [article](https://proandroiddev.com/understanding-android-scopes-with-koin-cfe6b60ca579) will do the job! One minor thing to notice, in the article about `scoped` dependencies, is that `scope<MyActivity>` does not scope anything to `MyActivity`, it just says that the scope of the dependencies will be found in the `MyActivity` class and there it is `override val scope : Scope by activityScope()`.
-- Last but not least, don't forget the way I used `by inject()` in the `Repository` class in `shared` module at `commonMain` directory. I had to make the `Repository` to implement `KoinComponent` interface! This can be also viewed in this [article](https://johnoreilly.dev/posts/kotlinmultiplatform-koin/)
+- Last but not least, don't forget the way I used `by inject()` in the `Repository` class in `shared` module at `commonMain` directory. I had to make the `Repository` to implement `KoinComponent` interface! This can be also viewed in this [article](https://johnoreilly.dev/posts/kotlinmultiplatform-koin/).
 
 #### Unit tests with Koin
-*To be added...*
+- This [answer](https://stackoverflow.com/a/67620830) shows how to use your mock into your modules. This helps with field injection in the actual class. In my example `Repostiory` class is injected in the test and **mocked `Database`** is retrieved from the Koin container instead of **real `Database`** class.
+- The project contains `ksp` integration. I could not find any working example about `ksp` so I magically wrote the line by myself. Pay attention to the plugin declaration (`id("com.google.devtools.ksp") version "1.7.10-1.0.6"`) as it should match your Kotlin version.
+- The mocking was achieved with MockK library. I tried Mockative but with no success. Don't forget that the MockK solution is more like a workoaround because it will not work in iOS as I mention [here](https://stackoverflow.com/a/74245709). I hope the future will be more hopeful!
 
-*I should experiment with two variations:*
-- *Test class which has the dependencies in the constructor (could be tested without Koin)*
-- *Test class which has the dependency in a field (probably could not be tested with Koin)*
+***I should try this again at some time in the future...***
 
 ## Issues
-Not so much options for libraries!
+Not so much options for libraries and lack of examples!
 
 ## Disclaimer
 The render of the dog image is from a public [dog api](https://dog.ceo/api/breeds/image/random).

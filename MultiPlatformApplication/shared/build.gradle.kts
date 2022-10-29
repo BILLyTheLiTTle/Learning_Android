@@ -54,7 +54,7 @@ kotlin {
                 // without this, it cannot find "every", "any" and some other functions
                 implementation("io.mockk:mockk-jvm:1.13.2")
 
-                // Mockative seems to not working at themoment of this writing
+                // Mockative seems to not working at the moment of this writing
                 // io.mockative.NoSuchMockError: A mock for the type Database was not generated.
 //                implementation("io.mockative:mockative:1.2.3")
 //                ksp{
