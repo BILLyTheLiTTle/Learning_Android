@@ -82,6 +82,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    repository.addData(0, "")
                     Greeting(greeting, network, repository)
                 }
             }
