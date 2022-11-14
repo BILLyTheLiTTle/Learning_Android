@@ -7,6 +7,8 @@ class Repository: KoinComponent {
 
     private val database : Database by inject()// = Database(databaseDriverFactory)
 
+    fun resetData() = database.clearDatabase()
+
     fun getData(id: Long) = database.selectItem(id)
 
     fun addData(id: Long, data: String) = database.insertItem(id, data)
