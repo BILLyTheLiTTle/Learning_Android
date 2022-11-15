@@ -14,4 +14,6 @@ class Repository: KoinComponent {
     fun addData(id: Long, data: String) = database.insertItem(id, data)
 
     fun updateData(id: Long, data: String) = database.updateItem(id, data)
+
+    fun getVersion() = database.getVersion()
 }

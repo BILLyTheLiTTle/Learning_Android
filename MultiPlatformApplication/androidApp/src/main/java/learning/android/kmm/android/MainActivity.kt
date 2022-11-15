@@ -100,6 +100,7 @@ fun Greeting(
     var response by remember { mutableStateOf("https://www.elegantthemes.com/blog/wp-content/uploads/2022/01/lazy-loading.png") }
     val painter = rememberAsyncImagePainter(model = response)
     val dbText = repository.getData(0).collectAsState(initial = "")
+    val dbVersion = repository.getVersion().collectAsState(initial = "")
 
     Column {
         TextField(
@@ -118,7 +119,7 @@ fun Greeting(
         
         NetworkPart(painter = painter)
         
-        DbPart(dbContent = dbText.value)
+        DbPart(dbContent = dbText.value, dbVersion = dbVersion.value)
         
         LaunchedEffect(Unit) {
             response = networkAction.getDogImageUrl().message ?: ""
@@ -140,9 +141,9 @@ private fun NetworkPart(painter: AsyncImagePainter) {
 }
 
 @Composable
-private fun DbPart(dbContent: String) {
+private fun DbPart(dbContent: String, dbVersion: String) {
     Column {
-        Text(text = "DB Response:", style = TextStyle(fontWeight = FontWeight.Bold))
+        Text(text = "DB Response: (DB Version: $dbVersion)", style = TextStyle(fontWeight = FontWeight.Bold))
 
         Text(text = dbContent)
     }

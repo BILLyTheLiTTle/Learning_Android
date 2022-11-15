@@ -34,4 +34,11 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     internal fun updateItem(id: Long, content: String) {
         dbQuery.updateById(content = content, id = id)
     }
+
+    internal fun getVersion(): Flow<String> {
+        val result = dbQuery.getVersion()
+            .asFlow()
+            .mapToOne()
+        return result
+    }
 }
