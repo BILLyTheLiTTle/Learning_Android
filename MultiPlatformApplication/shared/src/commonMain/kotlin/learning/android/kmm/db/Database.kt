@@ -39,6 +39,9 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
         val result = dbQuery.getVersion()
             .asFlow()
             .mapToOne()
+            .map {
+                "$it(${AppDatabase.Schema.version})"
+            }
         return result
     }
 }
