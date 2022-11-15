@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS Settings (
+version TEXT NOT NULL
+);
+
+UPDATE Settings SET version = '1.1.0';

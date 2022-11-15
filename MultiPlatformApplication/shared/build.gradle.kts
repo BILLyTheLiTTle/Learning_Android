@@ -111,5 +111,11 @@ android {
 sqldelight {
     database("AppDatabase") {
         packageName = "learning.android.kmm.db"
+//        sourceFolders = listOf("sqldelight")
+//        schemaOutputDirectory = file("learning.android.kmm.db")
+//        migrationOutputDirectory = file("learning.android.kmm.db")
+//        deriveSchemaFromMigrations = true
+//        verifyMigrations = true
+//        version = 2
     }
 }
