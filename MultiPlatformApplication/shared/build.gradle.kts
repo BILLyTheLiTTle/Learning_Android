@@ -50,9 +50,6 @@ kotlin {
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
                 implementation("io.mockk:mockk-common:1.12.1")
-                // not working for iOS
-                // without this, it cannot find "every", "any" and some other functions
-                implementation("io.mockk:mockk-jvm:1.13.2")
 
                 // Mockative seems to not working at the moment of this writing
                 // io.mockative.NoSuchMockError: A mock for the type Database was not generated.
@@ -71,7 +68,12 @@ kotlin {
                 implementation("io.insert-koin:koin-android:$koinVersion")
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                // without this, it cannot find "every", "any" and some other functions
+                implementation("io.mockk:mockk-jvm:1.13.2")
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
