@@ -24,6 +24,7 @@ The official documentation for **Ktor** is unbeatable. Actually there are not ma
 - [Modify the `HttpResponse` to your appropriate DTO object dependencies and example](https://ktor.io/docs/serialization-client.html). *Don't forget that you need `implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")` as well. Tt is mentioned in the previous link but I wrote again just to make sure that I will pay attention and avoid pulling my hair out!*
 
 ### DB documentation (SQLDelight)
+- The DB migration implementation used here is wrong. Please see the appropriate at Ch.10 of [Kotlin Multiplatform by Tutorials](https://www.amazon.com/Kotlin-Multiplatform-Tutorials-First-Platforms/dp/1950325628).
 - This [guide](https://kotlinlang.org/docs/multiplatform-mobile-ktor-sqldelight.html#configure-sqldelight-and-implement-cache-logic) shows how to integrate **SQLDelight** into a KMM project. It is also a part of the official guide I mentioned at the start of ***Details*** section.
 - As always `Flow`s could be in the game by following this [guide](https://cashapp.github.io/sqldelight/js_sqlite/coroutines/).
 - Last but not least don't forget the [**SQLDelight *plugin***](https://plugins.jetbrains.com/plugin/8191-sqldelight) for the Android Studio to facilitate the whole process. It can be installed from the Marketplace of the IDE.
@@ -37,6 +38,7 @@ The official documentation for **Ktor** is unbeatable. Actually there are not ma
 - Last but not least, don't forget the way I used `by inject()` in the `Repository` class in `shared` module at `commonMain` directory. I had to make the `Repository` to implement `KoinComponent` interface! This can be also viewed in this [article](https://johnoreilly.dev/posts/kotlinmultiplatform-koin/).
 
 #### Unit tests with Koin
+- Although it is difficult to gather all dependencies under `commonXXX` module I should try to. Because I will be able to validate the module integration through the `checkModules` as it is described at Ch.9 of [Kotlin Multiplatform by Tutorials](https://www.amazon.com/Kotlin-Multiplatform-Tutorials-First-Platforms/dp/1950325628) or as it is described [here](https://insert-koin.io/docs/reference/koin-test/checkmodules).
 - This [answer](https://stackoverflow.com/a/67620830) shows how to use your mock into your modules. This helps with field injection in the actual class. In my example `Repostiory` class is injected in the test and **mocked `Database`** is retrieved from the Koin container instead of **real `Database`** class.
 - The project contains `ksp` integration. I could not find any working example about `ksp` so I magically wrote the line by myself. Pay attention to the plugin declaration (`id("com.google.devtools.ksp") version "1.7.10-1.0.6"`) as it should match your Kotlin version.
 - The mocking was achieved with MockK library as I mentioned [here](https://stackoverflow.com/a/74245709). I tried Mockative but with no success.
