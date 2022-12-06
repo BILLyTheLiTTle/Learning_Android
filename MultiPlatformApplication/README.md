@@ -6,7 +6,7 @@ In this application the target is to use:
 - Integrate **Ktor** for KMM network calls
 - Integrate **Insert-Koin** for DI
 - Integrate **SQLDelight** for DB functionality
-- Implement **Unit Tests** with **Insert-Koin** (*not working properly*)
+- Implement **Unit Tests** with **Insert-Koin**
 
 ## Details
 Probably this [guide](https://kotlinlang.org/docs/multiplatform-mobile-ktor-sqldelight.html#make-the-business-logic-cross-platform) should be the most complete guide I have seen. Keep an eye on it because it will be updated as it from official Kotlin documentation.
