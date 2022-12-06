@@ -113,7 +113,15 @@ fun Greeting(
                 Text(text = "Enter name")
             }
         )
-        Text(text = greeting.greeting(text))
+        Text(
+            text = "${greeting.greeting(text)} ${
+                if (text.isNotEmpty()) {
+                    "(Flavor: ${BuildConfig.FLAVOR_NAME})"
+                } else {
+                    ""
+                }
+            }"
+        )
 
         Spacer(modifier = Modifier.padding(10.dp))
         

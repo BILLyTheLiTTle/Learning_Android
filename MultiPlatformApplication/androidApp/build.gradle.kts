@@ -29,6 +29,20 @@ android {
             isMinifyEnabled = false
         }
     }
+
+    flavorDimensions.add("aFlavorDimension")
+
+    productFlavors {
+        create("FlavorOne") {
+            dimension = "aFlavorDimension"
+            buildConfigField("String", "FLAVOR_NAME", "\"Flavor 1\"")
+        }
+
+        create("FlavorTwo") {
+            dimension = "aFlavorDimension"
+            buildConfigField("String", "FLAVOR_NAME", "\"Flavor 2\"")
+        }
+    }
 }
 
 dependencies {
