@@ -1,4 +1,4 @@
-# Sign up / Sign in Example
+# KMM Example
 
 ## Learning Outcomes
 In this application the target is to use:
@@ -39,9 +39,7 @@ The official documentation for **Ktor** is unbeatable. Actually there are not ma
 #### Unit tests with Koin
 - This [answer](https://stackoverflow.com/a/67620830) shows how to use your mock into your modules. This helps with field injection in the actual class. In my example `Repostiory` class is injected in the test and **mocked `Database`** is retrieved from the Koin container instead of **real `Database`** class.
 - The project contains `ksp` integration. I could not find any working example about `ksp` so I magically wrote the line by myself. Pay attention to the plugin declaration (`id("com.google.devtools.ksp") version "1.7.10-1.0.6"`) as it should match your Kotlin version.
-- The mocking was achieved with MockK library. I tried Mockative but with no success. Don't forget that the MockK solution is more like a workoaround because it will not work in iOS as I mention [here](https://stackoverflow.com/a/74245709). I hope the future will be more hopeful!
-
-***I should try this again at some time in the future...***
+- The mocking was achieved with MockK library as I mentioned [here](https://stackoverflow.com/a/74245709). I tried Mockative but with no success.
 
 ## Issues
 Not so much options for libraries and lack of examples!
