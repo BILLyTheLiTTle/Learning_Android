@@ -102,6 +102,7 @@ Various Android examples based on what comes to my mind!
 
 ### 14. [KMM Example](MultiPlatformApplication)
 - Use KMM for sharing the logic between Android/iOS
+- Use `buildSrc` module
 - Integrate **Ktor** for KMM network calls
 - Integrate **Insert-Koin** for DI
 - Integrate **SQLDelight** for DB functionality

@@ -3,6 +3,7 @@
 ## Learning Outcomes
 In this application the target is to use:
 - Use KMM for sharing the logic between Android/iOS
+- Use `buildSrc` module
 - Integrate **Ktor** for KMM network calls
 - Integrate **Insert-Koin** for DI
 - Integrate **SQLDelight** for DB functionality
@@ -42,6 +43,10 @@ The official documentation for **Ktor** is unbeatable. Actually there are not ma
 - This [answer](https://stackoverflow.com/a/67620830) shows how to use your mock into your modules. This helps with field injection in the actual class. In my example `Repostiory` class is injected in the test and **mocked `Database`** is retrieved from the Koin container instead of **real `Database`** class.
 - The project contains `ksp` integration. I could not find any working example about `ksp` so I magically wrote the line by myself. Pay attention to the plugin declaration (`id("com.google.devtools.ksp") version "1.7.10-1.0.6"`) as it should match your Kotlin version.
 - The mocking was achieved with MockK library as I mentioned [here](https://stackoverflow.com/a/74245709). I tried Mockative but with no success.
+
+### Gradle
+- Use `buildSrc` module as it is described at Ch.2 of [Kotlin Multiplatform by Tutorials](https://www.amazon.com/Kotlin-Multiplatform-Tutorials-First-Platforms/dp/1950325628).
+- [Here](https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf) you can find the best guide to setup this kind of module.
 
 ## Issues
 Not so much options for libraries and lack of examples!
