@@ -18,3 +18,4 @@ rootProject.name = "MultiPlatformApplication"
 include(":androidApp")
 include(":desktop")
 include(":shared")
+include(":shared-ui")

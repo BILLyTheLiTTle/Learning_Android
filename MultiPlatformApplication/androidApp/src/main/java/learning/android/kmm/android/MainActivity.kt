@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import learning.android.kmm.AndroidPlatform
+import learning.android.kmm.android.ui.SampleGreeting
 import learning.android.kmm.db.Repository
 import learning.android.kmm.network.NetworkAction
 import learning.android.kmm.network.NetworkActionImpl
@@ -81,9 +82,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    repository.resetData()
-                    repository.addData(0, "")
-                    Greeting(greeting, network, repository)
+//                    repository.resetData()
+//                    repository.addData(0, "")
+//                    Greeting(greeting, network, repository)
+                    SampleGreeting(AndroidPlatform())
                 }
             }
         }

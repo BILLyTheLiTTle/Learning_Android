@@ -32,7 +32,7 @@ kotlin {
                 implementation(Deps.Coroutines.common)
 
                 implementation(project(":shared"))
-//                implementation(project(":shared-ui"))
+                implementation(project(":shared-ui"))
             }
         }
     }

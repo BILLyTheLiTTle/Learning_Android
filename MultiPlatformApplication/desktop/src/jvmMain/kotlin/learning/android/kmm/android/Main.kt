@@ -7,6 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import learning.android.kmm.JvmPlatform
+import learning.android.kmm.android.ui.SampleGreeting
 import learning.android.kmm.getPlatform
 
 fun main() {
@@ -18,7 +20,7 @@ fun main() {
             title = "Multiplatform Application"
         ) {
             Surface(modifier = Modifier.fillMaxSize()) {
-                Text(getPlatform().name)
+                SampleGreeting(JvmPlatform())
             }
         }
     }

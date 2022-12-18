@@ -47,6 +47,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(project(":shared-ui"))
     with(Dependencies.Compose) {
         implementation(ui)
         implementation(uiTooling)
