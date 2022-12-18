@@ -33,6 +33,10 @@ kotlin {
 
                 implementation(project(":shared"))
                 implementation(project(":shared-ui"))
+
+                val coreVersion = "3.2.2"
+                // Koin Core features
+                implementation("io.insert-koin:koin-core:$coreVersion")
             }
         }
     }

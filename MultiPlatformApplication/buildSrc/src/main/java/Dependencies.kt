@@ -14,7 +14,7 @@ object Dependencies {
     }
 
     object Ktor {
-        private const val version = "2.1.2"
+        private const val version = "2.0.0"
 
         const val clientCore = "io.ktor:ktor-client-core:$version"
         const val serializationJson = "io.ktor:ktor-serialization-kotlinx-json:$version"

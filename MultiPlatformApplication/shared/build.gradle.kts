@@ -31,7 +31,7 @@ kotlin {
     }
 
     sourceSets {
-        val ktorVersion = "2.1.2"
+        val ktorVersion = "2.0.0"
         val sqlDelightVersion = "1.5.3"
         val koinVersion = "3.2.0"
         val commonMain by getting {
@@ -41,6 +41,7 @@ kotlin {
                     implementation(serializationJson)
                     implementation(contentNegotiation)
                 }
+                implementation("io.ktor:ktor-client-cio:$ktorVersion")
 //                implementation("io.ktor:ktor-client-core:$ktorVersion")
 //                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 //                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
@@ -115,6 +116,7 @@ kotlin {
             dependencies {
                 implementation(Deps.napier)
                 implementation(Deps.Coroutines.common)
+                implementation("com.squareup.sqldelight:sqlite-driver:$sqlDelightVersion")
             }
         }
     }

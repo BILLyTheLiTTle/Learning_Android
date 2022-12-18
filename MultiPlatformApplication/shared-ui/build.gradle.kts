@@ -67,6 +67,12 @@ kotlin {
                 api(compose.materialIconsExtended)
                 api(compose.ui)
                 api(compose.uiTooling)
+
+                val coreVersion = "3.2.2"
+                // Koin Core features
+                implementation("io.insert-koin:koin-core:$coreVersion")
+
+                api("com.alialbaali.kamel:kamel-image:0.4.0")
             }
         }
         val commonTest by getting

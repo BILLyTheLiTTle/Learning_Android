@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import learning.android.kmm.AndroidPlatform
+import learning.android.kmm.android.ui.Greeting
 import learning.android.kmm.android.ui.SampleGreeting
 import learning.android.kmm.db.Repository
 import learning.android.kmm.network.NetworkAction
@@ -82,80 +83,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-//                    repository.resetData()
-//                    repository.addData(0, "")
-//                    Greeting(greeting, network, repository)
-                    SampleGreeting(AndroidPlatform())
+                    repository.resetData()
+                    repository.addData(0, "")
+                    Greeting(greeting, network, repository)
+//                    SampleGreeting(AndroidPlatform())
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(
-    greeting: GreetingFunctionality,
-    networkAction: NetworkAction,
-    repository: Repository
-) {
-    var text by remember { mutableStateOf("") }
-    var response by remember { mutableStateOf("https://www.elegantthemes.com/blog/wp-content/uploads/2022/01/lazy-loading.png") }
-    val painter = rememberAsyncImagePainter(model = response)
-    val dbText = repository.getData(0).collectAsState(initial = "")
-    val dbVersion = repository.getVersion().collectAsState(initial = "")
-
-    Column {
-        TextField(
-            value = text,
-            onValueChange = {
-                text = it
-                repository.updateData(0, it)
-            },
-            label = {
-                Text(text = "Enter name")
-            }
-        )
-        Text(
-            text = "${greeting.greeting(text)} ${
-                if (text.isNotEmpty()) {
-                    "(Flavor: ${BuildConfig.FLAVOR_NAME})"
-                } else {
-                    ""
-                }
-            }"
-        )
-
-        Spacer(modifier = Modifier.padding(10.dp))
-        
-        NetworkPart(painter = painter)
-        
-        DbPart(dbContent = dbText.value, dbVersion = dbVersion.value)
-        
-        LaunchedEffect(Unit) {
-            response = networkAction.getDogImageUrl().message ?: ""
-        }
-    }
-}
-
-@Composable
-private fun NetworkPart(painter: AsyncImagePainter) {
-    Column {
-        Text(text = "Network Response:", style = TextStyle(fontWeight = FontWeight.Bold))
-
-        Image(
-            painter = painter,
-            contentDescription = null,
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
-}
-
-@Composable
-private fun DbPart(dbContent: String, dbVersion: String) {
-    Column {
-        Text(text = "DB Response: (DB Version: $dbVersion)", style = TextStyle(fontWeight = FontWeight.Bold))
-
-        Text(text = dbContent)
     }
 }
 
