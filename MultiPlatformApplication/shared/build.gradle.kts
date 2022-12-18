@@ -1,3 +1,5 @@
+//import org.jetbrains.compose.compose
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -12,7 +14,12 @@ plugins {
 
 kotlin {
     android()
-    
+    jvm("desktop"){
+        compilations.all {
+            kotlinOptions.jvmTarget = "11"
+        }
+    }
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -102,6 +109,13 @@ kotlin {
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
+        }
+
+        val desktopMain by getting {
+            dependencies {
+                implementation(Deps.napier)
+                implementation(Deps.Coroutines.common)
+            }
         }
     }
 }

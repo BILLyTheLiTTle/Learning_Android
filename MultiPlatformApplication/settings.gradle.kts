@@ -3,6 +3,7 @@ pluginManagement {
         google()
         gradlePluginPortal()
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
@@ -15,4 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "MultiPlatformApplication"
 include(":androidApp")
+include(":desktop")
 include(":shared")
