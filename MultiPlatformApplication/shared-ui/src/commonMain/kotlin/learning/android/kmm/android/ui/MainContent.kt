@@ -48,7 +48,7 @@ fun Greeting(
 
         Spacer(modifier = Modifier.padding(10.dp))
 
-//        NetworkPart(painter = painter)
+        NetworkPart(url = response)
 
         DbPart(dbContent = dbText.value, dbVersion = dbVersion.value)
 
@@ -57,6 +57,9 @@ fun Greeting(
         }
     }
 }
+
+@Composable
+expect fun NetworkPart(url: String)
 
 //@Composable
 //private fun NetworkPart(resource: Resource<Painter>) {

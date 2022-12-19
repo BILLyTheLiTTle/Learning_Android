@@ -17,8 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImagePainter
-import coil.compose.rememberAsyncImagePainter
 import learning.android.kmm.AndroidPlatform
 import learning.android.kmm.android.ui.Greeting
 import learning.android.kmm.android.ui.SampleGreeting

@@ -72,12 +72,13 @@ kotlin {
                 // Koin Core features
                 implementation("io.insert-koin:koin-core:$coreVersion")
 
-                api("com.alialbaali.kamel:kamel-image:0.4.0")
+//                api("com.alialbaali.kamel:kamel-image:0.4.0")
             }
         }
         val commonTest by getting
         val androidMain by getting {
             dependencies {
+                implementation("io.coil-kt:coil-compose:2.1.0")
             }
         }
         val desktopMain by getting
