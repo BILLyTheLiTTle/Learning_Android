@@ -101,7 +101,7 @@ Various Android examples based on what comes to my mind!
 - **[Ch.13, 14]** Dagger multibinding for `ViewModel`s (*will not do*)
 
 ### 14. [KMM Example](MultiPlatformApplication)
-- Use KMM for sharing the logic between Android/iOS
+- Use KMM for sharing the logic between Android/iOS/Desktop (unable to work on iOS environment)
 - Use `buildSrc` module
 - Integrate **Ktor** for KMM network calls
 - Integrate **Insert-Koin** for DI

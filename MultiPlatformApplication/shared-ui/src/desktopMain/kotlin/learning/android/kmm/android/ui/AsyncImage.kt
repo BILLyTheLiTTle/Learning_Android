@@ -21,6 +21,7 @@ actual fun NetworkPart(url: String) {
         and I not gonna hide it I want just to finish this proof of concept project.
         I wish I will not forget to make the changes I have in mind in the near future!
         Also needs remember delegate as well...
+        I wish also I could use Kamel library, but ...https://github.com/alialbaali/Kamel/issues/30
      */
     val url = URL(url)
     val connection = url.openConnection() as HttpURLConnection
