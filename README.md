@@ -108,6 +108,10 @@ Various Android examples based on what comes to my mind!
 - Integrate **SQLDelight** for DB functionality
 - Implement **Unit Tests** with **Insert-Koin**
 
+### 15. [List Application](ListApplication)
+- Use of `AsyncListDiffer` for your RecyclerView Adapter
+- Use property delegation instead of inheritance
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
