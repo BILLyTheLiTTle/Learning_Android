@@ -48,6 +48,7 @@ The official documentation for **Ktor** is unbeatable. Actually there are not ma
 ### Gradle
 - Use `buildSrc` module as it is described at Ch.2 of [Kotlin Multiplatform by Tutorials](https://www.amazon.com/Kotlin-Multiplatform-Tutorials-First-Platforms/dp/1950325628).
 - [Here](https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf) you can find the best guide to setup this kind of module.
+- As I know of, `buildSrc` might be deprecated. Probably `TOML` is the [substitution](https://funkymuse.dev/posts/toml-gradle/) of it.
 
 ### Greatest Reference
 The greatest reference is the book "[Kotlin Multiplatform by Tutorials](https://www.amazon.com/Kotlin-Multiplatform-Tutorials-First-Platforms/dp/1950325628)" and its [code samples](https://github.com/kodecocodes/kmpf-materials). Without all these I would not be able to have a working example.
