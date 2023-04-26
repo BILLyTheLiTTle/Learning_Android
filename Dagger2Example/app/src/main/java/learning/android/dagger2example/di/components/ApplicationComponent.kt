@@ -7,6 +7,7 @@ import learning.android.dagger2example.di.ApplicationScope
 import learning.android.dagger2example.di.modules.SubcomponentActivityModule
 import learning.android.dagger2example.di.modules.ContentApplicationModule
 
+// The interface that generates the graph is annotated with @Component
 @ApplicationScope
 @Component (modules = [SubcomponentActivityModule::class, ContentApplicationModule::class])
 interface ApplicationComponent {

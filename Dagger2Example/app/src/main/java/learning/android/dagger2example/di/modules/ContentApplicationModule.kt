@@ -6,6 +6,7 @@ import learning.android.dagger2example.di.ApplicationScope
 import java.lang.StringBuilder
 import javax.inject.Named
 
+// Modules are a way to semantically encapsulate information on how to provide objects
 @Module
 class ContentApplicationModule {
 

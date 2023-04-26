@@ -7,6 +7,7 @@ import learning.android.dagger2example.di.ActivityScope
 import learning.android.dagger2example.di.modules.ContentActivityModule
 import learning.android.dagger2example.di.modules.SubcomponentFragmentModule
 
+// Subcomponents are components that inherit and extend the object graph of a parent component.
 @ActivityScope
 @Subcomponent(modules = [SubcomponentFragmentModule::class, ContentActivityModule::class])
 interface ActivityComponent {
