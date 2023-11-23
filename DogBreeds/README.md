@@ -42,6 +42,7 @@ It is a good start to define a descriptive color name!
 
 ### Optimization techniques
 - The most complete lists of techniques:
+  - This [article](https://blog.savvas.cloud/2023/09/07/the-dos-and-donts-of-jetpack-compose/) seems to be the most comprehensive article of all the techniques I visited here and there. It is also very easy to understand with good examples.
   - A lot of optimization techniques could be found [here](https://skyyo.medium.com/performance-in-jetpack-compose-9a85ce02f8f9). It is the most complete list I have ever found. The other best article I have ever found is [this](https://multithreaded.stitchfix.com/blog/2022/08/05/jetpack-compose-recomposition/), which describes little less techniques from the previous one but it has a very good description.
 - `derivedStateOf` technique details:
   - One important optimazation is with `derivedStateOf`. It has lazy initialization which makes the first run faster. It will trigger recomposition if the content of the block produces different result. It can be combined with `remember{}` when the code in its block are `val/var` instead of states. More info could be found [here](https://www.bontouch.com/case/state-and-derived-state-in-compose/).
