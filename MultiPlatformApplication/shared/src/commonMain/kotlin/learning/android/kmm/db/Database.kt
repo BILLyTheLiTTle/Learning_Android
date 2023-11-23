@@ -27,7 +27,9 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
             id = id
         ).asFlow()
             .mapToOne()
-            .map { it.content }
+            .map {
+                it.content
+            }
         return result
     }
 

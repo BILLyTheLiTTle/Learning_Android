@@ -1,6 +1,6 @@
 package learning.android.kmm.network
 
 object ApiRoutes {
-    private const val BASE_URL = "https://dog.ceo/api"
-    const val RANDOM_IMAGE = "$BASE_URL/breeds/image/random"
+    private const val BASE_URL = "https://api.thedogapi.com/v1"
+    const val BREEDS = "$BASE_URL/breeds"
 }

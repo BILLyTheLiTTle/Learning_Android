@@ -81,8 +81,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    repository.resetData()
-                    repository.addData(0, "")
+//                    repository.resetData()
+//                    repository.addData(0, "")
                     Greeting(greeting, network, repository)
 //                    SampleGreeting(AndroidPlatform())
                 }
