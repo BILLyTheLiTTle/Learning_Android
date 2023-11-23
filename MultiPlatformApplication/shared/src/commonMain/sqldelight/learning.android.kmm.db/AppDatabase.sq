@@ -3,10 +3,15 @@ id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 content TEXT NOT NULL
 );
 
+INSERT INTO Data(id, content) VALUES(0,"");
+
 CREATE TABLE Settings (
 version TEXT NOT NULL
 );
 
+INSERT INTO Settings(version) VALUES ('1.0.0');
+
+-- Data Table Dynamic calls
 insertItem:
 INSERT INTO Data(id, content) VALUES(?,?);
 
@@ -19,7 +24,6 @@ SELECT * FROM Data WHERE id = ?;
 updateById:
 UPDATE Data SET content = ? WHERE id = ?;
 
-INSERT INTO Settings(version) VALUES ('1.0.0');
-
+-- Settings table dynamic calls
 getVersion:
 SELECT version FROM Settings;

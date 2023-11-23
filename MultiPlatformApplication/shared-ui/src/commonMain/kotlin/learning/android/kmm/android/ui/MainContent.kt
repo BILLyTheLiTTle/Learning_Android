@@ -49,9 +49,9 @@ fun MainScreen(
         SplashDialogs(repository)
     } else {
         if (!proceed) {
-            Row {
+            Column {
                 Text(text = greeting.greeting(dbText.value))
-//                Text(text = repository.getVersion().collectAsState(initial = "0.0.0").value)
+//                Text(text = "DB Schema used: ${repository.getVersion().collectAsState(initial = "0.0.0").value}")
             }
             Column(
                 modifier = Modifier
@@ -66,7 +66,7 @@ fun MainScreen(
                     },
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Cancel,
+                        imageVector = Icons.Default.Check,
                         contentDescription = null,
                     )
                     Spacer(modifier = Modifier.width(4.dp))
@@ -78,42 +78,6 @@ fun MainScreen(
     if (proceed) {
         Animals(networkAction)
     }
-//    var text by remember { mutableStateOf("") }
-//    var response by remember { mutableStateOf("https://www.elegantthemes.com/blog/wp-content/uploads/2022/01/lazy-loading.png") }
-//    val resource = lazyPainterResource(data = response)
-//    val dbText = repository.getData(0).collectAsState(initial = "")
-//    val dbVersion = repository.getVersion().collectAsState(initial = "")
-//
-//    Column {
-//        TextField(
-//            value = text,
-//            onValueChange = {
-//                text = it
-//                repository.updateData(0, it)
-//            },
-//            label = {
-//                Text(text = "Enter name")
-//            }
-//        )
-//        Text(
-//            text = "${greeting.greeting(text)}"
-//        )
-//
-//        Spacer(modifier = Modifier.padding(10.dp))
-//
-//        NetworkPart(url = response)
-//
-//        DbPart(dbContent = dbText.value, dbVersion = dbVersion.value)
-//
-//        LaunchedEffect(Unit) {
-//            val networkResponse = networkAction.getPetData()
-//            response = if (networkResponse is NetworkState.Success) {
-//                "https://cdn2.thedogapi.com/images/${networkResponse.data?.get(0)?.photo ?: ""}.jpg"
-//            } else {
-//                (networkResponse as NetworkState.Error).errorIcon
-//            }
-//        }
-//    }
 }
 
 @Composable
@@ -125,10 +89,8 @@ fun Animals(networkAction: NetworkAction) {
         networkResponse = networkAction.getPetData()
         if (networkResponse is NetworkState.Success) {
             status = 1
-//            "https://cdn2.thedogapi.com/images/${networkResponse.data?.get(0)?.photo ?: ""}.jpg"
         } else {
             status = 2
-//            (networkResponse as NetworkState.Error).errorIcon
         }
     }
 

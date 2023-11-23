@@ -41,8 +41,6 @@ fun main() {
             title = "Multiplatform Application"
         ) {
             Surface(modifier = Modifier.fillMaxSize()) {
-                repository.resetData()
-                repository.addData(0, "")
 //                repository.addData(0, "Bill")
                 MainScreen(greeting, network, repository)
 //                SampleGreeting(JvmPlatform())

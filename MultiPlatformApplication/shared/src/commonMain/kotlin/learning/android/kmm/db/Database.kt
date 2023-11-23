@@ -9,6 +9,20 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     private val database = AppDatabase(databaseDriverFactory.createDriver())
     private val dbQuery = database.appDatabaseQueries
 
+    /*
+    When you do a clean install (without having the version on your device at all) you go to the
+    correct schema version but the SQL queries are not getting executed.
+    In order to avoid this issue you need the code which is in init.
+    This way you force, somehow, to execute the SQL queries in the correct sqm file!
+     */
+    init {
+        AppDatabase.Schema.migrate(
+            driver = databaseDriverFactory.createDriver(),
+            oldVersion = 0,
+            newVersion = AppDatabase.Schema.version
+        )
+    }
+
     internal fun clearDatabase() {
         dbQuery.transaction {
             dbQuery.removeAll()
