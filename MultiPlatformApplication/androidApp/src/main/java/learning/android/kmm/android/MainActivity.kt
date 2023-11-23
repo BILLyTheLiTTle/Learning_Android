@@ -3,7 +3,6 @@ package learning.android.kmm.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,8 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import learning.android.kmm.AndroidPlatform
-import learning.android.kmm.android.ui.Greeting
-import learning.android.kmm.android.ui.SampleGreeting
+import learning.android.kmm.android.ui.MainScreen
 import learning.android.kmm.db.Repository
 import learning.android.kmm.network.NetworkAction
 import learning.android.kmm.network.NetworkActionImpl
@@ -83,7 +81,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 //                    repository.resetData()
 //                    repository.addData(0, "")
-                    Greeting(greeting, network, repository)
+                    MainScreen(greeting, network, repository)
 //                    SampleGreeting(AndroidPlatform())
                 }
             }
@@ -95,7 +93,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        Greeting(
+        MainScreen(
             greeting = GreetingFunctionality(AndroidPlatform()),
             networkAction = NetworkActionImpl(HttpClientSetup(JsonSerializerSetup())),
             repository = Repository()

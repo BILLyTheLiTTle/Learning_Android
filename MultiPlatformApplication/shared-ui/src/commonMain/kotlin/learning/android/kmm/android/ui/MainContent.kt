@@ -38,7 +38,7 @@ import learning.android.kmm.network.NetworkState
 import learning.android.kmm.network.model.Pet
 
 @Composable
-fun Greeting(
+fun MainScreen(
     greeting: Greeting,
     networkAction: NetworkAction,
     repository: Repository
@@ -49,7 +49,10 @@ fun Greeting(
         SplashDialogs(repository)
     } else {
         if (!proceed) {
-            Text(text = greeting.greeting(dbText.value))
+            Row {
+                Text(text = greeting.greeting(dbText.value))
+//                Text(text = repository.getVersion().collectAsState(initial = "0.0.0").value)
+            }
             Column(
                 modifier = Modifier
                     .fillMaxSize()
