@@ -59,7 +59,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":shared"))
-
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+                    because ("align all versions of kotlin transitive dependencies")
+                }
+                implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0") {
+                    exclude ("org.jetbrains.kotlin", "kotlin-stdlib")
+                }
                 api(compose.foundation)
                 api(compose.runtime)
                 api(compose.foundation)

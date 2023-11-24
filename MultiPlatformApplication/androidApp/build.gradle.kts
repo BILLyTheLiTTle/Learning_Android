@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "learning.android.kmm.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "learning.android.kmm.android"
         minSdk = 21

@@ -44,14 +44,14 @@ fun MainScreen(
     repository: Repository
 ) {
     var proceed by remember { mutableStateOf(false) }
-    val dbText = repository.getData(0).collectAsState(initial = "")
-    if (dbText.value.isNullOrEmpty()) {
+    val dbText = repository.getData(0).collectState(initial = "")
+    if (dbText.value.isEmpty()) {
         SplashDialogs(repository)
     } else {
         if (!proceed) {
             Column {
                 Text(text = greeting.greeting(dbText.value))
-//                Text(text = "DB Schema used: ${repository.getVersion().collectAsState(initial = "0.0.0").value}")
+//                Text(text = "DB Schema used: ${repository.getVersion().collectState(initial = "0.0.0").value}")
             }
             Column(
                 modifier = Modifier
@@ -84,7 +84,7 @@ fun MainScreen(
 fun Animals(networkAction: NetworkAction) {
     var status by remember { mutableStateOf(0) }
     var networkResponse: NetworkState<List<Pet>> by remember { mutableStateOf(NetworkState.Success(emptyList())) }
-    println("TSAP")
+
     LaunchedEffect(Unit) {
         networkResponse = networkAction.getPetData()
         if (networkResponse is NetworkState.Success) {
@@ -96,7 +96,7 @@ fun Animals(networkAction: NetworkAction) {
 
     when (status) {
         0 -> {
-            println("TSAP 0")
+            // It could be a loading here
         }
         1 -> {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
@@ -123,7 +123,6 @@ fun Animals(networkAction: NetworkAction) {
         }
         else -> {
             NetworkPart(url = (networkResponse as NetworkState.Error).errorIcon)
-            println("TSAP 2")
         }
     }
 
