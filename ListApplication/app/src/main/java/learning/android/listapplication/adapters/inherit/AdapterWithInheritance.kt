@@ -13,7 +13,7 @@ class AdapterWithInheritance : BaseAdapter<List<User>>() {
     private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {
 
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return (oldItem.id == newItem.id) && (oldItem.name == newItem.name)
+            return (oldItem.id == newItem.id)
         }
 
         override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
