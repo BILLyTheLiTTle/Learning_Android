@@ -17,6 +17,7 @@ class NetworkActionImpl(httpClientSetup: HttpClientSetup): NetworkAction, Networ
     override suspend fun getPetData(): NetworkState<List<Pet>> {
         return try {
             val response: List<Pet> = client.get{ url(ApiRoutes.BREEDS)}.body()
+            client.close()
             NetworkState.Success(response)
         }
         catch (e: Exception) {
