@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("com.google.protobuf") version "0.9.4"
 }
 
 android {
@@ -47,6 +48,48 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+//    sourceSets.getByName("main").java.srcDirs("${protobuf.generatedFilesBaseDir}/main/javalite")
+//    sourceSets.getByName("main").java.srcDirs("$projectDir/src/main/proto")
+}
+
+// Whole protobuf section was copied from here (https://github.com/zhaobozhen/LibChecker/blob/c0c3bc7c661fe45cc44d5c6ab0202764652e0b7e/app/build.gradle.kts#L197)
+protobuf {
+    protoc {
+//        artifact = if (osdetector.os == "osx") {
+            // support both Apple Silicon and Intel chipsets
+            val arch = System.getProperty("os.arch")
+            val suffix = if (arch == "x86_64") "x86_64" else "aarch_64"
+//            "${libs.google.protobuf.protoc.get()}:osx-$suffix"
+//        } else
+//            libs.google.protobuf.protoc.get().toString()
+    }
+    plugins {
+        // Optional: an artifact spec for a protoc plugin, with "grpc" as
+        // the identifier, which can be referred to in the "plugins"
+        // container of the "generateProtoTasks" closure.
+//        id("grpc") {
+//            artifact = if (osdetector.os == "osx")
+//                "${libs.grpc.gen.get()}:osx-aarch_64"
+//            else
+//                libs.grpc.gen.get().toString()
+//        }
+        generateProtoTasks {
+            all().forEach {
+                it.builtins {
+                    create("java") {
+                        option("lite")
+                    }
+                }
+
+//                it.plugins {
+//                    create("grpc") {
+//                        option("lite")
+//                    }
+//                }
+            }
+        }
+    }
 }
 
 dependencies {
@@ -69,5 +112,11 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
 
+    // Shared preferences DataStore dependencies
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Protocol Buffer DataStore dependencies
+    implementation("androidx.datastore:datastore:1.0.0")
+    implementation("com.google.protobuf:protobuf-javalite:3.25.1")
+
 }

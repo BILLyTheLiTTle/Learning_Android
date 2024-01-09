@@ -1,0 +1,10 @@
+syntax = "proto3"; // This should match with the dependency imported in gradle!
+// Even if you have 21 as dependency you could user older version here (proto3)!
+
+option java_package = "com.learning.persistence";
+option java_multiple_files = true;
+
+message UserData {
+    string first_name = 1;
+    string last_name = 2;
+}
