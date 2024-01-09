@@ -57,8 +57,8 @@ fun Greeting(user: User, modifier: Modifier = Modifier) {
 
 @Composable
 fun UserInput(user: User, viewModel: TheViewModel, modifier: Modifier = Modifier) {
-    var firstName by remember { mutableStateOf(TextFieldValue("")) }
-    var lastName by remember { mutableStateOf(TextFieldValue("")) }
+    var firstName by remember(key1 = user.firstname) { mutableStateOf(TextFieldValue(user.firstname)) }
+    var lastName by remember(key1 = user.lastname) { mutableStateOf(TextFieldValue(user.lastname)) }
 
     TextField(
         value = firstName,
