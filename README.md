@@ -112,6 +112,10 @@ Various Android examples based on what comes to my mind!
 - Use of `AsyncListDiffer` for your RecyclerView Adapter
 - Use property delegation instead of inheritance
 
+### 16. [Persistence Example Application](PersistenceExample)
+- Use of Shared Preferences DataStore
+- Use of Protocol Buffer DataStore
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
