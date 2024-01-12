@@ -116,6 +116,9 @@ Various Android examples based on what comes to my mind!
 - Use of Shared Preferences DataStore
 - Use of Protocol Buffer DataStore
 
+### 17. [Netflic Clone Example](NetflixClone)
+- Implement Netflix's scroll behaviour
+
 ### No. [Project_Name](Project_Path)
 - Use Tabbed Activity
 - Fragments
