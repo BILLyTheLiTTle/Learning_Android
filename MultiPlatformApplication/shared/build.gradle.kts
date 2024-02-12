@@ -119,6 +119,12 @@ kotlin {
                 implementation("com.squareup.sqldelight:sqlite-driver:$sqlDelightVersion")
             }
         }
+        val desktopTest by getting {
+            dependencies {
+                // without this, it cannot find "every", "any" and some other functions
+                implementation("io.mockk:mockk-jvm:1.13.2")
+            }
+        }
     }
 }
 
